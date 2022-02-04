@@ -9,10 +9,11 @@ const Positioner = styled.div`
 `;
 
 const Contents = styled.div`
-    background: rgba(255,255,255,0.4);
+    background: rgba(0,0,0,0.1);
     padding: 3rem 10rem;
     height: auto;
     border-radius: 12px;
+    border : 0.001rem solid black;
 `;
 
 const Title = styled.div`
@@ -20,11 +21,11 @@ const Title = styled.div`
     font-weight : 1000;
     margin-bottom : 3rem;
     text-align: center;
-`
+`;
 
-const NumberWrapper = ({ title, children }) => (
+const NumberWrapper = ({ children }) => (
     <Positioner>
-        <Title>{title}</Title>
+        <Title>숫자 게임</Title>
         <Contents>
             {children}
         </Contents>
