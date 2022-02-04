@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 
 const SubMissionInput = styled.input`
@@ -21,6 +21,7 @@ const SubMissionQuestion = styled.div`
 `;
 
 const NumberFunc = () => {
+    const [time, setTime] = useState(4);
     const [first, setFirst] = useState(Math.ceil(Math.random() * 9));
     const [second, setSecond] = useState(Math.ceil(Math.random() * 9));
     const [value, setValue] = useState('');
@@ -28,38 +29,53 @@ const NumberFunc = () => {
     const [resultanswer, setResultAnswer] = useState('');
     const [round, setRound] = useState(1);
     const inputRef = useRef(null);
-            
-    const onSubmitForm = (e) => {
-        e.preventDefault();
-        if (parseInt(value) === first + second) {
-            setResult(value + ' 정답입니다.');
+    
+    const handleChange = (e) => {
+        setValue(e.target.value);
+        setResultAnswer('')
+        if (parseInt(e.target.value) === first + second) {
+            setResult(e.target.value + ' 정답입니다.');
             setRound(round + 1);
+            setValue('')
             setFirst(Math.ceil(Math.random() * 9));
             setSecond(Math.ceil(Math.random() * 9));
-            setValue('');
             inputRef.current.focus();
         } else {
-            setResult(value + '은 정답이 아니에요 ㅠ');
-            setValue('');
+            setResult('❌ '+ e.target.value);
             setRound(1);
-            setResultAnswer('정답은 ' + (first+second) + '입니다.');
+            setResultAnswer('✅ ' + (first+second));
         }
     };
+
+    const tick = () => {
+        if (time === 0) reset()
+        else {
+            setTime(time - 1);
+        }
+    };
+
+    const reset = () => {
+        setTime(4);
+        
+    };
+
+    useEffect(() => {
+        const timer = setInterval(() => tick(), 1000);
+        return () => clearInterval(timer);
+    })
     
-    const onChangeInput = (e) => {
-        setValue(e.target.value);
-    }
+    
 
     return (
         <div>
             <SubMissionRound> Round {round} </SubMissionRound>
             <SubMissionQuestion>{first} + {second}</SubMissionQuestion>
-                <form onSubmit={onSubmitForm}>
-                    <SubMissionInput ref={inputRef} value={value} onChange={onChangeInput} />
-                    <button type="submit">입력</button>
+                <form>
+                    <SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
                 </form>
-            <div id="result">{result}</div>  
-            <div id="result">{resultanswer}</div>
+            <div>{time}</div>
+            <div>{result}</div>  
+            <div>{resultanswer}</div>
         </div>
     )
 };
