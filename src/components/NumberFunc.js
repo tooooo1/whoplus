@@ -29,34 +29,36 @@ const NumberFunc = () => {
     const [resultanswer, setResultAnswer] = useState('');
     const [round, setRound] = useState(1);
     const inputRef = useRef(null);
+
+    const reset = () => {
+        setFirst(Math.ceil(Math.random() * 9));
+        setSecond(Math.ceil(Math.random() * 9));
+        inputRef.current.focus();
+        setResult('');
+        setTime(4);
+    };
     
     const handleChange = (e) => {
         setValue(e.target.value);
-        setResultAnswer('')
+        setResultAnswer('');
+        
         if (parseInt(e.target.value) === first + second) {
-            setResult(e.target.value + ' 정답입니다.');
+            setResult('✅ Next Round');
             setRound(round + 1);
-            setValue('')
-            setFirst(Math.ceil(Math.random() * 9));
-            setSecond(Math.ceil(Math.random() * 9));
-            inputRef.current.focus();
-        } else {
-            setResult('❌ '+ e.target.value);
-            setRound(1);
-            setResultAnswer('✅ ' + (first+second));
+            setValue('');
+            setTimeout(() => reset(), 1000);
         }
     };
 
     const tick = () => {
-        if (time === 0) reset()
+        if (time === 0 || time === '') {
+            setTime('');
+            setResult('❌ ' + value);
+            setResultAnswer('✅ ' + (first + second));
+        }
         else {
             setTime(time - 1);
         }
-    };
-
-    const reset = () => {
-        setTime(4);
-        
     };
 
     useEffect(() => {
@@ -70,9 +72,7 @@ const NumberFunc = () => {
         <div>
             <SubMissionRound> Round {round} </SubMissionRound>
             <SubMissionQuestion>{first} + {second}</SubMissionQuestion>
-                <form>
-                    <SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
-                </form>
+            <SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
             <div>{time}</div>
             <div>{result}</div>  
             <div>{resultanswer}</div>

@@ -1,13 +1,11 @@
 import React from 'react';
-import { NumberWrapper, NumberContent, NumberFunc } from '../components';
+import { NumberWrapper, NumberFunc } from '../components';
 
 const NumberMain = () => (
         <NumberWrapper>
-            <NumberContent>
-                <NumberFunc>
-                
-                </NumberFunc>
-            </NumberContent>
+            <NumberFunc>
+            
+            </NumberFunc>
         </NumberWrapper>
 );
 

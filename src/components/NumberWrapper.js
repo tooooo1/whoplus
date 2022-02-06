@@ -16,6 +16,14 @@ const Contents = styled.div`
     border : 0.001rem solid black;
 `;
 
+const Content = styled.div`
+    margin-bottom: 2rem;
+    font-size : 1.5rem;
+    font-weight : 1000;
+    margin-bottom : 3rem;
+    text-align: center;
+`;
+
 const Title = styled.div`
     font-size : 1.5rem;
     font-weight : 1000;
@@ -27,7 +35,9 @@ const NumberWrapper = ({ children }) => (
     <Positioner>
         <Title>숫자 게임</Title>
         <Contents>
-            {children}
+            <Content>
+                {children}
+            </Content>
         </Contents>
     </Positioner>
 );
