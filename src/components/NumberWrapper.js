@@ -10,8 +10,9 @@ const Positioner = styled.div`
 
 const Contents = styled.div`
     background: rgba(0,0,0,0.1);
-    padding: 3rem 10rem;
-    height: auto;
+    padding: 5vh 12vw;
+    width: 32vw;
+    height: 42vh;
     border-radius: 12px;
     border : 0.001rem solid black;
 `;
