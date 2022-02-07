@@ -1,5 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const SubMissionInput = styled.input`
     opacity: 0.6;
@@ -28,14 +29,18 @@ const NumberFunc = () => {
     const [result, setResult] = useState('');
     const [resultanswer, setResultAnswer] = useState('');
     const [round, setRound] = useState(1);
+    const [show, setShow] = useState(true);
     const inputRef = useRef(null);
 
-    const reset = () => {
+    const next = () => {
+        setShow(true);
         setFirst(Math.ceil(Math.random() * 9));
         setSecond(Math.ceil(Math.random() * 9));
         inputRef.current.focus();
         setResult('');
+        setRound(round + 1);
         setTime(4);
+        
     };
     
     const handleChange = (e) => {
@@ -43,18 +48,25 @@ const NumberFunc = () => {
         setResultAnswer('');
         
         if (parseInt(e.target.value) === first + second) {
-            setResult('✅ Next Round');
-            setRound(round + 1);
+            setShow(false);
+            setResult('✅ 정답');
             setValue('');
-            setTimeout(() => reset(), 1000);
+            setTime('');
+            setTimeout(() => next(), 1000);
         }
     };
 
+    const navigate = useNavigate();
+
     const tick = () => {
         if (time === 0 || time === '') {
+            setShow(false);
             setTime('');
             setResult('❌ ' + value);
             setResultAnswer('✅ ' + (first + second));
+            setTimeout(() => {
+                navigate('end');
+            }, 2000);
         }
         else {
             setTime(time - 1);
@@ -71,8 +83,13 @@ const NumberFunc = () => {
     return (
         <div>
             <SubMissionRound> Round {round} </SubMissionRound>
-            <SubMissionQuestion>{first} + {second}</SubMissionQuestion>
-            <SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
+            {
+            show === true ? (
+            <div>
+                <SubMissionQuestion>{first} + {second}</SubMissionQuestion>
+                <SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
+            </div>) : null
+            }
             <div>{time}</div>
             <div>{result}</div>  
             <div>{resultanswer}</div>

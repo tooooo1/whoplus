@@ -1,18 +1,15 @@
 import React from 'react';
 import { NumberMain, NumberEnd } from './components';
-import styled from 'styled-components';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const Color = styled.div`
-  background-color: red;
-`
 
-const App = () => {
-  return (
-    <Color>
-      <NumberMain />
-      {/* <NumberEnd /> */}
-    </Color>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<NumberMain />} />
+      <Route path="/end" element={<NumberEnd />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;

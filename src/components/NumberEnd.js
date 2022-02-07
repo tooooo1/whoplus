@@ -1,13 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import { NumberWrapper, NumberContent } from '../components';
+import { NumberWrapper } from '../components';
 
-const NumberEnd = () => {
+const NumberEnd = () =>
     <NumberWrapper>
-        <NumberContent>
-        </NumberContent>
+        <div> 수고 </div>
     </NumberWrapper>
-};
-
+;
 
 export default NumberEnd;
