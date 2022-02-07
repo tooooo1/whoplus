@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../features/roundSlice';
+import { incrementTime } from '../features/timeSlice';
 
 const SubMissionInput = styled.input`
     opacity: 0.6;
@@ -21,26 +24,31 @@ const SubMissionQuestion = styled.div`
     font-size: 3.5rem;
 `;
 
+const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+let difficulty = 10;
+
 const NumberFunc = () => {
-    const [time, setTime] = useState(4);
-    const [first, setFirst] = useState(Math.ceil(Math.random() * 9));
-    const [second, setSecond] = useState(Math.ceil(Math.random() * 9));
+    const round = useSelector((state) => state.round.value);
+    const time = useSelector((state) => state.time.value);
+    const dispatch = useDispatch();
+
+    const [timedown, setTimedown] = useState(time);
+    const [first, setFirst] = useState(rand(difficulty/10,difficulty));
+    const [second, setSecond] = useState(rand(difficulty/10,difficulty));
     const [value, setValue] = useState('');
+    
     const [result, setResult] = useState('');
     const [resultanswer, setResultAnswer] = useState('');
-    const [round, setRound] = useState(1);
     const [show, setShow] = useState(true);
     const inputRef = useRef(null);
-
+    
     const next = () => {
         setShow(true);
-        setFirst(Math.ceil(Math.random() * 9));
-        setSecond(Math.ceil(Math.random() * 9));
+        setFirst(rand(difficulty/10,difficulty));
+        setSecond(rand(difficulty/10,difficulty));
         inputRef.current.focus();
         setResult('');
-        setRound(round + 1);
-        setTime(4);
-        
+        setTimedown(time);
     };
     
     const handleChange = (e) => {
@@ -51,7 +59,12 @@ const NumberFunc = () => {
             setShow(false);
             setResult('✅ 정답');
             setValue('');
-            setTime('');
+            setTimedown('');
+            dispatch(increment());
+            if (round % 5 === 0) {
+                dispatch(incrementTime());
+                difficulty *= 10;
+            }
             setTimeout(() => next(), 1000);
         }
     };
@@ -59,9 +72,9 @@ const NumberFunc = () => {
     const navigate = useNavigate();
 
     const tick = () => {
-        if (time === 0 || time === '') {
+        if (timedown === 0 || timedown === '') {
             setShow(false);
-            setTime('');
+            setTimedown('');
             setResult('❌ ' + value);
             setResultAnswer('✅ ' + (first + second));
             setTimeout(() => {
@@ -69,7 +82,7 @@ const NumberFunc = () => {
             }, 2000);
         }
         else {
-            setTime(time - 1);
+            setTimedown(timedown - 1);
         }
     };
 
@@ -90,7 +103,7 @@ const NumberFunc = () => {
                 <SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
             </div>) : null
             }
-            <div>{time}</div>
+            <div>{timedown}</div>
             <div>{result}</div>  
             <div>{resultanswer}</div>
         </div>
