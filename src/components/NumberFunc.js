@@ -39,6 +39,7 @@ const NumberFunc = () => {
     
     const [result, setResult] = useState('');
     const [resultanswer, setResultAnswer] = useState('');
+    // const [totaltime, setTotaltime] = useState(0);
     const [show, setShow] = useState(true);
     const inputRef = useRef(null);
     
@@ -61,10 +62,8 @@ const NumberFunc = () => {
             setValue('');
             setTimedown('');
             dispatch(increment());
-            if (round % 5 === 0) {
-                dispatch(incrementTime());
-                difficulty *= 10;
-            }
+            if (round % 5 === 0) difficulty *= 10;
+            if (round % 5 === 4) dispatch(incrementTime());
             setTimeout(() => next(), 1000);
         }
     };
@@ -83,6 +82,7 @@ const NumberFunc = () => {
         }
         else {
             setTimedown(timedown - 1);
+            // setTotaltime(totaltime + 1);
         }
     };
 
