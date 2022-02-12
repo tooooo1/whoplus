@@ -6,13 +6,13 @@ const Positioner = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color : rgba(255,255,255, 0.9);
 `;
 
 const Contents = styled.div`
     background: rgba(0,0,0,0.1);
     padding: 5vh 12vw;
-    width: 32vw;
-    height: 42vh;
+    width: 42vw;
     border-radius: 12px;
     border : 0.001rem solid black;
 `;
@@ -26,16 +26,16 @@ const Content = styled.div`
 `;
 
 const Title = styled.div`
-    font-size : 1.5rem;
+    font-size : 2rem;
     font-weight : 1000;
-    margin-bottom : 3rem;
+    margin-bottom : 1rem;
     text-align: center;
 `;
 
 const NumberWrapper = ({ children }) => (
     <Positioner>
-        <Title>숫자 게임</Title>
         <Contents>
+            <Title>숫자 게임</Title>
             <Content>
                 {children}
             </Content>
