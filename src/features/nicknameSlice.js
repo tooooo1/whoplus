@@ -2,16 +2,16 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { value: '' }
 
-export const roundSlice = createSlice({
+export const nicknameSlice = createSlice({
   name: 'nickname',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    inputData : (state, action) => {
+      state.value = action.payload
     },
   },
 });
 
-export const { increment } = roundSlice.actions;
+export const { inputData } = nicknameSlice.actions;
 
-export default roundSlice.reducer;
+export default nicknameSlice.reducer;
