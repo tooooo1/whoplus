@@ -68,8 +68,8 @@ const NumberFunc = () => {
             setValue('');
             setTimedown('');
             dispatch(increment());
-            if (round % 5 === 0) difficulty *= 10;
-            if (round % 5 === 4) dispatch(incrementTime());
+            if (round % 10 === 0) difficulty *= 10;
+            if (round % 10 === 9) dispatch(incrementTime());
             setTimeout(() => next(), 1000);
         }
     };
@@ -83,7 +83,7 @@ const NumberFunc = () => {
             setResult('❌ ' + value);
             setResultAnswer('✅ ' + (first + second));
             setTimeout(() => {
-                navigate('end');
+                navigate('../end');
             }, 2000);
         }
         else {
@@ -101,7 +101,11 @@ const NumberFunc = () => {
     useEffect(() => {
         const buffertimer = setInterval(() => {
             setProgress((oldProgress) => {
-                const temp = 100 / time;
+            if (round % 10 !== 0) {
+                var temp = 100 / time;
+            } else {
+                temp = 100 / (time-5);
+            }
                 if (oldProgress >= 100) return 0;
                 return oldProgress + temp;
             });
