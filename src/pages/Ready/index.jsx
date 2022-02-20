@@ -23,7 +23,7 @@ const Ready = () => {
         
         setLogin(!login);
         dispatch(inputData(value));
-        navigate("/game")
+        navigate("/play")
     }
 
     return (
@@ -32,7 +32,7 @@ const Ready = () => {
 
             <Styled.Text>1. 주어진 시간 안에 문제를 해결합니다.</Styled.Text>
             <Styled.Text>2. 10라운드마다 난이도가 상승합니다.</Styled.Text>
-            <Styled.Text>3. 게임은 총 50라운드입니다.</Styled.Text>
+            <Styled.Text>3. 게임은 총<Styled.Color> 50 ROUND</Styled.Color>입니다.</Styled.Text>
             <Input onChange={(e) => setValue(e.target.value)} placeholder="닉네임을 입력하세요" />
             <Button color="#01a8ff" onClick={loginClick}>시작</Button>
         </Positioner>

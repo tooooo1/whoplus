@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.div`
-    font-size : 10vw;
+    font-size : 10vh;
     font-weight : 1000;
     margin : 2rem 0;
     text-align: center;
@@ -14,3 +14,7 @@ export const Text = styled.div`
     text-align: center;
     font-family: "Pretendard-SemiBold";
 `;
+
+export const Color = styled.span`
+    color: #ff2e35;
+`

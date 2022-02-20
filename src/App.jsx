@@ -1,8 +1,7 @@
 import React from 'react';
-import { NumberMain, NumberEnd } from './components';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import { Home, Ready } from "./pages"
+import { Home, Ready, Play, End } from "./pages"
 import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
@@ -19,8 +18,8 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/ready" element={<Ready />} />
-      <Route path="/end" element={<NumberEnd />} />
-      <Route path="/game" element={<NumberMain />} />
+      <Route path="/end" element={<End />} />
+      <Route path="/play" element={<Play />} />
     </Routes>
   </BrowserRouter>
 );
