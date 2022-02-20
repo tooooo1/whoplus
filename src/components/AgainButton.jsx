@@ -6,6 +6,7 @@ const Wrapper = styled.div`
     padding-top: 0.6rem;
     padding-bottom: 0.5rem;
     background: #4b89dc;
+    color: white;
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const AgainButton = ({children, onClick, ...rest}) => (
+const AgainButton = ({children, onClick}) => (
     <Wrapper onClick={onClick}>
         {children}
     </Wrapper>

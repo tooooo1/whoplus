@@ -6,6 +6,7 @@ const Positioner = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color : rgba(255,255,255, 0.9);
 `;
 
 const Contents = styled.div`
