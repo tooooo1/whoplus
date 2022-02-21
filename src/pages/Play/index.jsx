@@ -43,22 +43,34 @@ const Play = () => {
     
     const handleChange = (e) => {
         setValue(e.target.value);
-        
-        if (parseInt(e.target.value) === first + second) {
-            setProgress(0);
-            setActive(true);
-            setTimeout(() => {
-                setActive(false);
-            }, 100);
-            setTimedown('');
-            dispatch(powerup(Math.floor(first + second/10)))
-            dispatch(increment());
-            setInputColor('#1bb749');
-            setInputBackgroundColor('#c0f2cd');
-            setInputBorderColor('#1bb749');
-            if (round % 10 === 0) difficulty *= 10;
-            if (round % 10 === 9) dispatch(incrementTime());
-            setTimeout(() => next(), 1000);
+
+        if (round === 50) {
+            if (parseInt(e.target.value) === first + second) {
+                dispatch(powerup(Math.floor(first + second / difficulty)));
+                setInputColor('#1bb749');
+                setInputBackgroundColor('#c0f2cd');
+                setInputBorderColor('#1bb749');
+                setTimeout(() => {
+                    navigate('../end');
+                }, 2000);
+            }
+        } else {
+            if (parseInt(e.target.value) === first + second) {
+                setProgress(0);
+                setActive(true);
+                setTimeout(() => {
+                    setActive(false);
+                }, 100);
+                setTimedown('');
+                dispatch(powerup(Math.floor(first + second / difficulty)));
+                dispatch(increment());
+                setInputColor('#1bb749');
+                setInputBackgroundColor('#c0f2cd');
+                setInputBorderColor('#1bb749');
+                if (round % 10 === 0) difficulty *= 10;
+                if (round % 10 === 9) dispatch(incrementTime());
+                setTimeout(() => next(), 1000);
+            }
         }
     };
 
