@@ -15,7 +15,7 @@ const Play = () => {
     const time = useSelector((state) => state.time.value);
     const dispatch = useDispatch();
 
-
+    const [active, setActive] = useState(false);
     const [timedown, setTimedown] = useState(time);
     const [first, setFirst] = useState(rand(difficulty/10,difficulty));
     const [second, setSecond] = useState(rand(difficulty/10,difficulty));
@@ -49,9 +49,14 @@ const Play = () => {
             setValue('');
             setTimedown('');
             dispatch(increment());
+            setActive(true);
+            setTimeout(() => {
+                setActive(false);
+                }, 100);
             if (round % 10 === 0) difficulty *= 10;
             if (round % 10 === 9) dispatch(incrementTime());
-            setTimeout(() => next(), 1000);
+            // setTimeout(() => next(), 1000);
+            next();
         }
     };
 
@@ -99,16 +104,19 @@ const Play = () => {
 
     return (
         <Positioner>
-            <Styled.Title>게임 설명</Styled.Title>
-            <Styled.Round> ROUND {round} </Styled.Round>
-            <LinearProgress variant="determinate" value={progress}
+            <Styled.GlobalStyle />
+            <Styled.RoundWrapper>
+                <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
+                <LinearProgress variant="determinate" value={progress}
                 color="inherit" sx={{ borderRadius: '10px', marginBottom:'2rem', height: '0.7vh' }}/>
+            </Styled.RoundWrapper>
+            
 
-            <div>
+            <Styled.QuestionWrapper>
                 <Styled.SubMissionQuestion>{first} + {second}</Styled.SubMissionQuestion>
                 <Styled.SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
-            </div>
-            <Styled.Text>{timedown}</Styled.Text>
+            </Styled.QuestionWrapper>
+            {/* <Styled.Text>{timedown}</Styled.Text> */}
             <Styled.Text>{result}</Styled.Text>
             <Styled.Text>{resultanswer}</Styled.Text>
         </Positioner>
