@@ -6,7 +6,6 @@ import { increment } from '../../features/roundSlice';
 import { incrementTime } from '../../features/timeSlice';
 import * as Styled from './styled';
 import LinearProgress from '@mui/material/LinearProgress';
-import { borderColor } from '@mui/system';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 let difficulty = 10;
