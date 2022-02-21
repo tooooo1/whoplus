@@ -35,10 +35,6 @@ const Play = () => {
         setInputColor('#000000');
         setInputBackgroundColor('#f4f4f4');
         setInputBorderColor('#000000');
-        setActive(true);
-        setTimeout(() => {
-            setActive(false);
-        }, 100);
         setFirst(rand(difficulty/10,difficulty));
         setSecond(rand(difficulty/10,difficulty));
         inputRef.current.focus();
@@ -51,6 +47,10 @@ const Play = () => {
         if (parseInt(e.target.value) === first + second) {
             // setShow(false);
             setProgress(0);
+            setActive(true);
+            setTimeout(() => {
+                setActive(false);
+            }, 100);
             setTimedown('');
             dispatch(increment());
             setInputColor('#1bb749');
@@ -80,28 +80,28 @@ const Play = () => {
         }
     };
 
-    useEffect(() => {
-        const timer = setInterval(() => tick(), 1000);
-        return () => clearInterval(timer);
-    })
+    // useEffect(() => {
+    //     const timer = setInterval(() => tick(), 1000);
+    //     return () => clearInterval(timer);
+    // })
 
 
-    useEffect(() => {
-        const buffertimer = setInterval(() => {
-            setProgress((oldProgress) => {
-            if (round % 10 !== 0) {
-                var temp = 100 / time;
-            } else {
-                temp = 100 / (time-5);
-            }
-                if (oldProgress >= 100) return 0;
-                return oldProgress + temp;
-            });
-        }, 1000);
-        return () => {
-            clearInterval(buffertimer);
-        };
-    });
+    // useEffect(() => {
+    //     const buffertimer = setInterval(() => {
+    //         setProgress((oldProgress) => {
+    //         if (round % 10 !== 0) {
+    //             var temp = 100 / time;
+    //         } else {
+    //             temp = 100 / (time-5);
+    //         }
+    //             if (oldProgress >= 100) return 0;
+    //             return oldProgress + temp;
+    //         });
+    //     }, 1000);
+    //     return () => {
+    //         clearInterval(buffertimer);
+    //     };
+    // });
     
 
     return (

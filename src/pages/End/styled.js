@@ -31,6 +31,7 @@ export const Title = styled.div`
     margin : 2rem 0;
     text-align: center;
     font-family: "Pretendard-Black";
+    word-break: keep-all;
 `;
 
 export const Text = styled.div`
