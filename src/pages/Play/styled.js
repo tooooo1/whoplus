@@ -39,8 +39,9 @@ export const SubMissionQuestion = styled.div`
 export const SubMissionInput = styled.input`
     opacity: 0.6;
     border-radius: 30px;
-    background-color: #f4f4f4;
-    border: 2px solid gray;
+    background: ${(props) => props.background};
+    color: ${(props) => props.color};
+    border: 2px solid ${(props) => props.bordercolor};
     padding: 1rem;
     margin: 1rem 0;
     width: 100%;
