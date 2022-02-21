@@ -10,14 +10,16 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 const End = () => {
     const round = useSelector((state) => state.round.value);
     const nickname = useSelector((state) => state.nickname.value);
+    const power = useSelector((state) => state.power.value);
     const currentUrl = window.location.href;
 
     return (
         <Positioner>
-            <Styled.Title>숫자 게임</Styled.Title>
+            <Styled.Title>누가더쎔?</Styled.Title>
             <Styled.Round> ROUND <Styled.Color>{round}</Styled.Color> / 50 </Styled.Round>
             <Styled.Text> 닉네임 : {nickname} </Styled.Text>
-
+            <Styled.Text> 전투력 : {power} </Styled.Text>
+            
             <Button color="#ff2e35" onClick={() => window.location.replace("/")}>다시하기</Button>
             <Styled.GridContainer>
 				<FacebookShareButton url={currentUrl}>
