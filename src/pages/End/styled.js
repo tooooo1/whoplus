@@ -14,7 +14,6 @@ export const URLShareButton = styled.button`
 	color: white;
 	border-radius: 24px;
 	border: 0px;
-    text-align: center;
     font-family: "Pretendard-Medium";
 	font-weight: 800;
 	font-size: 18px;
@@ -42,6 +41,17 @@ export const Text = styled.div`
     margin-bottom : 5vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";
+`;
+
+export const Power = styled.div`
+    font-size : 6vw;
+    margin-bottom : 5vh;
+    text-align: center;
+    font-family: "Pretendard-SemiBold";
+    padding: 12px;
+    border-radius: 12px;
+    background: lightgray;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
 `;
 
 export const GridContainer = styled.div`

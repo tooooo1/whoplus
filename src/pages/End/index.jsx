@@ -18,7 +18,7 @@ const End = () => {
             <Styled.Title>누가더쎔?</Styled.Title>
             <Styled.Round> ROUND <Styled.Color>{round}</Styled.Color> / 50 </Styled.Round>
             <Styled.Text> 닉네임 : {nickname} </Styled.Text>
-            <Styled.Text> 전투력 : {power} </Styled.Text>
+            <Styled.Power> 전투력 : {power} </Styled.Power>
             
             <Button color="#ff2e35" onClick={() => window.location.replace("/")}>다시하기</Button>
             <Styled.GridContainer>
@@ -29,10 +29,10 @@ const End = () => {
 					<TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
                 </TwitterShareButton>
                 <Styled.Color>
-				<CopyToClipboard text={currentUrl}>
-					<Styled.URLShareButton onClick={() => alert("복사되었습니다.")}>URL</Styled.URLShareButton>
+				    <CopyToClipboard text={currentUrl}>
+					    <Styled.URLShareButton onClick={() => alert("복사되었습니다.")}>URL</Styled.URLShareButton>
                     </CopyToClipboard>
-                    </Styled.Color>
+                </Styled.Color>
 				{/* <button>kakao</button> */}
 			</Styled.GridContainer>
         </Positioner>
