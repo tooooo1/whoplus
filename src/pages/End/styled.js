@@ -14,6 +14,7 @@ export const URLShareButton = styled.button`
 	color: white;
 	border-radius: 24px;
 	border: 0px;
+    text-align: center;
     font-family: "Pretendard-Medium";
 	font-weight: 800;
 	font-size: 18px;
@@ -23,6 +24,7 @@ export const URLShareButton = styled.button`
 
 export const Color = styled.span`
     color: #1bb749;
+    text-align: center;
 `
 
 export const Title = styled.div`
@@ -44,8 +46,8 @@ export const Text = styled.div`
 
 export const GridContainer = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 48px);
-	grid-column-gap: 8px;
+	grid-template-columns: repeat(3, 60px);
+	grid-column-gap: 16px;
 	justify-content: center;
 	align-items: center;
 	margin: 5vw 0;

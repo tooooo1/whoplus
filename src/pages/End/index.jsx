@@ -27,10 +27,12 @@ const End = () => {
 				</FacebookShareButton>
 				<TwitterShareButton url={currentUrl}>
 					<TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
-				</TwitterShareButton>
+                </TwitterShareButton>
+                <Styled.Color>
 				<CopyToClipboard text={currentUrl}>
-					<Styled.URLShareButton>URL</Styled.URLShareButton>
-				</CopyToClipboard>
+					<Styled.URLShareButton onClick={() => alert("복사되었습니다.")}>URL</Styled.URLShareButton>
+                    </CopyToClipboard>
+                    </Styled.Color>
 				{/* <button>kakao</button> */}
 			</Styled.GridContainer>
         </Positioner>
