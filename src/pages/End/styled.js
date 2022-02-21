@@ -26,16 +26,17 @@ export const Color = styled.span`
 `
 
 export const Title = styled.div`
-    font-size : 10vh;
+    font-size : 13vw;
     font-weight : 1000;
-    margin : 2rem 0;
+    margin-top: 1rem;
+    margin-bottom : 2rem;
     text-align: center;
     font-family: "Pretendard-Black";
     word-break: keep-all;
 `;
 
 export const Text = styled.div`
-    font-size : 3vw;
+    font-size : 6vw;
     margin-bottom : 5vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";

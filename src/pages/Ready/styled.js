@@ -1,21 +1,29 @@
 import styled from 'styled-components';
 
 export const Title = styled.div`
-    font-size : 10vh;
+    font-size : 13vw;
     font-weight : 1000;
-    margin : 2rem 0;
+    margin-top: 1rem;
+    margin-bottom : 2rem;
     text-align: center;
     font-family: "Pretendard-Black";
     word-break: keep-all;
 `;
 
 export const Text = styled.div`
-    font-size : 2vw;
-    margin-bottom : 1.5rem;
+    font-size : 3vw;
+    margin-bottom : 1.5vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";
+    &#last {
+        margin-bottom: 4vh;
+    }
 `;
 
 export const Color = styled.span`
     color: #ff2e35;
+`
+
+export const Img = styled.div`
+    text-align: center;
 `
