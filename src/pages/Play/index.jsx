@@ -6,6 +6,7 @@ import { increment } from '../../features/roundSlice';
 import { incrementTime } from '../../features/timeSlice';
 import * as Styled from './styled';
 import LinearProgress from '@mui/material/LinearProgress';
+import { powerup } from '../../features/powerSlice';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 let difficulty = 10;
@@ -15,6 +16,7 @@ const Play = () => {
     const time = useSelector((state) => state.time.value);
     const dispatch = useDispatch();
 
+    const [timeActive, setTimeActive] = useState(false);
     const [active, setActive] = useState(false);
     const [timedown, setTimedown] = useState(time);
     const [first, setFirst] = useState(rand(difficulty/10,difficulty));
@@ -25,12 +27,10 @@ const Play = () => {
     const [inputcolor, setInputColor] = useState('#000000');
     const [inputbackgroundcolor, setInputBackgroundColor] = useState('#f4f4f4');
     const [inputbordercolor, setInputBorderColor] = useState('#000000');
-    // const [show, setShow] = useState(true);
     const inputRef = useRef(null);
 
 
     const next = () => {
-        // setShow(true);
         setValue('');
         setInputColor('#000000');
         setInputBackgroundColor('#f4f4f4');
@@ -45,13 +45,13 @@ const Play = () => {
         setValue(e.target.value);
         
         if (parseInt(e.target.value) === first + second) {
-            // setShow(false);
             setProgress(0);
             setActive(true);
             setTimeout(() => {
                 setActive(false);
             }, 100);
             setTimedown('');
+            dispatch(powerup(Math.floor(first + second/10)))
             dispatch(increment());
             setInputColor('#1bb749');
             setInputBackgroundColor('#c0f2cd');
@@ -66,7 +66,6 @@ const Play = () => {
 
     const tick = () => {
         if (timedown === 0 || timedown === '') {
-            // setShow(false);
             setTimedown('');
             setInputColor('#ff2e35');
             setInputBackgroundColor('#ffd2d7');
@@ -77,22 +76,28 @@ const Play = () => {
         }
         else {
             setTimedown(timedown - 1);
-        }
+        };
     };
+
 
     useEffect(() => {
         const timer = setInterval(() => tick(), 1000);
         return () => clearInterval(timer);
-    })
+    });
 
+    
 
     useEffect(() => {
         const buffertimer = setInterval(() => {
             setProgress((oldProgress) => {
+            setTimeActive(true);
+            setTimeout(() => { 
+                setTimeActive(false);
+            }, 100);
             if (round % 10 !== 0) {
                 var temp = 100 / time;
             } else {
-                temp = 100 / (time-5);
+                temp = 100 / (time-3);
             }
                 if (oldProgress >= 100) return 0;
                 return oldProgress + temp;
@@ -122,6 +127,7 @@ const Play = () => {
                     background={inputbackgroundcolor}
                     border={inputbordercolor}
                 />
+                <Styled.TimeUp active={timeActive}>{timedown}</Styled.TimeUp>
             </Styled.QuestionWrapper>
         </Positioner>
     )
