@@ -8,7 +8,7 @@ const Home = () => {
 
     return (
         <Positioner>
-            <Styled.Title>숫자 게임</Styled.Title>
+            <Styled.Title>누가 더쎔?</Styled.Title>
             <Button color="#ff2e35" onClick={() => navigate("/ready")}>게임시작</Button>
         </Positioner>
     )
