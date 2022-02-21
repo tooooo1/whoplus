@@ -85,3 +85,28 @@ export const Stage = styled.span`
     }
   }
 `;
+
+export const TimeUp = styled.div`
+    display: block;
+    text-align: center;
+    background: #ffffff;
+    animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
+    font-weight: bold;
+    @keyframes bounce {
+    0% {
+        transform: scale(1.6);
+    }
+    40% {
+        transform: scale(0.4);
+    }
+    60% {
+        transform: scale(1.3);
+    }
+    80% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+  }
+`;
