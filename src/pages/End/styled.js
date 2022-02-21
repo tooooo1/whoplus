@@ -14,6 +14,7 @@ export const URLShareButton = styled.button`
 	color: white;
 	border-radius: 24px;
 	border: 0px;
+    padding: 0;
     font-family: "Pretendard-Medium";
 	font-weight: 800;
 	font-size: 18px;
