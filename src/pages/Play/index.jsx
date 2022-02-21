@@ -22,29 +22,29 @@ const Play = () => {
     const [value, setValue] = useState('');
     const [progress, setProgress] = useState(0);
 
-    const [result, setResult] = useState('');
-    const [resultanswer, setResultAnswer] = useState('');
+    // const [result, setResult] = useState('');
+    // const [resultanswer, setResultAnswer] = useState('');
     // const [totaltime, setTotaltime] = useState(0);
-    const [show, setShow] = useState(true);
+    // const [show, setShow] = useState(true);
     const inputRef = useRef(null);
 
 
     const next = () => {
-        setShow(true);
+        // setShow(true);
         setFirst(rand(difficulty/10,difficulty));
         setSecond(rand(difficulty/10,difficulty));
         inputRef.current.focus();
-        setResult('');
+        // setResult('');
         setTimedown(time);
     };
     
     const handleChange = (e) => {
         setValue(e.target.value);
-        setResultAnswer('');
+        // setResultAnswer('');
         
         if (parseInt(e.target.value) === first + second) {
-            setShow(false);
-            setResult('✅ 정답');
+            // setShow(false);
+            // setResult('✅ 정답');
             setProgress(0);
             setValue('');
             setTimedown('');
@@ -64,10 +64,10 @@ const Play = () => {
 
     const tick = () => {
         if (timedown === 0 || timedown === '') {
-            setShow(false);
+            // setShow(false);
             setTimedown('');
-            setResult('❌ ' + value);
-            setResultAnswer('✅ ' + (first + second));
+            // setResult('❌ ' + value);
+            // setResultAnswer('✅ ' + (first + second));
             setTimeout(() => {
                 navigate('../end');
             }, 2000);
@@ -117,8 +117,8 @@ const Play = () => {
                 <Styled.SubMissionInput ref={inputRef} value={value} onChange={handleChange} />
             </Styled.QuestionWrapper>
             {/* <Styled.Text>{timedown}</Styled.Text> */}
-            <Styled.Text>{result}</Styled.Text>
-            <Styled.Text>{resultanswer}</Styled.Text>
+            {/* <Styled.Text>{result}</Styled.Text>
+            <Styled.Text>{resultanswer}</Styled.Text> */}
         </Positioner>
     )
 };
