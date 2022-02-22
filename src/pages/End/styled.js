@@ -89,8 +89,8 @@ export const Power = styled.div`
 
 export const GridContainer = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 50px);
-	grid-column-gap: 14px;
+	grid-template-columns: repeat(3, 55px);
+	grid-column-gap: 16px;
 	justify-content: center;
 	align-items: center;
 `;
