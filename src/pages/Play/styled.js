@@ -1,8 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  * {
+  body {
     background-color: #f2f2f2;
+  }
+  #root>div {
+      width: 80%;
   }
 `;
 

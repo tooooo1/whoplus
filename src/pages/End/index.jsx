@@ -15,26 +15,32 @@ const End = () => {
 
     return (
         <Positioner>
-            <Styled.Title>누가더쎔?</Styled.Title>
-            <Styled.Round> ROUND <Styled.Color>{round}</Styled.Color> / 50 </Styled.Round>
-            <Styled.Text> 닉네임 : {nickname} </Styled.Text>
-            <Styled.Power> 전투력 : {power} </Styled.Power>
-            
-            <Button color="#ff2e35" onClick={() => window.location.replace("/")}>다시하기</Button>
-            <Styled.GridContainer>
-				<FacebookShareButton url={currentUrl}>
-					<FacebookIcon size={48} round={true} borderRadius={24}></FacebookIcon>
-				</FacebookShareButton>
-				<TwitterShareButton url={currentUrl}>
-					<TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
-                </TwitterShareButton>
-                <Styled.Color>
-				    <CopyToClipboard text={currentUrl}>
-					    <Styled.URLShareButton onClick={() => alert("복사되었습니다.")}>URL</Styled.URLShareButton>
-                    </CopyToClipboard>
-                </Styled.Color>
-				{/* <button>kakao</button> */}
-			</Styled.GridContainer>
+            <Styled.GlobalStyle />
+            <Styled.Wrapper>
+                <Styled.Title>누가더쎔?</Styled.Title>
+                <Styled.Round> ROUND <Styled.Color>{round}</Styled.Color> / 50 </Styled.Round>
+                <Styled.Text> 닉네임 : {nickname} </Styled.Text>
+                <Styled.ResultWrapper>
+                    <Styled.Power> 전투력 : {power} </Styled.Power>
+                    
+                    <Button color="#ff2e35" onClick={() => window.location.replace("/")}>다시하기</Button>
+                    <Styled.ShareText>공유하기</Styled.ShareText>
+                    <Styled.GridContainer>
+                        <FacebookShareButton url={currentUrl}>
+                            <FacebookIcon size={48} round={true} borderRadius={24}></FacebookIcon>
+                        </FacebookShareButton>
+                        <TwitterShareButton url={currentUrl}>
+                            <TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
+                        </TwitterShareButton>
+                        <Styled.Color>
+                            <CopyToClipboard text={currentUrl}>
+                                <Styled.URLShareButton onClick={() => alert("복사되었습니다.")}>URL</Styled.URLShareButton>
+                            </CopyToClipboard>
+                        </Styled.Color>
+                        {/* <button>kakao</button> */}
+                    </Styled.GridContainer>
+                </Styled.ResultWrapper>
+            </Styled.Wrapper>
         </Positioner>
     )
 };
