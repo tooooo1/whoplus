@@ -14,6 +14,7 @@ let difficulty = 10;
 const Play = () => {
     const round = useSelector((state) => state.round.value);
     const time = useSelector((state) => state.time.value);
+    const power = useSelector((state) => state.power.value);
     const dispatch = useDispatch();
 
     const [timeActive, setTimeActive] = useState(false);
@@ -61,7 +62,7 @@ const Play = () => {
                 setTimeout(() => {
                     setActive(false);
                 }, 100);
-                setTimedown('');
+                setTimedown('🟢');
                 dispatch(powerup(Math.floor(first + second / difficulty)));
                 dispatch(increment());
                 setInputColor('#1bb749');
@@ -77,8 +78,8 @@ const Play = () => {
     const navigate = useNavigate();
 
     const tick = () => {
-        if (timedown === 0 || timedown === '') {
-            setTimedown('');
+        if (timedown === 0 || timedown === '🔴') {
+            setTimedown('🔴');
             setInputColor('#ff2e35');
             setInputBackgroundColor('#ffd2d7');
             setInputBorderColor('#ff2e35');
@@ -127,7 +128,8 @@ const Play = () => {
             <Styled.Wrapper>
                 <Styled.QuestionWrapper>
                     <Styled.RoundWrapper>
-                    <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
+                        <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
+                        <Styled.TimeUp active={timeActive}>{timedown}</Styled.TimeUp>
                     <LinearProgress variant="determinate" value={progress}
                     color="success" sx={{ borderRadius: '10px', marginBottom:'1.2rem', height: '1.2vh' }}/>
                 </Styled.RoundWrapper>
@@ -138,7 +140,7 @@ const Play = () => {
                         background={inputbackgroundcolor}
                         border={inputbordercolor}
                     />
-                    <Styled.TimeUp active={timeActive}>{timedown}</Styled.TimeUp>
+                    <Styled.Score active={active}>{ power }</Styled.Score>
                 </Styled.QuestionWrapper>
             </Styled.Wrapper>
         </Positioner>

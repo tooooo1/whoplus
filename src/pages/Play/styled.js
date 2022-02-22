@@ -34,6 +34,31 @@ export const Text = styled.div`
     }
 `;
 
+export const Score = styled.div`
+    font-size : 2vw;
+    margin-top : 1.5rem;
+    text-align: center;
+    font-family: "Pretendard-SemiBold";
+    @media only screen and (min-width: 768px) {
+        font-size: 30px;
+    }
+
+    animation: ${(props) => props.active && `shake 0.3s infinite`};
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg) scale(10); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg) scale(5); }
+        20% { transform: translate(-3px, 0px) rotate(1deg) scale(3); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg) scale(1.4); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+`;
+
 export const Round = styled.div`
     font-weight: initial;
     font-size: 6vw;
@@ -108,6 +133,7 @@ export const Stage = styled.span`
 
 export const TimeUp = styled.div`
     display: block;
+    margin-bottom: 10px;
     text-align: center;
     background: #ffffff;
     animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
