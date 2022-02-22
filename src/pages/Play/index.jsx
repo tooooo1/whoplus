@@ -112,7 +112,7 @@ const Play = () => {
             if (round % 10 !== 0) {
                 var temp = 100 / time;
             } else {
-                temp = 100 / (time-3);
+                temp = 100 / (time-2);
             }
                 if (oldProgress >= 100) return 0;
                 return oldProgress + temp;

@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { value: 3 }
+const initialState = { value: 2 }
 
 export const timeSlice = createSlice({
   name: 'time',
   initialState,
   reducers: {
     incrementTime: (state) => {
-      state.value += 3
+      state.value += 2
     },
   },
 });
