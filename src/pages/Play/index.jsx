@@ -92,33 +92,33 @@ const Play = () => {
     };
 
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => tick(), 1000);
-    //     return () => clearInterval(timer);
-    // });
+    useEffect(() => {
+        const timer = setInterval(() => tick(), 1000);
+        return () => clearInterval(timer);
+    });
 
     
 
-    // useEffect(() => {
-    //     const buffertimer = setInterval(() => {
-    //         setProgress((oldProgress) => {
-    //         setTimeActive(true);
-    //         setTimeout(() => { 
-    //             setTimeActive(false);
-    //         }, 100);
-    //         if (round % 10 !== 0) {
-    //             var temp = 100 / time;
-    //         } else {
-    //             temp = 100 / (time-3);
-    //         }
-    //             if (oldProgress >= 100) return 0;
-    //             return oldProgress + temp;
-    //         });
-    //     }, 1000);
-    //     return () => {
-    //         clearInterval(buffertimer);
-    //     };
-    // });
+    useEffect(() => {
+        const buffertimer = setInterval(() => {
+            setProgress((oldProgress) => {
+            setTimeActive(true);
+            setTimeout(() => { 
+                setTimeActive(false);
+            }, 100);
+            if (round % 10 !== 0) {
+                var temp = 100 / time;
+            } else {
+                temp = 100 / (time-3);
+            }
+                if (oldProgress >= 100) return 0;
+                return oldProgress + temp;
+            });
+        }, 1000);
+        return () => {
+            clearInterval(buffertimer);
+        };
+    });
     
 
     return (
