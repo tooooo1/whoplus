@@ -15,11 +15,10 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Title = styled.div`
     font-size : 8vw;
-    font-weight : 1000;
     margin-top: 1rem;
     margin-bottom : 1.5rem;
     text-align: center;
-    font-family: "Pretendard-Black";
+    font-family: "RixYeoljeongdo_Regular";
     word-break: keep-all;
     @media only screen and (min-width: 768px) {
         font-size: 60px;

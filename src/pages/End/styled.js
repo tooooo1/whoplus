@@ -51,11 +51,10 @@ export const Color = styled.span`
 
 export const Title = styled.div`
     font-size : 9vw;
-    font-weight : 1000;
     margin-top: 1rem;
     margin-bottom : 2rem;
     text-align: center;
-    font-family: "Pretendard-Black";
+    font-family: "RixYeoljeongdo_Regular";
     word-break: keep-all;
     @media only screen and (min-width: 768px) {
         font-size: 60px;
@@ -74,13 +73,12 @@ export const Text = styled.div`
 
 export const Power = styled.div`
     font-size : 5vw;
-    margin-bottom : 5vh;
+    margin-bottom : 2vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";
     padding: 12px;
     border-radius: 12px;
     background: lightgray;
-    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
 
     @media only screen and (min-width: 768px) {
         font-size: 25px;
