@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { Home, Ready, Play, End } from "./pages"
 import reset from "styled-reset";
+import Logo from "./components/Logo"
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -15,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
+    <Logo />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/ready" element={<Ready />} />
