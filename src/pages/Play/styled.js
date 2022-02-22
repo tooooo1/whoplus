@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #f2f2f2;
   }
   #root>div {
-      width: 80%;
+      width: 70%;
   }
 `;
 
@@ -27,14 +27,14 @@ export const Text = styled.div`
 export const Round = styled.div`
     font-weight: initial;
     font-size: 3vh;
-    margin : 2rem 0;
+    margin-bottom: 1rem;
     font-family: "Pretendard-SemiBold";
     text-align: center;
 `;
 
 export const SubMissionQuestion = styled.div`
     font-size: 7vw;
-    font-family: "Pretendard-SemiBold";
+    font-family: "Pretendard-ExtraBold";
     text-align: center;
     background-color: #ffffff;
 `;
@@ -48,7 +48,7 @@ export const SubMissionInput = styled.input`
     padding: 1rem;
     margin: 1rem 0;
     width: 100%;
-    font-family: "Pretendard-SemiBold";
+    font-family: "Pretendard-ExtraBold";
     &:focus {
         outline : none;
     }

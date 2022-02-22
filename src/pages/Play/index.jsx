@@ -127,7 +127,7 @@ const Play = () => {
             <Styled.RoundWrapper>
                 <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
                 <LinearProgress variant="determinate" value={progress}
-                color="inherit" sx={{ borderRadius: '10px', marginBottom:'2rem', height: '0.7vh' }}/>
+                color="success" sx={{ borderRadius: '10px', marginBottom:'2rem', height: '1vh' }}/>
             </Styled.RoundWrapper>
             
 
