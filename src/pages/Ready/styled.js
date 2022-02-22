@@ -27,7 +27,7 @@ export const Title = styled.div`
 `;
 
 export const Text = styled.div`
-    font-size : 4vw;
+    font-size : 3vw;
     margin-bottom : 1.5vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";
@@ -35,7 +35,7 @@ export const Text = styled.div`
         margin-bottom: 4vh;
     }
     @media only screen and (min-width: 768px) {
-        font-size: 30px;
+        font-size: 20px;
     }
 `;
 
@@ -75,12 +75,12 @@ export const InputWrapper = styled.div`
     padding: 1vh 14vw;
 
     @media only screen and (min-width: 768px) {
-        width: 70%;
+        width: 80%;
         text-align: center;
         margin: 0 auto;
     }
     @media (min-width: 991px) { 
-        width: 70%;
+        width: 80%;
         text-align: center;
         margin: 0 auto;
      } 
