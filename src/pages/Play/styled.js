@@ -35,17 +35,16 @@ export const Text = styled.div`
 `;
 
 export const Score = styled.div`
-    font-size : 2vw;
-    margin-top : 1.5rem;
+    font-size : 5vh;
     text-align: center;
-    font-family: "Pretendard-SemiBold";
+    font-family: "RixYeoljeongdo_Regular";
     @media only screen and (min-width: 768px) {
         font-size: 30px;
     }
 
     animation: ${(props) => props.active && `shake 0.3s infinite`};
     @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg) scale(10); }
+        0% { transform: translate(0px, 120px) rotate(0deg) scale(6); }
         10% { transform: translate(-1px, -2px) rotate(-1deg) scale(5); }
         20% { transform: translate(-3px, 0px) rotate(1deg) scale(3); }
         30% { transform: translate(3px, 2px) rotate(0deg); }
@@ -99,7 +98,7 @@ export const SubMissionInput = styled.input`
 `;
 
 export const QuestionWrapper = styled.div`
-    padding: 6vh 12vh 10vh;
+    padding: 6vh 12vh 5vh;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
@@ -133,7 +132,7 @@ export const Stage = styled.span`
 
 export const TimeUp = styled.div`
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     text-align: center;
     background: #ffffff;
     animation: ${(props) => props.active && `bounce 0.3s infinite ease`};

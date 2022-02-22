@@ -17,6 +17,7 @@ const Play = () => {
     const power = useSelector((state) => state.power.value);
     const dispatch = useDispatch();
 
+    const [barcolor, setBarColor] = useState('success');
     const [timeActive, setTimeActive] = useState(false);
     const [active, setActive] = useState(false);
     const [timedown, setTimedown] = useState(time);
@@ -80,6 +81,7 @@ const Play = () => {
     const tick = () => {
         if (timedown === 0 || timedown === '🔴') {
             setTimedown('🔴');
+            setBarColor('secondary')
             setInputColor('#ff2e35');
             setInputBackgroundColor('#ffd2d7');
             setInputBorderColor('#ff2e35');
@@ -131,7 +133,7 @@ const Play = () => {
                         <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
                         <Styled.TimeUp active={timeActive}>{timedown}</Styled.TimeUp>
                     <LinearProgress variant="determinate" value={progress}
-                    color="success" sx={{ borderRadius: '10px', marginBottom:'1.2rem', height: '1.2vh' }}/>
+                    color={barcolor} sx={{ borderRadius: '10px', marginBottom:'1.2rem', height: '1.2vh' }}/>
                 </Styled.RoundWrapper>
                     <Styled.SubMissionQuestion>{first} + {second}</Styled.SubMissionQuestion>
                     <Styled.SubMissionInput ref={inputRef} value={value}
