@@ -44,6 +44,7 @@ export const SubMissionInput = styled.input`
     border-radius: 30px;
     background: ${(props) => props.background};
     color: ${(props) => props.color};
+    text-align: center;
     border: 2px solid ${(props) => props.bordercolor};
     padding: 1rem;
     margin: 1rem 0;
