@@ -124,23 +124,25 @@ const Play = () => {
     return (
         <Positioner>
             <Styled.GlobalStyle />
-            <Styled.RoundWrapper>
-                <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
-                <LinearProgress variant="determinate" value={progress}
-                color="success" sx={{ borderRadius: '10px', marginBottom:'2rem', height: '1vh' }}/>
-            </Styled.RoundWrapper>
-            
+            <Styled.Wrapper>
+                <Styled.RoundWrapper>
+                    <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
+                    <LinearProgress variant="determinate" value={progress}
+                    color="success" sx={{ borderRadius: '10px', marginBottom:'2rem', height: '1vh' }}/>
+                </Styled.RoundWrapper>
+                
 
-            <Styled.QuestionWrapper>
-                <Styled.SubMissionQuestion>{first} + {second}</Styled.SubMissionQuestion>
-                <Styled.SubMissionInput ref={inputRef} value={value}
-                    onChange={handleChange}
-                    color={inputcolor}
-                    background={inputbackgroundcolor}
-                    border={inputbordercolor}
-                />
-                <Styled.TimeUp active={timeActive}>{timedown}</Styled.TimeUp>
-            </Styled.QuestionWrapper>
+                <Styled.QuestionWrapper>
+                    <Styled.SubMissionQuestion>{first} + {second}</Styled.SubMissionQuestion>
+                    <Styled.SubMissionInput ref={inputRef} value={value}
+                        onChange={handleChange}
+                        color={inputcolor}
+                        background={inputbackgroundcolor}
+                        border={inputbordercolor}
+                    />
+                    <Styled.TimeUp active={timeActive}>{timedown}</Styled.TimeUp>
+                </Styled.QuestionWrapper>
+            </Styled.Wrapper>
         </Positioner>
     )
 };

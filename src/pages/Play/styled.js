@@ -5,7 +5,11 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #f2f2f2;
   }
   #root>div {
-      width: 70%;
+      width: 80%;
+
+      @media only screen and (min-width: 768px) {
+        width: 70%;
+    }
   }
 `;
 
@@ -15,6 +19,9 @@ export const Title = styled.div`
     margin : 2rem 0;
     text-align: center;
     font-family: "Pretendard-Black";
+    @media only screen and (min-width: 768px) {
+        font-size: 60px;
+    }
 `;
 
 export const Text = styled.div`
@@ -22,14 +29,20 @@ export const Text = styled.div`
     margin-bottom : 1.5rem;
     text-align: center;
     font-family: "Pretendard-SemiBold";
+    @media only screen and (min-width: 768px) {
+        font-size: 30px;
+    }
 `;
 
 export const Round = styled.div`
     font-weight: initial;
-    font-size: 3vh;
+    font-size: 6vw;
     margin-bottom: 1rem;
     font-family: "Pretendard-SemiBold";
     text-align: center;
+    @media only screen and (min-width: 768px) {
+        font-size: 40px;
+    }
 `;
 
 export const SubMissionQuestion = styled.div`
@@ -45,13 +58,18 @@ export const SubMissionInput = styled.input`
     background: ${(props) => props.background};
     color: ${(props) => props.color};
     text-align: center;
+    font-size: 3vw;
     border: 2px solid ${(props) => props.bordercolor};
-    padding: 1rem;
+    padding: 0.8rem;
     margin: 1rem 0;
     width: 100%;
     font-family: "Pretendard-ExtraBold";
     &:focus {
         outline : none;
+    }
+
+    @media only screen and (min-width: 768px) {
+        font-size: 25px;
     }
 `;
 
@@ -63,8 +81,6 @@ export const QuestionWrapper = styled.div`
 `
 
 export const RoundWrapper = styled.div`
-    border-radius: 10px;
-    margin-bottom: 5vh;
 `
 
 export const Stage = styled.span`
@@ -114,3 +130,11 @@ export const TimeUp = styled.div`
     }
   }
 `;
+
+export const Wrapper = styled.div`
+    padding: 10vw 0;
+
+    @media (min-width: 768px) { 
+        padding: 5vw 0;
+     } 
+`
