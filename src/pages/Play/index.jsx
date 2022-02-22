@@ -92,47 +92,45 @@ const Play = () => {
     };
 
 
-    useEffect(() => {
-        const timer = setInterval(() => tick(), 1000);
-        return () => clearInterval(timer);
-    });
+    // useEffect(() => {
+    //     const timer = setInterval(() => tick(), 1000);
+    //     return () => clearInterval(timer);
+    // });
 
     
 
-    useEffect(() => {
-        const buffertimer = setInterval(() => {
-            setProgress((oldProgress) => {
-            setTimeActive(true);
-            setTimeout(() => { 
-                setTimeActive(false);
-            }, 100);
-            if (round % 10 !== 0) {
-                var temp = 100 / time;
-            } else {
-                temp = 100 / (time-3);
-            }
-                if (oldProgress >= 100) return 0;
-                return oldProgress + temp;
-            });
-        }, 1000);
-        return () => {
-            clearInterval(buffertimer);
-        };
-    });
+    // useEffect(() => {
+    //     const buffertimer = setInterval(() => {
+    //         setProgress((oldProgress) => {
+    //         setTimeActive(true);
+    //         setTimeout(() => { 
+    //             setTimeActive(false);
+    //         }, 100);
+    //         if (round % 10 !== 0) {
+    //             var temp = 100 / time;
+    //         } else {
+    //             temp = 100 / (time-3);
+    //         }
+    //             if (oldProgress >= 100) return 0;
+    //             return oldProgress + temp;
+    //         });
+    //     }, 1000);
+    //     return () => {
+    //         clearInterval(buffertimer);
+    //     };
+    // });
     
 
     return (
         <Positioner>
             <Styled.GlobalStyle />
             <Styled.Wrapper>
-                <Styled.RoundWrapper>
+                <Styled.QuestionWrapper>
+                    <Styled.RoundWrapper>
                     <Styled.Round> ROUND <Styled.Stage active={active}>{round}</Styled.Stage></Styled.Round>
                     <LinearProgress variant="determinate" value={progress}
-                    color="success" sx={{ borderRadius: '10px', marginBottom:'2rem', height: '1vh' }}/>
+                    color="success" sx={{ borderRadius: '10px', marginBottom:'1.2rem', height: '1.2vh' }}/>
                 </Styled.RoundWrapper>
-                
-
-                <Styled.QuestionWrapper>
                     <Styled.SubMissionQuestion>{first} + {second}</Styled.SubMissionQuestion>
                     <Styled.SubMissionInput ref={inputRef} value={value}
                         onChange={handleChange}
