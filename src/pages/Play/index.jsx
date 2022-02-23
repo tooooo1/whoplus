@@ -142,7 +142,7 @@ const Play = () => {
                         background={inputbackgroundcolor}
                         border={inputbordercolor}
                     />
-                    <Styled.Score active={active}>{ power }</Styled.Score>
+                    <Styled.Score active={active}>{ power.toLocaleString() }</Styled.Score>
                 </Styled.QuestionWrapper>
             </Styled.Wrapper>
         </Positioner>

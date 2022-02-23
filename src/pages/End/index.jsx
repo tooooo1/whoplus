@@ -40,7 +40,7 @@ const End = () => {
                 <Styled.Round> ROUND <Styled.Color>{round}</Styled.Color> / 50 </Styled.Round>
                 <Styled.Text> 닉네임 : {nickname} </Styled.Text>
                 <Styled.ResultWrapper>
-                    <Styled.Power> <div><div><img src="img/boxing-gloves.png" alt='boxing' width={50} /></div><div>  전투력</div> </div><div>  {comma}</div>  </Styled.Power>
+                    <Styled.Power> <div><div><img src="img/boxing-gloves.png" alt='boxing' width={50} /></div><div>  전투력</div> </div><div>  {comma} </div>  </Styled.Power>
                     
                     <Button color="#ff2e35" onClick={() => reset()}>다시하기</Button>
                     <Styled.ShareText>공유하기</Styled.ShareText>
