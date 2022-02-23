@@ -1,7 +1,7 @@
 <div align=center>
 
 # **누가더쎔?**
-[누가더쎔?](https:///)
+[누가더쎔?](https://whoplus.ga/)
 
  
 퉁이리의 첫 번째 게임 프로젝트
