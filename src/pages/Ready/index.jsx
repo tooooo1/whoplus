@@ -5,6 +5,10 @@ import { useDispatch } from 'react-redux';
 import { Positioner } from '../../components/Wrapper/styled'
 import Button from '../../components/Button'
 import * as Styled from './styled';
+import { rountReset } from '../../features/roundSlice';
+import { powerReset } from '../../features/powerSlice';
+import { nicknameReset } from '../../features/nicknameSlice';
+import { timeReset } from '../../features/timeSlice';
 
 const Ready = () => {
     const imgUrl = "https://img.icons8.com/color/48/000000/box-important--v1.png"
@@ -12,7 +16,7 @@ const Ready = () => {
     const [login, setLogin] = useState(false);
     const dispatch = useDispatch();
     let navigate = useNavigate();
-
+    
     const loginClick = (e) => {
         if(value.trim().length === 0)
 		{
@@ -22,6 +26,10 @@ const Ready = () => {
         }
         
         setLogin(!login);
+        dispatch(rountReset())
+        dispatch(powerReset())
+        dispatch(nicknameReset())
+        dispatch(timeReset())
         dispatch(inputData(value));
         navigate("/play")
     }
