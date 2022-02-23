@@ -35,7 +35,7 @@ export const Text = styled.div`
 `;
 
 export const Score = styled.div`
-    font-size : 5vh;
+    font-size : 3vw;
     text-align: center;
     font-family: "RixYeoljeongdo_Regular";
     @media only screen and (min-width: 768px) {
@@ -98,7 +98,7 @@ export const SubMissionInput = styled.input`
 `;
 
 export const QuestionWrapper = styled.div`
-    padding: 6vh 12vh 5vh;
+    padding: 8vh 15vw 5vh;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);

@@ -52,7 +52,7 @@ export const Color = styled.span`
 export const Title = styled.div`
     font-size : 9vw;
     margin-top: 1rem;
-    margin-bottom : 2rem;
+    margin-bottom : 1.2rem;
     text-align: center;
     font-family: "RixYeoljeongdo_Regular";
     word-break: keep-all;
@@ -63,7 +63,7 @@ export const Title = styled.div`
 
 export const Text = styled.div`
     font-size : 5vw;
-    margin-bottom : 5vh;
+    margin-bottom : 2vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";
     @media only screen and (min-width: 768px) {
@@ -73,6 +73,8 @@ export const Text = styled.div`
 
 export const Power = styled.div`
     font-size : 5vw;
+    width: 60%;
+    margin: 0 auto;
     margin-bottom : 2vh;
     text-align: center;
     font-family: "Pretendard-SemiBold";
@@ -82,6 +84,7 @@ export const Power = styled.div`
 
     @media only screen and (min-width: 768px) {
         font-size: 25px;
+        width: 100%;
     }
 `;
 
