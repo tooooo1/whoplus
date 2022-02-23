@@ -80,7 +80,7 @@ export const Power = styled.div`
     font-family: "Pretendard-SemiBold";
     padding: 12px;
     border-radius: 12px;
-    background: lightgray;
+    background: #f1f1f1;
 
     @media only screen and (min-width: 768px) {
         font-size: 25px;

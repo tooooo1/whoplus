@@ -63,7 +63,7 @@ const Play = () => {
                 setTimeout(() => {
                     setActive(false);
                 }, 100);
-                setTimedown('🟢');
+                setTimedown(<img src="img/checked.png" alt='boxing' width={20} />);
                 dispatch(powerup(Math.floor(first + second / difficulty)));
                 dispatch(increment());
                 setInputColor('#1bb749');
@@ -79,8 +79,8 @@ const Play = () => {
     const navigate = useNavigate();
 
     const tick = () => {
-        if (timedown === 0 || timedown === '🔴') {
-            setTimedown('🔴');
+        if (timedown === 0 || isNaN(timedown)) {
+            setTimedown(<img src="img/remove.png" alt='boxing' width={20} />);
             setBarColor('secondary')
             setInputColor('#ff2e35');
             setInputBackgroundColor('#ffd2d7');
