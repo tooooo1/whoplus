@@ -3,6 +3,7 @@ import roundReducer from '../features/roundSlice'
 import timeReducer from '../features/timeSlice'
 import nicknameReducer from '../features/nicknameSlice';
 import powerReducer from '../features/powerSlice';
+import resultReducer from '../features/resultSlice';
 
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
@@ -14,6 +15,7 @@ const reducers = combineReducers({
     time: timeReducer,
     nickname: nicknameReducer,
     power: powerReducer,
+    result: resultReducer,
 });
 
 const persistConfig = {

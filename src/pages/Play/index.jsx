@@ -7,6 +7,10 @@ import { incrementTime } from '../../features/timeSlice';
 import * as Styled from './styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import { powerUp } from '../../features/powerSlice';
+import { rountReset } from '../../features/roundSlice';
+import { powerReset } from '../../features/powerSlice';
+import { timeReset } from '../../features/timeSlice';
+import { resultRound, resultPower, resultNick } from '../../features/resultSlice';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 let difficulty = 10;
@@ -15,6 +19,7 @@ const Play = () => {
     const round = useSelector((state) => state.round.value);
     const time = useSelector((state) => state.time.value);
     const power = useSelector((state) => state.power.value);
+    const nickname = useSelector((state) => state.nickname.value);
     const dispatch = useDispatch();
 
     const [barcolor, setBarColor] = useState('success');
@@ -85,8 +90,17 @@ const Play = () => {
             setInputColor('#ff2e35');
             setInputBackgroundColor('#ffd2d7');
             setInputBorderColor('#ff2e35');
+
+            dispatch(resultNick(nickname));
+            dispatch(resultPower(power));
+            dispatch(resultRound(round));
+
+
             setTimeout(() => {
                 navigate('../end');
+                dispatch(rountReset());
+                dispatch(powerReset());
+                dispatch(timeReset());
             }, 2000);
         }
         else {

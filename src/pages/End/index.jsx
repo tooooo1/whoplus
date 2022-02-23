@@ -12,9 +12,9 @@ import {FacebookShareButton, FacebookIcon,TwitterShareButton, TwitterIcon} from 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const End = () => {
-    const round = useSelector((state) => state.round.value);
-    const nickname = useSelector((state) => state.nickname.value);
-    const power = useSelector((state) => state.power.value);
+    const round = useSelector((state) => state.result.round);
+    const nickname = useSelector((state) => state.result.nick);
+    const power = useSelector((state) => state.result.power);
     const currentUrl = window.location.href;
     const dispatch = useDispatch();
 
