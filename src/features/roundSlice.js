@@ -9,9 +9,12 @@ export const roundSlice = createSlice({
     increment: (state) => {
       state.value += 1
     },
+    rountReset: (state) => {
+      state.value = 1
+    }
   },
 });
 
-export const { increment } = roundSlice.actions;
+export const { increment, rountReset } = roundSlice.actions;
 
 export default roundSlice.reducer;

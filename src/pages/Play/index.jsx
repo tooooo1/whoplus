@@ -6,7 +6,7 @@ import { increment } from '../../features/roundSlice';
 import { incrementTime } from '../../features/timeSlice';
 import * as Styled from './styled';
 import LinearProgress from '@mui/material/LinearProgress';
-import { powerup } from '../../features/powerSlice';
+import { powerUp } from '../../features/powerSlice';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 let difficulty = 10;
@@ -48,7 +48,7 @@ const Play = () => {
 
         if (round === 50) {
             if (parseInt(e.target.value) === first + second) {
-                dispatch(powerup(Math.floor(first + second / difficulty)));
+                dispatch(powerUp(Math.floor(first + second / difficulty)));
                 setInputColor('#1bb749');
                 setInputBackgroundColor('#c0f2cd');
                 setInputBorderColor('#1bb749');
@@ -64,7 +64,7 @@ const Play = () => {
                     setActive(false);
                 }, 100);
                 setTimedown(<img src="img/checked.png" alt='boxing' width={20} />);
-                dispatch(powerup(Math.floor(first + second / difficulty)));
+                dispatch(powerUp(Math.floor(first + second / difficulty)));
                 dispatch(increment());
                 setInputColor('#1bb749');
                 setInputBackgroundColor('#c0f2cd');

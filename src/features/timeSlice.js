@@ -9,9 +9,12 @@ export const timeSlice = createSlice({
     incrementTime: (state) => {
       state.value += 2
     },
+    timeReset: (state) => {
+      state.value = 2
+    }
   },
 });
 
-export const { incrementTime } = timeSlice.actions;
+export const { incrementTime, timeReset } = timeSlice.actions;
 
 export default timeSlice.reducer;

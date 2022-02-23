@@ -9,9 +9,12 @@ export const nicknameSlice = createSlice({
     inputData : (state, action) => {
       state.value = action.payload
     },
+    nicknameReset: (state) => {
+      state.value = ''
+    }
   },
 });
 
-export const { inputData } = nicknameSlice.actions;
+export const { inputData, nicknameReset } = nicknameSlice.actions;
 
 export default nicknameSlice.reducer;

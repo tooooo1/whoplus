@@ -4,11 +4,27 @@ import timeReducer from '../features/timeSlice'
 import nicknameReducer from '../features/nicknameSlice';
 import powerReducer from '../features/powerSlice';
 
+import storage from 'redux-persist/lib/storage';
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import thunk from 'redux-thunk';
+
+const reducers = combineReducers({
+    round: roundReducer,
+    time: timeReducer,
+    nickname: nicknameReducer,
+    power: powerReducer,
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
 export const store = configureStore({
-    reducer: {
-        round: roundReducer,
-        time: timeReducer,
-        nickname: nicknameReducer,
-        power: powerReducer,
-    },
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk],
 });
