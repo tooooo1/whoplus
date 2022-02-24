@@ -56,6 +56,9 @@ const Play = () => {
                 dispatch(powerUp(Math.floor(first + second / difficulty)));
                 setInputColor('#1bb749');
                 setInputBackgroundColor('#c0f2cd');
+                dispatch(resultNick(nickname));
+                dispatch(resultPower(power));
+                dispatch(resultRound(round));
                 setInputBorderColor('#1bb749');
                 setTimeout(() => {
                     navigate('../end');
