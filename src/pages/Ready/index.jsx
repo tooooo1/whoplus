@@ -43,7 +43,8 @@ const Ready = () => {
 
                 <Styled.Text>1. 주어진 시간 안에 문제를 해결합니다.</Styled.Text>
                 <Styled.Text>2. 10라운드마다 난이도가 상승합니다.</Styled.Text>
-                <Styled.Text id='last'>3. 게임은 총<Styled.Color> 50 ROUND</Styled.Color>입니다.</Styled.Text>
+                <Styled.Text id='last'>3. 게임은 총<Styled.Color> 70 ROUND</Styled.Color>입니다.</Styled.Text>
+                <Styled.Ex id='last'> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Styled.Ex>
                 <Styled.InputWrapper>
                     <Styled.ReadyInput onChange={(e) => setValue(e.target.value)} placeholder="닉네임을 입력하세요"/>
                     <Button color="#01a8ff" onClick={loginClick}>시작</Button>

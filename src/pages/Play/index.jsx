@@ -51,7 +51,7 @@ const Play = () => {
     const handleChange = (e) => {
         setValue(e.target.value);
 
-        if (round === 50) {
+        if (round === 70) {
             if (parseInt(e.target.value) === first + second) {
                 dispatch(powerUp(Math.floor(first + second / difficulty)));
                 setInputColor('#1bb749');

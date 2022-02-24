@@ -38,6 +38,17 @@ export const Text = styled.div`
     }
 `;
 
+export const Ex = styled.div`
+    font-size : 3vw;
+    margin-bottom : 1.5vh;
+    text-align: center;
+    color: darkblue;
+    font-family: "Pretendard-SemiBold";
+    @media only screen and (min-width: 768px) {
+        font-size: 18px;
+    }
+`;
+
 export const Color = styled.span`
     color: #ff2e35;
 `
