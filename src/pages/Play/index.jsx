@@ -53,16 +53,22 @@ const Play = () => {
 
         if (round === 70) {
             if (parseInt(e.target.value) === first + second) {
+                setProgress(0);
+                setActive(true);
+                setTimeout(() => {
+                    setActive(false);
+                }, 100);
+                setTimedown(<img src="img/checked.png" alt='boxing' width={20} />);
                 dispatch(powerUp(Math.floor(first + second / difficulty)));
                 setInputColor('#1bb749');
                 setInputBackgroundColor('#c0f2cd');
+                setInputBorderColor('#1bb749');
                 dispatch(resultNick(nickname));
                 dispatch(resultPower(power));
                 dispatch(resultRound(round));
-                setInputBorderColor('#1bb749');
                 setTimeout(() => {
                     navigate('../end');
-                }, 2000);
+                }, 1000);
             }
         } else {
             if (parseInt(e.target.value) === first + second) {
@@ -104,7 +110,7 @@ const Play = () => {
                 dispatch(rountReset());
                 dispatch(powerReset());
                 dispatch(timeReset());
-            }, 2000);
+            }, 1000);
         }
         else {
             setTimedown(timedown - 1);
