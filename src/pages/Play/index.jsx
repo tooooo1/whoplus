@@ -164,6 +164,7 @@ const Play = () => {
                         color={inputcolor}
                         background={inputbackgroundcolor}
                         border={inputbordercolor}
+                        inputmode="numeric"
                     />
                     <Styled.Score active={active}>{ power.toLocaleString() }</Styled.Score>
                 </Styled.QuestionWrapper>
