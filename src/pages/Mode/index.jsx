@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { inputData } from '../../features/nicknameSlice';
 import { useDispatch } from 'react-redux';
 import { Positioner } from '../../components/Wrapper/styled'
 import Button from '../../components/Button'
@@ -9,28 +8,30 @@ import { rountReset } from '../../features/roundSlice';
 import { powerReset } from '../../features/powerSlice';
 import { nicknameReset } from '../../features/nicknameSlice';
 import { timeReset } from '../../features/timeSlice';
+import { brainChoice, dementiaChoice } from '../../features/versionSlice';
 
-const Ready = () => {
-    const imgUrl = "https://img.icons8.com/color/48/000000/box-important--v1.png"
-    const [value, setValue] = useState('');
-    const [login, setLogin] = useState(false);
+const Mode = () => {
     const dispatch = useDispatch();
     let navigate = useNavigate();
     
-    const loginClick = (e) => {
-        if(value.trim().length === 0)
-		{
-			alert("닉네임을 입력해주세요.");
-			setValue("");
-			return;
-        }
-        
-        setLogin(!login);
+
+    const DementiaVersion = () => {
         dispatch(rountReset())
         dispatch(powerReset())
         dispatch(nicknameReset())
         dispatch(timeReset())
-        dispatch(inputData(value));
+
+        dispatch(dementiaChoice())
+        navigate("/play")
+    }
+
+    const BrainVersion = () => {
+        dispatch(rountReset())
+        dispatch(powerReset())
+        dispatch(nicknameReset())
+        dispatch(timeReset())
+
+        dispatch(brainChoice())
         navigate("/play")
     }
 
@@ -41,17 +42,17 @@ const Ready = () => {
                 <Styled.Img><img src="img/options.png" alt='options' width={50} /></Styled.Img>
                 <Styled.Title>게임 모드</Styled.Title>
 
-                <Styled.Text>치매예방</Styled.Text>
-                <Styled.Text>학습</Styled.Text>
-                <Styled.Text id='last'>3. 게임은 총<Styled.Color> 70 ROUND</Styled.Color>입니다.</Styled.Text>
-                <Styled.Ex id='last'> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Styled.Ex>
+                <Styled.Text>모드 선택에 따라 제한시간이 다릅니다.</Styled.Text>
+                <Styled.Text>난이도는 동일합니다.</Styled.Text>
+                <Styled.Ex id='last'> 치매 예방 : 5초 </Styled.Ex>
+                <Styled.Ex id='last'> 두뇌 회전 : 3초 </Styled.Ex>
                 <Styled.InputWrapper>
-                    <Button color="#01a8ff" onClick={loginClick}>두뇌 회전</Button>
-                    <Button color="#ff2e35" onClick={loginClick}>치매 예방</Button>
+                    <Button color="#ff2e35" id="list" onClick={DementiaVersion}>치매 예방</Button>
+                    <Button color="#01a8ff" id="list" onClick={BrainVersion}>두뇌 회전</Button>
                 </Styled.InputWrapper>
             </Styled.Wrapper>
         </Positioner>
     )
 };
 
-export default Ready;
+export default Mode;
