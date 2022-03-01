@@ -16,4 +16,8 @@ export const Wrapper = styled.div`
     &:hover, &:active {
         transform: scale(1.1);
     }
+
+    &#list {
+        margin: 10px 0;
+    }
 `;
