@@ -6,32 +6,34 @@ import Button from '../../components/Button'
 import * as Styled from './styled';
 import { rountReset } from '../../features/roundSlice';
 import { powerReset } from '../../features/powerSlice';
-import { nicknameReset } from '../../features/nicknameSlice';
-import { timeReset } from '../../features/timeSlice';
-import { choice } from '../../features/versionSlice';
+import { timeReset, setValue, setPlus } from '../../features/timeSlice';
 
 const Mode = () => {
     const dispatch = useDispatch();
     let navigate = useNavigate();
+
+    const reset = () => {
+        dispatch(rountReset());
+        dispatch(powerReset());
+        dispatch(timeReset());
+    }
     
 
     const DementiaVersion = () => {
-        dispatch(rountReset())
-        dispatch(powerReset())
-        dispatch(nicknameReset())
-        dispatch(timeReset())
+        reset();
+        
+        dispatch(setValue(4));
+        dispatch(setPlus(4));
 
-        dispatch(choice(0))
         navigate("/play")
     }
 
     const BrainVersion = () => {
-        dispatch(rountReset())
-        dispatch(powerReset())
-        dispatch(nicknameReset())
-        dispatch(timeReset())
+        reset();
 
-        dispatch(choice(1))
+        dispatch(setValue(2));
+        dispatch(setPlus(2));
+
         navigate("/play")
     }
 
