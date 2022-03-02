@@ -31,7 +31,7 @@ const Ready = () => {
         dispatch(nicknameReset())
         dispatch(timeReset())
         dispatch(inputData(value));
-        navigate("/play")
+        navigate("/mode")
     }
 
     return (
