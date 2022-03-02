@@ -1,20 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { brain: false, dementia: false }
+const initialState = { value:-1 }
 
 export const versionSlice = createSlice({
   name: 'version',
   initialState,
   reducers: {
-    brainChoice: (state) => {
-        state.brain = !state.brain
-    },
-    dementiaChoice: (state) => {
-        state.dementia = !state.dementia
+    choice: (state, actions) => {
+        state.value = actions.payload
     },
   },
 });
 
-export const { brainChoice, dementiaChoice } = versionSlice.actions;
+export const { choice } = versionSlice.actions;
 
 export default versionSlice.reducer;

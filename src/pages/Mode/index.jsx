@@ -8,7 +8,7 @@ import { rountReset } from '../../features/roundSlice';
 import { powerReset } from '../../features/powerSlice';
 import { nicknameReset } from '../../features/nicknameSlice';
 import { timeReset } from '../../features/timeSlice';
-import { brainChoice, dementiaChoice } from '../../features/versionSlice';
+import { choice } from '../../features/versionSlice';
 
 const Mode = () => {
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Mode = () => {
         dispatch(nicknameReset())
         dispatch(timeReset())
 
-        dispatch(dementiaChoice())
+        dispatch(choice(0))
         navigate("/play")
     }
 
@@ -31,7 +31,7 @@ const Mode = () => {
         dispatch(nicknameReset())
         dispatch(timeReset())
 
-        dispatch(brainChoice())
+        dispatch(choice(1))
         navigate("/play")
     }
 
