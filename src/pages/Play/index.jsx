@@ -3,7 +3,7 @@ import { Positioner } from '../../components/Wrapper/styled'
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../../features/roundSlice';
-import { incrementTime, incrementTimeDementia } from '../../features/timeSlice';
+import { incrementTime } from '../../features/timeSlice';
 import * as Styled from './styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import { powerUp } from '../../features/powerSlice';
@@ -18,17 +18,6 @@ let difficulty = 10;
 const Play = () => {
     const round = useSelector((state) => state.round.value);
     const time = useSelector((state) => state.time.value);
-    // const version = useSelector((state) => state.version.value);
-
-    // if (version === 0) {
-    //     const time = useSelector((state) => state.round.value);
-    // }
-
-    // const time = useSelector(state => {
-    //     if (state.version.value === 0)
-    //         return state.dementia.value;
-    //     return state.time.value;
-    //     })
 
     const power = useSelector((state) => state.power.value);
     const nickname = useSelector((state) => state.nickname.value);
@@ -96,10 +85,7 @@ const Play = () => {
                 setInputBackgroundColor('#c0f2cd');
                 setInputBorderColor('#1bb749');
                 if (round % 10 === 0) difficulty *= 10;
-                if (round % 10 === 9) {
-                    dispatch(incrementTime());
-                    dispatch(incrementTimeDementia());
-                }
+                if (round % 10 === 9) dispatch(incrementTime());
                 setTimeout(() => next(), 1000);
             }
         }
