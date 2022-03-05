@@ -7,7 +7,7 @@ import { incrementTime } from '../../features/timeSlice';
 import * as Styled from './styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import { powerUp } from '../../features/powerSlice';
-import { rountReset } from '../../features/roundSlice';
+import { roundReset } from '../../features/roundSlice';
 import { powerReset } from '../../features/powerSlice';
 import { timeReset } from '../../features/timeSlice';
 import { resultRound, resultPower, resultNick } from '../../features/resultSlice';
@@ -108,7 +108,7 @@ const Play = () => {
 
             setTimeout(() => {
                 navigate('../end');
-                dispatch(rountReset());
+                dispatch(roundReset());
                 dispatch(powerReset());
                 dispatch(timeReset());
             }, 1000);

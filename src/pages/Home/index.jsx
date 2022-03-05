@@ -3,7 +3,7 @@ import Button from '../../components/Button'
 import * as Styled from './styled';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { rountReset } from '../../features/roundSlice';
+import { roundReset } from '../../features/roundSlice';
 import { powerReset } from '../../features/powerSlice';
 import { nicknameReset } from '../../features/nicknameSlice';
 import { timeReset } from '../../features/timeSlice';
@@ -14,7 +14,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const onClick = () => {
-        dispatch(rountReset())
+        dispatch(roundReset())
         dispatch(powerReset())
         dispatch(nicknameReset())
         dispatch(timeReset())

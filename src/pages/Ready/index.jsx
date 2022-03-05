@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Positioner } from '../../components/Wrapper/styled'
 import Button from '../../components/Button'
 import * as Styled from './styled';
-import { rountReset } from '../../features/roundSlice';
+import { roundReset } from '../../features/roundSlice';
 import { powerReset } from '../../features/powerSlice';
 import { nicknameReset } from '../../features/nicknameSlice';
 import { timeReset } from '../../features/timeSlice';
@@ -26,7 +26,7 @@ const Ready = () => {
         }
         
         setLogin(!login);
-        dispatch(rountReset())
+        dispatch(roundReset())
         dispatch(powerReset())
         dispatch(nicknameReset())
         dispatch(timeReset())
