@@ -4,6 +4,7 @@ import reset from 'styled-reset';
 import Logo from './components/Logo.jsx';
 import Home from './pages/Home.jsx';
 import Ready from './pages/Ready.jsx';
+import Mode from './pages/Mode.jsx';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -28,9 +29,9 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/ready" element={<Ready />} />
-      {/* <Route path="/end" element={<End />} />
-      <Route path="/play" element={<Play />} />
-      <Route path="/mode" element={<Mode />} /> */}
+      <Route path="/mode" element={<Mode />} />
+      {/* <Route path="/play" element={<Play />} />
+      <Route path="/end" element={<End />} /> */}
     </Routes>
   </BrowserRouter>
 );
