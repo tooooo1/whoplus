@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { value: '' }
+const initialState = { value: '' };
 
 export const nicknameSlice = createSlice({
   name: 'nickname',
   initialState,
   reducers: {
-    inputData : (state, action) => {
-      state.value = action.payload
+    inputData: (state, action) => {
+      state.value = action.payload;
     },
     nicknameReset: (state) => {
-      state.value = ''
-    }
+      state.value = '';
+    },
   },
 });
 

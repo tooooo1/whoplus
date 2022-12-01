@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { power: '', nick: '', round: ''}
+const initialState = { power: '', nick: '', round: '' };
 
 export const resultSlice = createSlice({
   name: 'result',
   initialState,
   reducers: {
-    resultPower : (state, action) => {
-      state.power = action.payload
+    resultPower: (state, action) => {
+      state.power = action.payload;
     },
     resultNick: (state, action) => {
-      state.nick = action.payload
+      state.nick = action.payload;
     },
     resultRound: (state, action) => {
-      state.round = action.payload
+      state.round = action.payload;
     },
   },
 });
