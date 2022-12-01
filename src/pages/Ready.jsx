@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import Button from '../components/Button.jsx';
 import { inputData, nicknameReset } from '../features/nicknameSlice.js';
 import { powerReset } from '../features/powerSlice.js';

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-
 import styled from 'styled-components';
+
 import Button from '../components/Button.jsx';
 import { nicknameReset } from '../features/nicknameSlice.js';
 import { powerReset } from '../features/powerSlice.js';

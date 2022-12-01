@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+
 import Logo from './components/Logo.jsx';
+import End from './pages/End.jsx';
 import Home from './pages/Home.jsx';
-import Ready from './pages/Ready.jsx';
 import Mode from './pages/Mode.jsx';
 import Play from './pages/Play.jsx';
-import End from './pages/End.jsx';
+import Ready from './pages/Ready.jsx';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
