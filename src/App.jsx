@@ -6,7 +6,7 @@ import Home from './pages/Home.jsx';
 import Ready from './pages/Ready.jsx';
 import Mode from './pages/Mode.jsx';
 import Play from './pages/Play.jsx';
-import { End } from './pages/index.js';
+import End from './pages/End.jsx';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
