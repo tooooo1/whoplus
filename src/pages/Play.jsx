@@ -1,54 +1,39 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { powerReset, powerUp } from '../features/powerSlice.js';
-import {
-  resultNick,
-  resultPower,
-  resultRound,
-} from '../features/resultSlice.js';
-import { increment } from '../features/roundSlice';
-import { roundReset } from '../features/roundSlice.js';
-import { incrementTime } from '../features/timeSlice';
-import { timeReset } from '../features/timeSlice.js';
+import { setItem } from '../utils/storage.js';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-let difficulty = 10;
 
 const Play = () => {
-  const round = useSelector((state) => state.round.value);
-  const time = useSelector((state) => state.time.value);
-
-  const power = useSelector((state) => state.power.value);
-  const nickname = useSelector((state) => state.nickname.value);
-  const dispatch = useDispatch();
-
-  const [barcolor, setBarColor] = useState('success');
+  const [difficulty, setDifficulty] = useState(10);
+  const [power, setPower] = useState(0);
+  const [round, setRound] = useState(1);
+  const [time, setTime] = useState(2);
+  const [timeDown, setTimeDown] = useState(time);
+  const [barColor, setBarColor] = useState('success');
   const [timeActive, setTimeActive] = useState(false);
   const [active, setActive] = useState(false);
-  const [timedown, setTimedown] = useState(time);
   const [first, setFirst] = useState(rand(difficulty / 10, difficulty));
   const [second, setSecond] = useState(rand(difficulty / 10, difficulty));
   const [value, setValue] = useState('');
   const [progress, setProgress] = useState(0);
 
-  const [inputcolor, setInputColor] = useState('#000000');
-  const [inputbackgroundcolor, setInputBackgroundColor] = useState('#f4f4f4');
-  const [inputbordercolor, setInputBorderColor] = useState('#000000');
+  const [inputColor, setInputColor] = useState('#000000');
+  const [inputBackGroundColor, setInputBackGroundColor] = useState('#f4f4f4');
   const inputRef = useRef(null);
 
   const next = () => {
     setValue('');
     setInputColor('#000000');
-    setInputBackgroundColor('#f4f4f4');
-    setInputBorderColor('#000000');
+    setInputBackGroundColor('#f4f4f4');
     setFirst(rand(difficulty / 10, difficulty));
     setSecond(rand(difficulty / 10, difficulty));
+    setRound((prev) => prev + 1);
     inputRef.current.focus();
-    setTimedown(time);
+    setTimeDown(time);
   };
 
   const handleChange = (e) => {
@@ -61,14 +46,12 @@ const Play = () => {
         setTimeout(() => {
           setActive(false);
         }, 100);
-        setTimedown(<img src="img/checked.png" alt="boxing" width={20} />);
-        dispatch(powerUp(Math.floor(first + second / difficulty)));
+        setTimeDown(
+          <img src="img/checked.png" alt="boxing" width={20} height={20} />
+        );
+        setPower((prev) => prev + Math.floor(first + second / difficulty));
         setInputColor('#1bb749');
-        setInputBackgroundColor('#c0f2cd');
-        setInputBorderColor('#1bb749');
-        dispatch(resultNick(nickname));
-        dispatch(resultPower(power));
-        dispatch(resultRound(round));
+        setInputBackGroundColor('#c0f2cd');
         setTimeout(() => {
           navigate('../end');
         }, 1000);
@@ -80,41 +63,42 @@ const Play = () => {
         setTimeout(() => {
           setActive(false);
         }, 100);
-        setTimedown(<img src="img/checked.png" alt="boxing" width={20} />);
-        dispatch(powerUp(Math.floor(first + second / difficulty)));
-        dispatch(increment());
+        setTimeDown(
+          <img src="img/checked.png" alt="boxing" width={20} height={20} />
+        );
+        setPower((prev) => prev + Math.floor(first + second / difficulty));
+        setRound((prev) => prev + 1);
         setInputColor('#1bb749');
-        setInputBackgroundColor('#c0f2cd');
-        setInputBorderColor('#1bb749');
-        if (round % 10 === 0) difficulty *= 10;
-        if (round % 10 === 9) dispatch(incrementTime());
+        setInputBackGroundColor('#c0f2cd');
         setTimeout(() => next(), 1000);
       }
     }
   };
 
+  useEffect(() => {
+    if (round % 9 === 0) {
+      setDifficulty((prev) => prev * 10);
+      setTime((prev) => prev + 2);
+    }
+  }, [round]);
+
   const navigate = useNavigate();
 
   const tick = () => {
-    if (timedown === 0 || isNaN(timedown)) {
-      setTimedown(<img src="img/remove.png" alt="boxing" width={20} />);
+    if (timeDown === 0 || isNaN(timeDown)) {
+      setTime(<img src="img/remove.png" alt="boxing" width={20} height={20} />);
       setBarColor('secondary');
       setInputColor('#ff2e35');
-      setInputBackgroundColor('#ffd2d7');
-      setInputBorderColor('#ff2e35');
+      setInputBackGroundColor('#ffd2d7');
 
-      dispatch(resultNick(nickname));
-      dispatch(resultPower(power));
-      dispatch(resultRound(round));
+      setItem('tooooo1_round', round);
+      setItem('tooooo1_power', power);
 
       setTimeout(() => {
-        navigate('../end');
-        dispatch(roundReset());
-        dispatch(powerReset());
-        dispatch(timeReset());
+        navigate('/end');
       }, 1000);
     } else {
-      setTimedown(timedown - 1);
+      setTimeDown(timeDown - 1);
     }
   };
 
@@ -124,23 +108,23 @@ const Play = () => {
   });
 
   useEffect(() => {
-    const buffertimer = setInterval(() => {
+    const bufferTimer = setInterval(() => {
       setProgress((oldProgress) => {
         setTimeActive(true);
         setTimeout(() => {
           setTimeActive(false);
         }, 100);
-        if (round % 10 !== 0) {
-          var temp = 100 / time;
-        } else {
-          temp = 100 / (time - 2);
-        }
+
         if (oldProgress >= 100) return 0;
-        return oldProgress + temp;
+
+        if (round % 10 !== 0) {
+          return oldProgress + 100 / time;
+        }
+        return oldProgress + 100 / (time - 2);
       });
     }, 1000);
     return () => {
-      clearInterval(buffertimer);
+      clearInterval(bufferTimer);
     };
   });
 
@@ -152,11 +136,11 @@ const Play = () => {
             <Round>
               ROUND <Stage active={active}>{round}</Stage>
             </Round>
-            <TimeUp active={timeActive}>{timedown}</TimeUp>
+            <TimeUp active={timeActive}>{timeDown}</TimeUp>
             <LinearProgress
               variant="determinate"
               value={progress}
-              color={barcolor}
+              color={barColor}
               sx={{
                 borderRadius: '10px',
                 marginBottom: '1.2rem',
@@ -171,9 +155,9 @@ const Play = () => {
             ref={inputRef}
             value={value}
             onChange={handleChange}
-            color={inputcolor}
-            background={inputbackgroundcolor}
-            border={inputbordercolor}
+            color={inputColor}
+            background={inputBackGroundColor}
+            border={inputColor}
             inputmode="numeric"
             pattern="[0-9]*"
           />
