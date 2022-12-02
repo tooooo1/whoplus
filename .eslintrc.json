@@ -6,7 +6,10 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
     "prettier"
   ],
   "overrides": [],
