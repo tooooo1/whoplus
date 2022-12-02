@@ -27,4 +27,8 @@ export const Wrapper = styled.button`
   &#list {
     margin: 10px 0;
   }
+
+  @media only screen and (min-width: 536px) {
+    width: 365px;
+  }
 `;

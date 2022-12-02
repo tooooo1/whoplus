@@ -7,7 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div id="home">
       <Title>누가 더쎔?</Title>
       <Button color="#ff2e35" onClick={() => navigate('/ready')}>
         게임시작
@@ -20,6 +20,7 @@ export default Home;
 
 const Title = styled.div`
   font-size: 8vh;
+  text-align: center;
   padding-bottom: 2rem;
   font-family: 'RixYeoljeongdo_Regular';
   word-break: keep-all;

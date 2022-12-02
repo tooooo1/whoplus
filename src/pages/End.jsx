@@ -19,30 +19,28 @@ const End = () => {
   };
 
   return (
-    <div>
-      <Wrapper>
-        <Title>누가더쎔?</Title>
-        <Round>
-          ROUND <Color>{round}</Color> / 70
-        </Round>
-        <Text>닉네임 : {name}</Text>
-        <ResultWrapper>
-          <Power>
-            <img
-              src="img/boxing-gloves.png"
-              alt="boxing"
-              width={50}
-              height={50}
-            />
-            <div>전투력</div>
-            <div>{comma}</div>
-          </Power>
-          <Button color="#ff2e35" onClick={() => reset()}>
-            다시하기
-          </Button>
-        </ResultWrapper>
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <Title>누가더쎔?</Title>
+      <Round>
+        ROUND <Color>{round}</Color> / 70
+      </Round>
+      <Text>닉네임 : {name}</Text>
+      <ResultWrapper>
+        <Power>
+          <img
+            src="img/boxing-gloves.png"
+            alt="boxing"
+            width={50}
+            height={50}
+          />
+          <div>전투력</div>
+          <div>{comma}</div>
+        </Power>
+        <Button color="#ff2e35" onClick={() => reset()}>
+          다시하기
+        </Button>
+      </ResultWrapper>
+    </Wrapper>
   );
 };
 

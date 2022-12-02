@@ -131,43 +131,46 @@ const Play = () => {
   return (
     <div>
       <Wrapper>
-        <QuestionWrapper>
-          <div>
-            <Round>
-              ROUND <Stage active={active}>{round}</Stage>
-            </Round>
-            <TimeUp active={timeActive}>{timeDown}</TimeUp>
-            <LinearProgress
-              variant="determinate"
-              value={progress}
-              color={barColor}
-              sx={{
-                borderRadius: '10px',
-                marginBottom: '1.2rem',
-                height: '1.2vh',
-              }}
-            />
-          </div>
-          <SubMissionQuestion>
-            {first} + {second}
-          </SubMissionQuestion>
-          <SubMissionInput
-            ref={inputRef}
-            value={value}
-            onChange={handleChange}
-            color={inputColor}
-            background={inputBackGroundColor}
-            inputmode="numeric"
-            pattern="[0-9]*"
-          />
-          <Score active={active}>{power.toLocaleString()}</Score>
-        </QuestionWrapper>
+        <Round>
+          ROUND <Stage active={active}>{round}</Stage>
+        </Round>
+        <TimeUp active={timeActive}>{timeDown}</TimeUp>
+        <LinearProgress
+          variant="determinate"
+          value={progress}
+          color={barColor}
+          sx={{
+            borderRadius: '10px',
+            marginBottom: '1.2rem',
+            height: '1.2vh',
+            width: '100%',
+          }}
+        />
+        <SubMissionQuestion>
+          {first} + {second}
+        </SubMissionQuestion>
+        <SubMissionInput
+          ref={inputRef}
+          value={value}
+          onChange={handleChange}
+          color={inputColor}
+          background={inputBackGroundColor}
+          inputmode="numeric"
+          pattern="[0-9]*"
+        />
+        <Score active={active}>{power.toLocaleString()}</Score>
       </Wrapper>
     </div>
   );
 };
 
 export default Play;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Score = styled.div`
   font-size: 3vw;
@@ -251,13 +254,6 @@ const SubMissionInput = styled.input`
   }
 `;
 
-const QuestionWrapper = styled.div`
-  padding: 8vh 15vw 5vh;
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
-`;
-
 const Stage = styled.span`
   animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
   font-weight: bold;
@@ -282,7 +278,7 @@ const Stage = styled.span`
 
 const TimeUp = styled.p`
   padding-bottom: 4px;
-
+  height: 25px;
   animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
   font-weight: bold;
   @keyframes bounce {
@@ -301,14 +297,5 @@ const TimeUp = styled.p`
     100% {
       transform: scale(1);
     }
-  }
-`;
-
-const Wrapper = styled.div`
-  padding: 10vw 0;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    padding: 5vw 0;
   }
 `;

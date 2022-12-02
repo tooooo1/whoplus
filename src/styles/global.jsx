@@ -137,13 +137,34 @@ export const global = (
         outline: none;
         box-sizing: border-box;
       }
-      body > div {
+      #root {
         background-color: #f2f2f2;
         height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+      }
+
+      #root > div {
+        background-color: #ffffff;
+        box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+        width: 70%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+
+        &#home {
+          background-color: #f2f2f2;
+          box-shadow: none;
+        }
+
+        @media only screen and (max-height: 664px) {
+          height: 100%;
+        }
       }
     `}
   />

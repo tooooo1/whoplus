@@ -21,31 +21,28 @@ const Ready = () => {
 
   return (
     <div>
-      <Wrapper>
-        <img
-          src="https://img.icons8.com/color/48/000000/box-important--v1.png"
-          width={48}
-          height={48}
-          alt="!"
-        />
-        <Title>게임 설명</Title>
+      <img
+        src="https://img.icons8.com/color/48/000000/box-important--v1.png"
+        width={48}
+        height={48}
+        alt="!"
+      />
+      <Title>게임 설명</Title>
 
-        <Text>1. 주어진 시간 안에 문제를 해결합니다.</Text>
-        <Text>2. 10라운드마다 난이도가 상승합니다.</Text>
-        <Text id="last">
-          3. 게임은 총<Color> 70 ROUND</Color>입니다.
-        </Text>
-        <Ex id="last"> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Ex>
-        <InputWrapper>
-          <ReadyInput
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="닉네임을 입력하세요"
-          />
-          <Button color="#01a8ff" onClick={loginClick}>
-            시작
-          </Button>
-        </InputWrapper>
-      </Wrapper>
+      <Text>1. 주어진 시간 안에 문제를 해결합니다.</Text>
+      <Text>2. 10라운드마다 난이도가 상승합니다.</Text>
+      <Text id="last">
+        3. 게임은 총<Color> 70 ROUND</Color>입니다.
+      </Text>
+      <Ex id="last"> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Ex>
+
+      <ReadyInput
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="닉네임을 입력하세요"
+      />
+      <Button color="#01a8ff" onClick={loginClick}>
+        시작
+      </Button>
     </div>
   );
 };
@@ -100,21 +97,8 @@ const ReadyInput = styled.input`
   height: auto;
   margin-bottom: 1rem;
   font-family: 'Pretendard-Medium';
-`;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
-
-  @media (min-width: 768px) {
-    padding: 5vw 0;
+  @media only screen and (min-width: 536px) {
+    width: 365px;
   }
-`;
-
-const InputWrapper = styled.div`
-  padding: 1vh 14vw;
 `;

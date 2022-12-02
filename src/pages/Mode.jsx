@@ -14,27 +14,19 @@ const Mode = () => {
 
   return (
     <div>
-      <Wrapper>
-        <img src="img/options.png" alt="options" width={50} height={50} />
-        <Title>게임 모드</Title>
+      <img src="img/options.png" alt="options" width={50} height={50} />
+      <Title>게임 모드</Title>
 
-        <Text>모드 선택에 따라 첫 시작 시간이 다릅니다.</Text>
-        <Text>난이도는 동일합니다.</Text>
-        <Ex id="last"> 치매 예방 : 5초 </Ex>
-        <Ex id="last"> 두뇌 회전 : 3초 </Ex>
-        <InputWrapper>
-          <Button
-            color="#ff2e35"
-            id="list"
-            onClick={() => modeChoice('Dementia')}
-          >
-            치매 예방
-          </Button>
-          <Button color="#01a8ff" id="list" onClick={() => modeChoice('Brain')}>
-            두뇌 회전
-          </Button>
-        </InputWrapper>
-      </Wrapper>
+      <Text>모드 선택에 따라 첫 시작 시간이 다릅니다.</Text>
+      <Text>난이도는 동일합니다.</Text>
+      <Ex id="last"> 치매 예방 : 5초 </Ex>
+      <Ex id="last"> 두뇌 회전 : 3초 </Ex>
+      <Button color="#ff2e35" id="list" onClick={() => modeChoice('Dementia')}>
+        치매 예방
+      </Button>
+      <Button color="#01a8ff" id="list" onClick={() => modeChoice('Brain')}>
+        두뇌 회전
+      </Button>
     </div>
   );
 };
@@ -75,21 +67,4 @@ const Ex = styled.div`
   @media only screen and (min-width: 768px) {
     font-size: 18px;
   }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
-
-  @media (min-width: 768px) {
-    padding: 5vw 0;
-  }
-`;
-
-const InputWrapper = styled.div`
-  padding: 1vh 14vw;
 `;
