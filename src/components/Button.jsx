@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const Button = ({ children, onClick, color, id }) => (
   <Wrapper onClick={onClick} color={color} id={id}>

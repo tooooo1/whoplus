@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { setItem } from '../utils/storage.js';
 

@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import Button from '../components/Button.jsx';
 import { setItem } from '../utils/storage.js';
