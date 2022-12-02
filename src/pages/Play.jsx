@@ -115,7 +115,7 @@ const Play = () => {
     return () => {
       clearInterval(bufferTimer);
     };
-  }, [round, time]);
+  });
 
   return (
     <div>
