@@ -18,7 +18,7 @@ const Home = () => {
 
 export default Home;
 
-const Title = styled.div`
+const Title = styled.h1`
   font-size: 8vh;
   text-align: center;
   padding-bottom: 2rem;

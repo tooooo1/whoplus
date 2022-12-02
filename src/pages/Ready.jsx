@@ -37,6 +37,7 @@ const Ready = () => {
       <Ex id="last"> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Ex>
 
       <ReadyInput
+        aria-label="닉네임 입력"
         onChange={(e) => setValue(e.target.value)}
         placeholder="닉네임을 입력하세요"
       />
@@ -61,11 +62,11 @@ const Title = styled.div`
 
 const Text = styled.div`
   font-size: 3vw;
-  padding-bottom: 1.5vh;
+  line-height: 2rem;
   text-align: center;
   font-family: 'Pretendard-SemiBold';
   &#last {
-    padding-bottom: 3vh;
+    padding-bottom: 1rem;
   }
   @media only screen and (min-width: 768px) {
     font-size: 20px;

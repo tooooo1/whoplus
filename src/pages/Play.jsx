@@ -136,6 +136,7 @@ const Play = () => {
         </Round>
         <TimeUp active={timeActive}>{timeDown}</TimeUp>
         <LinearProgress
+          aria-label="남은 시간"
           variant="determinate"
           value={progress}
           color={barColor}
@@ -150,6 +151,7 @@ const Play = () => {
           {first} + {second}
         </SubMissionQuestion>
         <SubMissionInput
+          aria-label="정답 입력"
           ref={inputRef}
           value={value}
           onChange={handleChange}
