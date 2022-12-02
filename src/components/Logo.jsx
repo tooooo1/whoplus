@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 const Logo = () => (
   <Img
     onClick={() => window.open('https://tooo1.tistory.com')}
-    src="img/il.jpg"
+    src="images/il.jpg"
     alt="il"
     width={50}
     height={50}

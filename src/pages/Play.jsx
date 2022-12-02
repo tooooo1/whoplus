@@ -47,7 +47,7 @@ const Play = () => {
         setActive(false);
       }, 100);
       setTimeDown(
-        <img src="img/checked.png" alt="boxing" width={20} height={20} />
+        <img src="images/checked.png" alt="boxing" width={20} height={20} />
       );
       setPower((prev) => prev + Math.floor(first + second / difficulty));
       setInputColor('#1bb749');
@@ -59,7 +59,7 @@ const Play = () => {
           setActive(false);
         }, 100);
         setTimeDown(
-          <img src="img/checked.png" alt="boxing" width={20} height={20} />
+          <img src="images/checked.png" alt="boxing" width={20} height={20} />
         );
         setPower((prev) => prev + Math.floor(first + second / difficulty));
         setInputColor('#1bb749');
@@ -86,7 +86,9 @@ const Play = () => {
 
   const tick = () => {
     if (timeDown === 0 || isNaN(timeDown)) {
-      setTime(<img src="img/remove.png" alt="boxing" width={20} height={20} />);
+      setTime(
+        <img src="images/remove.png" alt="boxing" width={20} height={20} />
+      );
       setBarColor('secondary');
       setInputColor('#ff2e35');
       setInputBackGroundColor('#ffd2d7');
@@ -177,7 +179,7 @@ const Wrapper = styled.div`
 const Score = styled.div`
   font-size: 3vw;
 
-  font-family: 'RixYeoljeongdo_Regular';
+  font-family: 'RixYeoljeongdo';
   @media only screen and (min-width: 768px) {
     font-size: 30px;
   }

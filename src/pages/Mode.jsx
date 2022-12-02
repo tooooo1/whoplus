@@ -14,7 +14,7 @@ const Mode = () => {
 
   return (
     <div>
-      <img src="img/options.png" alt="options" width={50} height={50} />
+      <img src="images/options.png" alt="options" width={50} height={50} />
       <Title>게임 모드</Title>
 
       <Text>모드 선택에 따라 첫 시작 시간이 다릅니다.</Text>
@@ -36,7 +36,7 @@ export default Mode;
 const Title = styled.div`
   font-size: 8vw;
   padding: 1rem 0 1.5rem 0;
-  font-family: 'RixYeoljeongdo_Regular';
+  font-family: 'RixYeoljeongdo';
   word-break: keep-all;
   @media only screen and (min-width: 768px) {
     font-size: 60px;

@@ -28,7 +28,7 @@ const End = () => {
       <ResultWrapper>
         <Power>
           <img
-            src="img/boxing-gloves.png"
+            src="images/boxing-gloves.png"
             alt="boxing"
             width={50}
             height={50}
@@ -62,7 +62,7 @@ const Title = styled.div`
   font-size: 9vw;
   padding: 1rem 0 1.2rem 0;
   text-align: center;
-  font-family: 'RixYeoljeongdo_Regular';
+  font-family: 'RixYeoljeongdo';
   word-break: keep-all;
   @media only screen and (min-width: 768px) {
     font-size: 60px;
