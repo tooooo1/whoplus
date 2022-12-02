@@ -1,17 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../components/Button.jsx';
-import { inputData, nicknameReset } from '../features/nicknameSlice.js';
-import { powerReset } from '../features/powerSlice.js';
-import { roundReset } from '../features/roundSlice.js';
-import { timeReset } from '../features/timeSlice.js';
+import { setItem } from '../utils/storage.js';
 
 const Ready = () => {
   const [value, setValue] = useState('');
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const loginClick = () => {
@@ -20,12 +15,7 @@ const Ready = () => {
       setValue('');
       return;
     }
-
-    dispatch(roundReset());
-    dispatch(powerReset());
-    dispatch(nicknameReset());
-    dispatch(timeReset());
-    dispatch(inputData(value));
+    setItem('tooooo1_name', value);
     navigate('/mode');
   };
 

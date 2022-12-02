@@ -1,26 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import Button from '../components/Button.jsx';
-import { nicknameReset } from '../features/nicknameSlice.js';
-import { powerReset } from '../features/powerSlice.js';
-import { roundReset } from '../features/roundSlice.js';
-import { timeReset } from '../features/timeSlice.js';
+import { getItem } from '../utils/storage.js';
 
 const End = () => {
-  const round = useSelector((state) => state.result.round);
-  const nickname = useSelector((state) => state.result.nick);
-  const power = useSelector((state) => state.result.power);
+  const round = getItem('tooooo1_round', 1);
+  const name = getItem('tooooo1_name', 1);
+  const power = getItem('tooooo1_power', 1);
 
-  const dispatch = useDispatch();
-
-  const comma = power.toLocaleString();
+  // const comma = power.toLocaleString();
 
   const reset = () => {
-    dispatch(roundReset());
-    dispatch(powerReset());
-    dispatch(nicknameReset());
-    dispatch(timeReset());
     window.location.replace('/');
     setTimeout(() => {
       window.location.replace('/');
@@ -34,7 +24,7 @@ const End = () => {
         <Round>
           ROUND <Color>{round}</Color> / 70
         </Round>
-        <Text>닉네임 : {nickname}</Text>
+        <Text>닉네임 : {name}</Text>
         <ResultWrapper>
           <Power>
             <img
@@ -44,7 +34,7 @@ const End = () => {
               height={50}
             />
             <div>전투력</div>
-            <div>{comma}</div>
+            <div>{power}</div>
           </Power>
           <Button color="#ff2e35" onClick={() => reset()}>
             다시하기

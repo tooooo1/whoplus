@@ -1,37 +1,19 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../components/Button.jsx';
-import { powerReset } from '../features/powerSlice.js';
-import { roundReset } from '../features/roundSlice.js';
-import { setPlus, setValue, timeReset } from '../features/timeSlice.js';
+import { setItem } from '../utils/storage.js';
 
 const Mode = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const reset = () => {
-    dispatch(roundReset());
-    dispatch(powerReset());
-    dispatch(timeReset());
-  };
-
   const DementiaVersion = () => {
-    reset();
-
-    dispatch(setValue(4));
-    dispatch(setPlus(4));
-
+    setItem('tooooo1_mode', 'Dementia');
     navigate('/play');
   };
 
   const BrainVersion = () => {
-    reset();
-
-    dispatch(setValue(2));
-    dispatch(setPlus(2));
-
+    setItem('tooooo1_mode', 'Brain');
     navigate('/play');
   };
 

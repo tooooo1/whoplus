@@ -1,22 +1,12 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../components/Button.jsx';
-import { nicknameReset } from '../features/nicknameSlice.js';
-import { powerReset } from '../features/powerSlice.js';
-import { roundReset } from '../features/roundSlice.js';
-import { timeReset } from '../features/timeSlice.js';
 
 const Home = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(roundReset());
-    dispatch(powerReset());
-    dispatch(nicknameReset());
-    dispatch(timeReset());
     navigate('/ready');
   };
 
