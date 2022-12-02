@@ -3,15 +3,16 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { setItem } from '../utils/storage.js';
+import { getItem, setItem } from '../utils/storage.js';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const Play = () => {
+  const navigate = useNavigate();
   const [difficulty, setDifficulty] = useState(10);
   const [power, setPower] = useState(0);
   const [round, setRound] = useState(1);
-  const [time, setTime] = useState(2);
+  const [time, setTime] = useState(getItem('tooooo_mode', 'Dementia') ? 4 : 2);
   const [timeDown, setTimeDown] = useState(time);
   const [barColor, setBarColor] = useState('success');
   const [timeActive, setTimeActive] = useState(false);
@@ -39,7 +40,18 @@ const Play = () => {
   const handleChange = (e) => {
     setValue(e.target.value);
 
-    if (round === 70) {
+    if (parseInt(e.target.value) === first + second) {
+      setProgress(0);
+      setActive(true);
+      setTimeout(() => {
+        setActive(false);
+      }, 100);
+      setTimeDown(
+        <img src="img/checked.png" alt="boxing" width={20} height={20} />
+      );
+      setPower((prev) => prev + Math.floor(first + second / difficulty));
+      setInputColor('#1bb749');
+      setInputBackGroundColor('#c0f2cd');
       if (parseInt(e.target.value) === first + second) {
         setProgress(0);
         setActive(true);
@@ -52,24 +64,14 @@ const Play = () => {
         setPower((prev) => prev + Math.floor(first + second / difficulty));
         setInputColor('#1bb749');
         setInputBackGroundColor('#c0f2cd');
+      }
+
+      if (round === 70) {
         setTimeout(() => {
           navigate('../end');
         }, 1000);
-      }
-    } else {
-      if (parseInt(e.target.value) === first + second) {
-        setProgress(0);
-        setActive(true);
-        setTimeout(() => {
-          setActive(false);
-        }, 100);
-        setTimeDown(
-          <img src="img/checked.png" alt="boxing" width={20} height={20} />
-        );
-        setPower((prev) => prev + Math.floor(first + second / difficulty));
+      } else {
         setRound((prev) => prev + 1);
-        setInputColor('#1bb749');
-        setInputBackGroundColor('#c0f2cd');
         setTimeout(() => next(), 1000);
       }
     }
@@ -81,8 +83,6 @@ const Play = () => {
       setTime((prev) => prev + 2);
     }
   }, [round]);
-
-  const navigate = useNavigate();
 
   const tick = () => {
     if (timeDown === 0 || isNaN(timeDown)) {
@@ -132,7 +132,7 @@ const Play = () => {
     <div>
       <Wrapper>
         <QuestionWrapper>
-          <RoundWrapper>
+          <div>
             <Round>
               ROUND <Stage active={active}>{round}</Stage>
             </Round>
@@ -147,7 +147,7 @@ const Play = () => {
                 height: '1.2vh',
               }}
             />
-          </RoundWrapper>
+          </div>
           <SubMissionQuestion>
             {first} + {second}
           </SubMissionQuestion>
@@ -157,7 +157,6 @@ const Play = () => {
             onChange={handleChange}
             color={inputColor}
             background={inputBackGroundColor}
-            border={inputColor}
             inputmode="numeric"
             pattern="[0-9]*"
           />
@@ -170,30 +169,9 @@ const Play = () => {
 
 export default Play;
 
-export const Title = styled.div`
-  font-size: 10vh;
-  font-weight: 1000;
-  margin: 2rem 0;
-  text-align: center;
-  font-family: 'Pretendard-Black';
-  @media only screen and (min-width: 768px) {
-    font-size: 60px;
-  }
-`;
-
-export const Text = styled.div`
-  font-size: 2vw;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-family: 'Pretendard-SemiBold';
-  @media only screen and (min-width: 768px) {
-    font-size: 30px;
-  }
-`;
-
-export const Score = styled.div`
+const Score = styled.div`
   font-size: 3vw;
-  text-align: center;
+
   font-family: 'RixYeoljeongdo_Regular';
   @media only screen and (min-width: 768px) {
     font-size: 30px;
@@ -237,35 +215,32 @@ export const Score = styled.div`
   }
 `;
 
-export const Round = styled.div`
-  font-weight: initial;
+const Round = styled.div`
   font-size: 6vw;
   margin-bottom: 1rem;
   font-family: 'Pretendard-SemiBold';
-  text-align: center;
+
   @media only screen and (min-width: 768px) {
     font-size: 40px;
   }
 `;
 
-export const SubMissionQuestion = styled.div`
+const SubMissionQuestion = styled.div`
   font-size: 7vw;
   font-family: 'Pretendard-ExtraBold';
-  text-align: center;
+
   background-color: #ffffff;
 `;
 
-export const SubMissionInput = styled.input`
-  opacity: 0.6;
+const SubMissionInput = styled.input`
   border-radius: 30px;
   background: ${(props) => props.background};
   color: ${(props) => props.color};
+  border: 2px solid ${(props) => props.color};
   text-align: center;
   font-size: 3vw;
-  border: 2px solid ${(props) => props.bordercolor};
   padding: 0.8rem;
   margin: 1rem 0;
-  width: 100%;
   font-family: 'Pretendard-ExtraBold';
   &:focus {
     outline: none;
@@ -276,28 +251,25 @@ export const SubMissionInput = styled.input`
   }
 `;
 
-export const QuestionWrapper = styled.div`
+const QuestionWrapper = styled.div`
   padding: 8vh 15vw 5vh;
   border-radius: 10px;
   background-color: #ffffff;
   box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
 `;
 
-export const RoundWrapper = styled.div``;
-
-export const Stage = styled.span`
-  display: inline-block;
+const Stage = styled.span`
   animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
   font-weight: bold;
   @keyframes bounce {
     0% {
-      transform: scale(4);
+      transform: scale(1);
     }
     40% {
       transform: scale(0.4);
     }
     60% {
-      transform: scale(1.3);
+      transform: scale(1);
     }
     80% {
       transform: scale(0.8);
@@ -308,11 +280,9 @@ export const Stage = styled.span`
   }
 `;
 
-export const TimeUp = styled.div`
-  display: block;
-  margin-bottom: 4px;
-  text-align: center;
-  background: #ffffff;
+const TimeUp = styled.p`
+  padding-bottom: 4px;
+
   animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
   font-weight: bold;
   @keyframes bounce {
@@ -334,8 +304,9 @@ export const TimeUp = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   padding: 10vw 0;
+  text-align: center;
 
   @media (min-width: 768px) {
     padding: 5vw 0;
