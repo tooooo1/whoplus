@@ -52,7 +52,7 @@ const Ready = () => {
 
 export default Ready;
 
-export const Title = styled.div`
+const Title = styled.div`
   font-size: 8vw;
   padding: 1rem 0 1.5rem 0;
   font-family: 'RixYeoljeongdo_Regular';
@@ -62,7 +62,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Text = styled.div`
+const Text = styled.div`
   font-size: 3vw;
   padding-bottom: 1.5vh;
   text-align: center;
@@ -75,7 +75,7 @@ export const Text = styled.div`
   }
 `;
 
-export const Ex = styled.div`
+const Ex = styled.div`
   font-size: 3vw;
   padding-bottom: 1.5vh;
   text-align: center;
@@ -86,11 +86,11 @@ export const Ex = styled.div`
   }
 `;
 
-export const Color = styled.span`
+const Color = styled.span`
   color: #ff2e35;
 `;
 
-export const ReadyInput = styled.input`
+const ReadyInput = styled.input`
   border: 1px solid #474747;
   outline: none;
   border-radius: 12px;
@@ -102,7 +102,7 @@ export const ReadyInput = styled.input`
   font-family: 'Pretendard-Medium';
 `;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,6 +115,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   padding: 1vh 14vw;
 `;

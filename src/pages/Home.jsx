@@ -18,7 +18,7 @@ const Home = () => {
 
 export default Home;
 
-export const Title = styled.div`
+const Title = styled.div`
   font-size: 8vh;
   padding-bottom: 2rem;
   font-family: 'RixYeoljeongdo_Regular';

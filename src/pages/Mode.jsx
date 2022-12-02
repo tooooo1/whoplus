@@ -18,7 +18,7 @@ const Mode = () => {
         <img src="img/options.png" alt="options" width={50} height={50} />
         <Title>게임 모드</Title>
 
-        <Text>모드 선택에 따라 제한시간이 다릅니다.</Text>
+        <Text>모드 선택에 따라 첫 시작 시간이 다릅니다.</Text>
         <Text>난이도는 동일합니다.</Text>
         <Ex id="last"> 치매 예방 : 5초 </Ex>
         <Ex id="last"> 두뇌 회전 : 3초 </Ex>
@@ -41,7 +41,7 @@ const Mode = () => {
 
 export default Mode;
 
-export const Title = styled.div`
+const Title = styled.div`
   font-size: 8vw;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
@@ -53,7 +53,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Text = styled.div`
+const Text = styled.div`
   font-size: 3vw;
   margin-bottom: 1.5vh;
   text-align: center;
@@ -66,7 +66,7 @@ export const Text = styled.div`
   }
 `;
 
-export const Ex = styled.div`
+const Ex = styled.div`
   font-size: 3vw;
   margin-bottom: 1.5vh;
   text-align: center;
@@ -77,24 +77,7 @@ export const Ex = styled.div`
   }
 `;
 
-export const Color = styled.span`
-  color: #ff2e35;
-`;
-
-export const ReadyInput = styled.input`
-  border: 1px solid #474747;
-  outline: none;
-  border-radius: 12px;
-  line-height: 2rem;
-  font-size: 1rem;
-  padding: 10px 40px 10px 14px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
-  font-family: 'Pretendard-Medium';
-`;
-
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,6 +90,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   padding: 1vh 14vw;
 `;
