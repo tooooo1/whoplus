@@ -7,13 +7,8 @@ import { setItem } from '../utils/storage.js';
 const Mode = () => {
   const navigate = useNavigate();
 
-  const DementiaVersion = () => {
-    setItem('tooooo1_mode', 'Dementia');
-    navigate('/play');
-  };
-
-  const BrainVersion = () => {
-    setItem('tooooo1_mode', 'Brain');
+  const modeChoice = (mode) => {
+    setItem('tooooo1_mode', mode);
     navigate('/play');
   };
 
@@ -28,10 +23,14 @@ const Mode = () => {
         <Ex id="last"> 치매 예방 : 5초 </Ex>
         <Ex id="last"> 두뇌 회전 : 3초 </Ex>
         <InputWrapper>
-          <Button color="#ff2e35" id="list" onClick={DementiaVersion}>
+          <Button
+            color="#ff2e35"
+            id="list"
+            onClick={() => modeChoice('Dementia')}
+          >
             치매 예방
           </Button>
-          <Button color="#01a8ff" id="list" onClick={BrainVersion}>
+          <Button color="#01a8ff" id="list" onClick={() => modeChoice('Brain')}>
             두뇌 회전
           </Button>
         </InputWrapper>
