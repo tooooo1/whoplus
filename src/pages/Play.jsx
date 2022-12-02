@@ -52,23 +52,10 @@ const Play = () => {
       setPower((prev) => prev + Math.floor(first + second / difficulty));
       setInputColor('#1bb749');
       setInputBackGroundColor('#c0f2cd');
-      if (parseInt(e.target.value) === first + second) {
-        setProgress(0);
-        setActive(true);
-        setTimeout(() => {
-          setActive(false);
-        }, 100);
-        setTimeDown(
-          <img src="images/checked.png" alt="boxing" width={20} height={20} />
-        );
-        setPower((prev) => prev + Math.floor(first + second / difficulty));
-        setInputColor('#1bb749');
-        setInputBackGroundColor('#c0f2cd');
-      }
 
       if (round === 70) {
         setTimeout(() => {
-          navigate('../end');
+          navigate('/end');
         }, 1000);
       } else {
         setRound((prev) => prev + 1);
@@ -128,7 +115,7 @@ const Play = () => {
     return () => {
       clearInterval(bufferTimer);
     };
-  });
+  }, [round, time]);
 
   return (
     <div>
