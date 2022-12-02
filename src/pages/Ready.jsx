@@ -53,7 +53,7 @@ export default Ready;
 const Title = styled.div`
   font-size: 8vw;
   padding: 1rem 0 1.5rem 0;
-  font-family: 'RixYeoljeongdo_Regular';
+  font-family: 'RixYeoljeongdo';
   word-break: keep-all;
   @media only screen and (min-width: 768px) {
     font-size: 60px;
@@ -97,7 +97,7 @@ const ReadyInput = styled.input`
   width: 100%;
   height: auto;
   margin-bottom: 1rem;
-  font-family: 'Pretendard-Medium';
+  font-family: 'Pretendard-SemiBold';
 
   @media only screen and (min-width: 536px) {
     width: 365px;

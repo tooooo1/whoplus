@@ -22,6 +22,6 @@ const Title = styled.h1`
   font-size: 8vh;
   text-align: center;
   padding-bottom: 2rem;
-  font-family: 'RixYeoljeongdo_Regular';
+  font-family: 'RixYeoljeongdo';
   word-break: keep-all;
 `;
