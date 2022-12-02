@@ -109,15 +109,4 @@ export const Wrapper = styled.div`
 
 export const InputWrapper = styled.div`
   padding: 1vh 14vw;
-
-  @media only screen and (min-width: 768px) {
-    width: 80%;
-    text-align: center;
-    margin: 0 auto;
-  }
-  @media (min-width: 991px) {
-    width: 80%;
-    text-align: center;
-    margin: 0 auto;
-  }
 `;
