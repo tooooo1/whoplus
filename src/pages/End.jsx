@@ -8,9 +8,10 @@ const End = () => {
   const name = getItem('tooooo1_name', 1);
   const power = getItem('tooooo1_power', 1);
 
-  // const comma = power.toLocaleString();
+  const comma = power.toLocaleString();
 
   const reset = () => {
+    window.sessionStorage.clear();
     window.location.replace('/');
     setTimeout(() => {
       window.location.replace('/');
@@ -34,7 +35,7 @@ const End = () => {
               height={50}
             />
             <div>전투력</div>
-            <div>{power}</div>
+            <div>{comma}</div>
           </Power>
           <Button color="#ff2e35" onClick={() => reset()}>
             다시하기
