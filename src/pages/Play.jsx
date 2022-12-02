@@ -225,7 +225,6 @@ const Score = styled.div`
 const Round = styled.div`
   font-size: 6vw;
   margin-bottom: 1rem;
-  font-family: 'Pretendard-SemiBold';
 
   @media only screen and (min-width: 768px) {
     font-size: 40px;
@@ -234,7 +233,7 @@ const Round = styled.div`
 
 const SubMissionQuestion = styled.div`
   font-size: 7vw;
-  font-family: 'Pretendard-ExtraBold';
+  font-family: 'Pretendard-Bold';
 
   background-color: #ffffff;
 `;
@@ -248,7 +247,7 @@ const SubMissionInput = styled.input`
   font-size: 3vw;
   padding: 0.8rem;
   margin: 1rem 0;
-  font-family: 'Pretendard-ExtraBold';
+  font-family: 'Pretendard-Bold';
   &:focus {
     outline: none;
   }

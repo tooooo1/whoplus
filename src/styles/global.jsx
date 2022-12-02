@@ -144,6 +144,7 @@ export const global = (
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        font-family: 'Pretendard-SemiBold', sans-serif;
       }
 
       #root > div {

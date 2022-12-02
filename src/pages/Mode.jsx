@@ -46,7 +46,6 @@ const Title = styled.div`
 const Text = styled.div`
   font-size: 3vw;
   line-height: 2rem;
-  font-family: 'Pretendard-SemiBold';
   @media only screen and (min-width: 768px) {
     font-size: 20px;
   }
@@ -57,7 +56,6 @@ const Ex = styled.div`
   padding: 5px 0;
   text-align: center;
   color: darkblue;
-  font-family: 'Pretendard-SemiBold';
   @media only screen and (min-width: 768px) {
     font-size: 18px;
   }

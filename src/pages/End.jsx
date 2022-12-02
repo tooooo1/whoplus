@@ -49,7 +49,7 @@ export default End;
 const Round = styled.div`
   padding: 1vh;
   font-size: 3vh;
-  font-family: 'Pretendard-SemiBold';
+  font-weight: bold;
   text-align: center;
 `;
 
@@ -73,7 +73,6 @@ const Text = styled.div`
   font-size: 5vw;
   padding-bottom: 2vh;
   text-align: center;
-  font-family: 'Pretendard-SemiBold';
   @media only screen and (min-width: 768px) {
     font-size: 30px;
   }
@@ -85,7 +84,6 @@ const Power = styled.div`
   margin: 0 auto;
   margin-bottom: 2vh;
   text-align: center;
-  font-family: 'Pretendard-SemiBold';
   padding: 12px;
   border-radius: 12px;
   background: #f1f1f1;
