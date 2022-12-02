@@ -6,14 +6,10 @@ import Button from '../components/Button.jsx';
 const Home = () => {
   const navigate = useNavigate();
 
-  const onClick = () => {
-    navigate('/ready');
-  };
-
   return (
     <div>
       <Title>누가 더쎔?</Title>
-      <Button color="#ff2e35" onClick={() => onClick()}>
+      <Button color="#ff2e35" onClick={() => navigate('/ready')}>
         게임시작
       </Button>
     </div>
