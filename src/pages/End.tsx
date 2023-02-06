@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-import Button from '../components/Button.jsx';
+import Button from '../components/Button.js';
 import { getItem } from '../utils/storage.js';
 
 const End = () => {
-  const round = getItem('tooooo1_round', 1);
-  const name = getItem('tooooo1_name', 1);
-  const power = getItem('tooooo1_power', 1);
+  const round = getItem('tooooo1_round', '1');
+  const name = getItem('tooooo1_name', '1');
+  const power = getItem('tooooo1_power', '1');
 
   const comma = power.toLocaleString();
 
@@ -36,9 +36,7 @@ const End = () => {
           <div>전투력</div>
           <div>{comma}</div>
         </Power>
-        <Button color="#ff2e35" onClick={() => reset()}>
-          다시하기
-        </Button>
+        <Button onClick={reset}>다시하기</Button>
       </ResultWrapper>
     </Wrapper>
   );

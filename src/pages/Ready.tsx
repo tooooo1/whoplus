@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button.jsx';
+import Button from '../components/Button.js';
 import { setItem } from '../utils/storage.js';
 
 const Ready = () => {

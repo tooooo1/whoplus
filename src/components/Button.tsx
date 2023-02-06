@@ -1,7 +1,14 @@
 import styled from '@emotion/styled';
 
-const Button = ({ children, onClick, color, id }) => (
-  <Wrapper onClick={onClick} color={color} id={id}>
+interface Props {
+  children: React.ReactNode;
+  onClick: () => void;
+  color?: string;
+  id?: 'list';
+}
+
+const Button = ({ children, onClick, color = '#ff2e35', id }: Props) => (
+  <Wrapper onClick={onClick} color={color}>
     {children}
   </Wrapper>
 );

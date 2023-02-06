@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button.jsx';
+import Button from '../components/Button.js';
 import { setItem } from '../utils/storage.js';
+
+type GameMode = 'Dementia' | 'Brain';
 
 const Mode = () => {
   const navigate = useNavigate();
 
-  const modeChoice = (mode) => {
+  const modeChoice = (mode: GameMode) => {
     setItem('tooooo1_mode', mode);
     navigate('/play');
   };
@@ -21,7 +23,7 @@ const Mode = () => {
       <Text>난이도는 동일합니다.</Text>
       <Ex>치매 예방 : 5초</Ex>
       <Ex>두뇌 회전 : 3초</Ex>
-      <Button color="#ff2e35" id="list" onClick={() => modeChoice('Dementia')}>
+      <Button id="list" onClick={() => modeChoice('Dementia')}>
         치매 예방
       </Button>
       <Button color="#01a8ff" id="list" onClick={() => modeChoice('Brain')}>
