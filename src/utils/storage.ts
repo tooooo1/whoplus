@@ -1,6 +1,6 @@
 const storage = window.sessionStorage;
 
-export const setItem = (key, value) => {
+export const setItem = <T>(key: string, value: T) => {
   try {
     storage.setItem(key, JSON.stringify(value));
   } catch (e) {
@@ -8,7 +8,7 @@ export const setItem = (key, value) => {
   }
 };
 
-export const getItem = (key, defaultValue) => {
+export const getItem = (key: string, defaultValue = '') => {
   try {
     const storeState = storage.getItem(key);
 
