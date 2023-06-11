@@ -1,21 +1,22 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button.js';
-import { setItem } from '../utils/storage.js';
+import Button from '../components/Button';
+import { setItem } from '../utils/storage';
 
 const Ready = () => {
-  const [value, setValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const loginClick = () => {
-    if (value.trim().length === 0) {
+  const handleStartClick = () => {
+    if (!inputRef.current) return;
+
+    if (inputRef.current.value.trim().length === 0) {
       alert('닉네임을 입력해주세요.');
-      setValue('');
       return;
     }
-    setItem('tooooo1_name', value);
+    setItem('tooooo1_name', inputRef.current.value.trim());
     navigate('/mode');
   };
 
@@ -37,11 +38,11 @@ const Ready = () => {
       <Ex id="last"> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Ex>
 
       <ReadyInput
+        ref={inputRef}
         aria-label="닉네임 입력"
-        onChange={(e) => setValue(e.target.value)}
         placeholder="닉네임을 입력하세요"
       />
-      <Button color="#01a8ff" onClick={loginClick}>
+      <Button color="#01a8ff" onClick={handleStartClick}>
         시작
       </Button>
     </div>

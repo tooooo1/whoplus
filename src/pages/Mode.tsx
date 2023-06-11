@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button.js';
-import { setItem } from '../utils/storage.js';
+import Button from '../components/Button';
+import { setItem } from '../utils/storage';
 
 type GameMode = 'Dementia' | 'Brain';
 

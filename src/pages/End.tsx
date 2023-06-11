@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import Button from '../components/Button.js';
-import { getItem } from '../utils/storage.js';
+import Button from '../components/Button';
+import { getItem } from '../utils/storage';
 
 const End = () => {
   const round = getItem('tooooo1_round', '1');

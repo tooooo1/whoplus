@@ -4,7 +4,6 @@
     format('woff');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
@@ -13,7 +12,6 @@
     format('woff');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
@@ -21,5 +19,4 @@
   src: url('./fonts/subset-RixYeoljeongdoR.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }

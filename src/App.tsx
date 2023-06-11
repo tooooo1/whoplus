@@ -1,12 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Logo from './components/Logo.js';
-import End from './pages/End.js';
-import Home from './pages/Home.js';
-import Mode from './pages/Mode.js';
-import Play from './pages/Play.js';
-import Ready from './pages/Ready.js';
-import { global } from './styles/global.js';
+import Logo from './components/Logo';
+import { End, Home, Mode, Play, Ready } from './pages';
+import { global } from './styles/global';
 
 const App = () => (
   <BrowserRouter>

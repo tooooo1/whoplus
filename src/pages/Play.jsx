@@ -3,7 +3,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getItem, setItem } from '../utils/storage.js';
+import { getItem, setItem } from '../utils/storage';
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
