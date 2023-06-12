@@ -1,121 +1,27 @@
 import styled from '@emotion/styled';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
-import { getItem, setItem } from '../utils/storage';
-
-const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+import { useGame } from '../hooks/useGame';
 
 const Play = () => {
-  const navigate = useNavigate();
-  const [difficulty, setDifficulty] = useState(10);
-  const [power, setPower] = useState(0);
-  const [round, setRound] = useState(1);
-  const [time, setTime] = useState(getItem('tooooo_mode', 'Dementia') ? 4 : 2);
-  const [timeDown, setTimeDown] = useState(time);
-  const [barColor, setBarColor] = useState('success');
-  const [timeActive, setTimeActive] = useState(false);
-  const [active, setActive] = useState(false);
-  const [first, setFirst] = useState(rand(difficulty / 10, difficulty));
-  const [second, setSecond] = useState(rand(difficulty / 10, difficulty));
-  const [value, setValue] = useState('');
-  const [progress, setProgress] = useState(0);
-
-  const [inputColor, setInputColor] = useState('#000000');
-  const [inputBackGroundColor, setInputBackGroundColor] = useState('#f4f4f4');
   const inputRef = useRef(null);
 
-  const next = () => {
-    setValue('');
-    setInputColor('#000000');
-    setInputBackGroundColor('#f4f4f4');
-    setFirst(rand(difficulty / 10, difficulty));
-    setSecond(rand(difficulty / 10, difficulty));
-    setRound((prev) => prev + 1);
-    inputRef.current.focus();
-    setTimeDown(time);
-  };
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-
-    if (parseInt(e.target.value) === first + second) {
-      setProgress(0);
-      setActive(true);
-      setTimeout(() => {
-        setActive(false);
-      }, 100);
-      setTimeDown(
-        <img src="images/checked.png" alt="boxing" width={20} height={20} />
-      );
-      setPower((prev) => prev + Math.floor(first + second / difficulty));
-      setInputColor('#1bb749');
-      setInputBackGroundColor('#c0f2cd');
-
-      if (round === 70) {
-        setTimeout(() => {
-          navigate('/end');
-        }, 1000);
-      } else {
-        setRound((prev) => prev + 1);
-        setTimeout(() => next(), 1000);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (round % 9 === 0) {
-      setDifficulty((prev) => prev * 10);
-      setTime((prev) => prev + 2);
-    }
-  }, [round]);
-
-  const tick = () => {
-    if (timeDown === 0 || isNaN(timeDown)) {
-      setTime(
-        <img src="images/remove.png" alt="boxing" width={20} height={20} />
-      );
-      setBarColor('secondary');
-      setInputColor('#ff2e35');
-      setInputBackGroundColor('#ffd2d7');
-
-      setItem('tooooo1_round', round);
-      setItem('tooooo1_power', power);
-
-      setTimeout(() => {
-        navigate('/end');
-      }, 1000);
-    } else {
-      setTimeDown(timeDown - 1);
-    }
-  };
-
-  useEffect(() => {
-    const timer = setInterval(() => tick(), 1000);
-    return () => clearInterval(timer);
-  });
-
-  useEffect(() => {
-    const bufferTimer = setInterval(() => {
-      setProgress((oldProgress) => {
-        setTimeActive(true);
-        setTimeout(() => {
-          setTimeActive(false);
-        }, 100);
-
-        if (oldProgress >= 100) return 0;
-
-        if (round % 10 !== 0) {
-          return oldProgress + 100 / time;
-        }
-        return oldProgress + 100 / (time - 2);
-      });
-    }, 1000);
-    return () => {
-      clearInterval(bufferTimer);
-    };
-  });
+  const {
+    power,
+    round,
+    barColor,
+    active,
+    first,
+    second,
+    timeActive,
+    value,
+    progress,
+    timeDown,
+    inputColor,
+    inputBackGroundColor,
+    handleChange,
+  } = useGame();
 
   return (
     <div>
