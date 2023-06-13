@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 
 import Button from '../components/Button';
+import { STORAGE_KEY } from '../constants/storage';
 import { getItem } from '../utils/storage';
 
 const End = () => {
-  const round = getItem('tooooo1_round', '1');
-  const name = getItem('tooooo1_name', '1');
-  const power = getItem('tooooo1_power', '1');
+  const round = getItem(STORAGE_KEY.ROUND, '1');
+  const name = getItem(STORAGE_KEY.NAME, '1');
+  const power = getItem(STORAGE_KEY.POWER, '1');
 
   const comma = power.toLocaleString();
 

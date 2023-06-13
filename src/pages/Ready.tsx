@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import { STORAGE_KEY } from '../constants/storage';
 import { setItem } from '../utils/storage';
 
 const Ready = () => {
@@ -16,7 +17,7 @@ const Ready = () => {
       alert('닉네임을 입력해주세요.');
       return;
     }
-    setItem('tooooo1_name', inputRef.current.value.trim());
+    setItem(STORAGE_KEY.NAME, inputRef.current.value.trim());
     navigate('/mode');
   };
 

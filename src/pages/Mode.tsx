@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import { STORAGE_KEY } from '../constants/storage';
 import { setItem } from '../utils/storage';
 
 type GameMode = 'Dementia' | 'Brain';
@@ -10,7 +11,7 @@ const Mode = () => {
   const navigate = useNavigate();
 
   const modeChoice = (mode: GameMode) => {
-    setItem('tooooo1_mode', mode);
+    setItem(STORAGE_KEY.MODE, mode);
     navigate('/play');
   };
 

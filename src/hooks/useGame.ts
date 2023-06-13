@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { STORAGE_KEY } from '../constants/storage';
 import { getItem, setItem } from '../utils/storage';
 
 interface GameState {
@@ -22,15 +23,14 @@ interface GameState {
 
 interface GameAction {
   type: string;
-  payload?: any;
+  payload?: string;
 }
 
 const rand = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min)) + min;
 
-const initialTime = getItem('tooooo1_mode', 'Dementia') ? 4 : 2;
+const initialTime = getItem(STORAGE_KEY.MODE, 'Dementia') ? 4 : 2;
 
-// 초기 상태 정의
 const initialState: GameState = {
   difficulty: 10,
   power: 0,
@@ -50,7 +50,6 @@ const initialState: GameState = {
   inputBackGroundColor: '#f4f4f4',
 };
 
-// 리듀서 정의
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
     case 'UPDATE_DIFFICULTY':
@@ -62,7 +61,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
     case 'UPDATE_VALUE':
       return {
         ...state,
-        value: action.payload,
+        value: action.payload!,
       };
     case 'CORRECT_ANSWER':
       return {
@@ -77,8 +76,8 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         progress: 0,
       };
     case 'WRONG_ANSWER':
-      setItem('tooooo1_round', state.round);
-      setItem('tooooo1_power', state.power);
+      setItem(STORAGE_KEY.ROUND, state.round);
+      setItem(STORAGE_KEY.POWER, state.power);
       return {
         ...state,
         timeDown: '🔴',
