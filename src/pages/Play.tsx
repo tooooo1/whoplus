@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useGame } from '../hooks/useGame';
 
 const Play = () => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const {
     power,
@@ -52,7 +52,7 @@ const Play = () => {
           onChange={handleChange}
           color={inputColor}
           background={inputBackGroundColor}
-          inputmode="numeric"
+          inputMode="numeric"
           pattern="[0-9]*"
         />
         <Score active={active}>{power.toLocaleString()}</Score>
@@ -63,13 +63,17 @@ const Play = () => {
 
 export default Play;
 
+interface ActiveProp {
+  active: boolean;
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Score = styled.div`
+const Score = styled.div<ActiveProp>`
   font-size: 3vw;
 
   font-family: 'RixYeoljeongdo';
@@ -131,7 +135,10 @@ const SubMissionQuestion = styled.div`
   background-color: #ffffff;
 `;
 
-const SubMissionInput = styled.input`
+const SubMissionInput = styled.input<{
+  color: string;
+  background: string;
+}>`
   border-radius: 30px;
   background: ${(props) => props.background};
   color: ${(props) => props.color};
@@ -150,7 +157,7 @@ const SubMissionInput = styled.input`
   }
 `;
 
-const Stage = styled.span`
+const Stage = styled.span<ActiveProp>`
   animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
   font-weight: bold;
   @keyframes bounce {
@@ -172,7 +179,7 @@ const Stage = styled.span`
   }
 `;
 
-const TimeUp = styled.p`
+const TimeUp = styled.p<ActiveProp>`
   padding-bottom: 4px;
   height: 25px;
   animation: ${(props) => props.active && `bounce 0.3s infinite ease`};
