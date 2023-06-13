@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
@@ -19,6 +19,12 @@ const Ready = () => {
     }
     setItem(STORAGE_KEY.NAME, inputRef.current.value.trim());
     navigate('/mode');
+  };
+
+  const handleEnterKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleStartClick();
+    }
   };
 
   return (
@@ -42,6 +48,7 @@ const Ready = () => {
         ref={inputRef}
         aria-label="닉네임 입력"
         placeholder="닉네임을 입력하세요"
+        onKeyDown={handleEnterKeyDown}
       />
       <Button color="#01a8ff" onClick={handleStartClick}>
         시작
