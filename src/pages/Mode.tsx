@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import { ROUTES } from '../constants/routes';
 import { STORAGE_KEY } from '../constants/storage';
 import { setItem } from '../utils/storage';
 
@@ -12,7 +13,7 @@ const Mode = () => {
 
   const modeChoice = (mode: GameMode) => {
     setItem(STORAGE_KEY.MODE, mode);
-    navigate('/play');
+    navigate(ROUTES.PLAY);
   };
 
   return (

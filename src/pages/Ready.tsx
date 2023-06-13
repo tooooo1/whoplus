@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import { ROUTES } from '../constants/routes';
 import { STORAGE_KEY } from '../constants/storage';
 import { setItem } from '../utils/storage';
 
@@ -18,7 +19,7 @@ const Ready = () => {
       return;
     }
     setItem(STORAGE_KEY.NAME, inputRef.current.value.trim());
-    navigate('/mode');
+    navigate(ROUTES.MODE);
   };
 
   const handleEnterKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

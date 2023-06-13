@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import Button from '../components/Button';
+import { ROUTES } from '../constants/routes';
 import { STORAGE_KEY } from '../constants/storage';
 import { getItem } from '../utils/storage';
 
@@ -13,9 +14,9 @@ const End = () => {
 
   const reset = () => {
     window.sessionStorage.clear();
-    window.location.replace('/');
+    window.location.replace(ROUTES.HOME);
     setTimeout(() => {
-      window.location.replace('/');
+      window.location.replace(ROUTES.HOME);
     }, 1000);
   };
 

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import { ROUTES } from '../constants/routes';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Home = () => {
   return (
     <div id="home">
       <Title>누가 더쎔?</Title>
-      <Button onClick={() => navigate('/ready')}>게임시작</Button>
+      <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
     </div>
   );
 };

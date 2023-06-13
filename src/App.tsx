@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Logo from './components/Logo';
+import { ROUTES } from './constants/routes';
 import { End, Home, Mode, Play, Ready } from './pages';
 import { global } from './styles/global';
 
@@ -9,11 +10,11 @@ const App = () => (
     {global}
     <Logo />
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/ready" element={<Ready />} />
-      <Route path="/mode" element={<Mode />} />
-      <Route path="/play" element={<Play />} />
-      <Route path="/end" element={<End />} />
+      <Route path={ROUTES.HOME} element={<Home />} />
+      <Route path={ROUTES.READY} element={<Ready />} />
+      <Route path={ROUTES.MODE} element={<Mode />} />
+      <Route path={ROUTES.PLAY} element={<Play />} />
+      <Route path={ROUTES.END} element={<End />} />
     </Routes>
   </BrowserRouter>
 );

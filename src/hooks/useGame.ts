@@ -1,6 +1,14 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ACTION_TYPES } from '../constants/actionTypes';
+import {
+  BAR_COLORS,
+  INPUT_BACKGROUND_COLORS,
+  INPUT_COLORS,
+  TIME_DOWN_COLORS,
+} from '../constants/color';
+import { ROUTES } from '../constants/routes';
 import { STORAGE_KEY } from '../constants/storage';
 import { getItem, setItem } from '../utils/storage';
 
@@ -21,8 +29,11 @@ interface GameState {
   inputBackGroundColor: string;
 }
 
+type GameActionTypes = typeof ACTION_TYPES;
+type GameActionKeys = keyof GameActionTypes;
+
 interface GameAction {
-  type: string;
+  type: GameActionKeys;
   payload?: string;
 }
 
@@ -45,64 +56,64 @@ const initialState: GameState = {
   value: '',
   progress: 0,
 
-  barColor: 'success',
-  inputColor: '#000000',
-  inputBackGroundColor: '#f4f4f4',
+  barColor: BAR_COLORS.SUCCESS,
+  inputColor: INPUT_COLORS.DEFAULT,
+  inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
 };
 
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
-    case 'UPDATE_DIFFICULTY':
+    case ACTION_TYPES.UPDATE_DIFFICULTY:
       return {
         ...state,
         difficulty: state.difficulty * 10,
         time: state.time + 2,
       };
-    case 'UPDATE_VALUE':
+    case ACTION_TYPES.UPDATE_VALUE:
       return {
         ...state,
         value: action.payload!,
       };
-    case 'CORRECT_ANSWER':
+    case ACTION_TYPES.CORRECT_ANSWER:
       return {
         ...state,
-        timeDown: '🟢',
+        timeDown: TIME_DOWN_COLORS.GREEN,
         power:
           state.power +
           Math.floor(state.first + state.second / state.difficulty),
-        inputColor: '#1bb749',
-        inputBackGroundColor: '#c0f2cd',
+        inputColor: INPUT_COLORS.CORRECT,
+        inputBackGroundColor: INPUT_BACKGROUND_COLORS.CORRECT,
         active: true,
         progress: 0,
       };
-    case 'WRONG_ANSWER':
+    case ACTION_TYPES.WRONG_ANSWER:
       setItem(STORAGE_KEY.ROUND, state.round);
       setItem(STORAGE_KEY.POWER, state.power);
       return {
         ...state,
-        timeDown: '🔴',
-        inputColor: '#ff2e35',
-        inputBackGroundColor: '#ffd2d7',
-        barColor: 'secondary',
+        timeDown: TIME_DOWN_COLORS.RED,
+        inputColor: INPUT_COLORS.WRONG,
+        inputBackGroundColor: INPUT_BACKGROUND_COLORS.WRONG,
+        barColor: BAR_COLORS.SECONDARY,
       };
-    case 'TIME_TICK':
+    case ACTION_TYPES.TIME_TICK:
       return {
         ...state,
         timeDown: (state.timeDown as number) - 1,
         progress: state.progress + 100 / state.time,
       };
-    case 'NEW_ROUND':
+    case ACTION_TYPES.NEW_ROUND:
       return {
         ...state,
         round: state.round + 1,
         first: rand(state.difficulty / 10, state.difficulty),
         second: rand(state.difficulty / 10, state.difficulty),
         value: '',
-        inputColor: '#000000',
-        inputBackGroundColor: '#f4f4f4',
+        inputColor: INPUT_COLORS.DEFAULT,
+        inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
         timeDown: state.time,
       };
-    case 'SCORE_ACTIVE_FALSE':
+    case ACTION_TYPES.SCORE_ACTIVE_FALSE:
       return {
         ...state,
         active: false,
@@ -133,21 +144,21 @@ export const useGame = () => {
   } = state;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'UPDATE_VALUE', payload: e.target.value });
+    dispatch({ type: ACTION_TYPES.UPDATE_VALUE, payload: e.target.value });
 
     if (parseInt(e.target.value) === first + second) {
-      dispatch({ type: 'CORRECT_ANSWER' });
+      dispatch({ type: ACTION_TYPES.CORRECT_ANSWER });
       setTimeout(() => {
-        dispatch({ type: 'SCORE_ACTIVE_FALSE' });
+        dispatch({ type: ACTION_TYPES.SCORE_ACTIVE_FALSE });
       }, 100);
 
       if (round === 70) {
         setTimeout(() => {
-          navigate('/end');
+          navigate(ROUTES.END);
         }, 1000);
       } else {
         setTimeout(() => {
-          dispatch({ type: 'NEW_ROUND' });
+          dispatch({ type: ACTION_TYPES.NEW_ROUND });
           if (inputRef.current) {
             inputRef.current.focus();
           }
@@ -158,17 +169,17 @@ export const useGame = () => {
 
   useEffect(() => {
     if (round % 10 === 0) {
-      dispatch({ type: 'UPDATE_DIFFICULTY' });
+      dispatch({ type: ACTION_TYPES.UPDATE_DIFFICULTY });
     }
   }, [round]);
 
   const tick = () => {
     if (typeof timeDown === 'string') return;
-    if (timeDown > 0) dispatch({ type: 'TIME_TICK' });
+    if (timeDown > 0) dispatch({ type: ACTION_TYPES.TIME_TICK });
     else if (timeDown === 0 || isNaN(timeDown)) {
-      dispatch({ type: 'WRONG_ANSWER' });
+      dispatch({ type: ACTION_TYPES.WRONG_ANSWER });
       setTimeout(() => {
-        navigate('/end');
+        navigate(ROUTES.END);
       }, 1000);
     }
   };
