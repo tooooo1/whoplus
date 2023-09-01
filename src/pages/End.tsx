@@ -10,7 +10,7 @@ const End = () => {
   const name = getItem(STORAGE_KEY.NAME, '1');
   const power = getItem(STORAGE_KEY.POWER, '1');
 
-  const comma = power.toLocaleString();
+  const formattedPower = power.toLocaleString();
 
   const reset = () => {
     window.sessionStorage.clear();
@@ -21,14 +21,14 @@ const End = () => {
   };
 
   return (
-    <Wrapper>
-      <Title>누가더쎔?</Title>
-      <Round>
-        ROUND <Color>{round}</Color> / 70
-      </Round>
-      <Text>닉네임 : {name}</Text>
-      <ResultWrapper>
-        <Power>
+    <EndGameWrapper>
+      <GameTitle>누가더쎔?</GameTitle>
+      <GameRound>
+        ROUND <RoundNumber>{round}</RoundNumber> / 70
+      </GameRound>
+      <PlayerName>닉네임 : {name}</PlayerName>
+      <ResultContainer>
+        <PowerDisplay>
           <img
             src="images/boxing-gloves.png"
             alt="boxing"
@@ -36,29 +36,29 @@ const End = () => {
             height={50}
           />
           <div>전투력</div>
-          <div>{comma}</div>
-        </Power>
+          <div>{formattedPower}</div>
+        </PowerDisplay>
         <Button onClick={reset}>다시하기</Button>
-      </ResultWrapper>
-    </Wrapper>
+      </ResultContainer>
+    </EndGameWrapper>
   );
 };
 
 export default End;
 
-const Round = styled.div`
+const GameRound = styled.h2`
   padding: 1vh;
   font-size: 3vh;
   font-weight: bold;
   text-align: center;
 `;
 
-const Color = styled.span`
+const RoundNumber = styled.span`
   color: #1bb749;
   text-align: center;
 `;
 
-const Title = styled.div`
+const GameTitle = styled.h1`
   font-size: 9vw;
   padding: 1rem 0 1.2rem 0;
   text-align: center;
@@ -69,7 +69,7 @@ const Title = styled.div`
   }
 `;
 
-const Text = styled.div`
+const PlayerName = styled.p`
   font-size: 5vw;
   padding-bottom: 2vh;
   text-align: center;
@@ -78,7 +78,7 @@ const Text = styled.div`
   }
 `;
 
-const Power = styled.div`
+const PowerDisplay = styled.div`
   font-size: 5vw;
   width: 60%;
   margin: 0 auto;
@@ -94,7 +94,7 @@ const Power = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+const EndGameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,6 +107,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const ResultWrapper = styled.div`
+const ResultContainer = styled.div`
   padding: 1vh 14vw;
 `;

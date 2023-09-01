@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div id="home">
-      <Title>누가 더쎔?</Title>
+      <GameTitle>누가 더쎔?</GameTitle>
       <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
     </div>
   );
@@ -17,7 +17,7 @@ const Home = () => {
 
 export default Home;
 
-const Title = styled.h1`
+const GameTitle = styled.h1`
   font-size: 8vh;
   text-align: center;
   padding-bottom: 2rem;
