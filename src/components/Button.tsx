@@ -1,27 +1,24 @@
 import styled from '@emotion/styled';
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
-interface Props {
-  children: ReactNode;
-  onClick: () => void;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: string;
-  id?: string;
 }
 
 const Button = ({
   children,
-  onClick,
   color = '#ff2e35',
-  id = 'list',
-}: Props) => (
-  <Wrapper onClick={onClick} color={color} id={id}>
+  type = 'button',
+  ...props
+}: PropsWithChildren<ButtonProps>) => (
+  <ButtonWrapper color={color} type={type} {...props}>
     {children}
-  </Wrapper>
+  </ButtonWrapper>
 );
 
 export default Button;
 
-export const Wrapper = styled.button`
+export const ButtonWrapper = styled.button<Pick<ButtonProps, 'color'>>`
   width: 100%;
   border: none;
   padding: 0.9rem 2.2rem;
@@ -34,7 +31,7 @@ export const Wrapper = styled.button`
   font-family: 'Pretendard-Bold';
   &:hover,
   &:active {
-    transform: scale(1.1);
+    transform: scale(1.02);
   }
 
   &#list {
