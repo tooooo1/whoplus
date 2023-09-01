@@ -1,0 +1,42 @@
+{
+  "name": "누가더쎔?",
+  "short_name": "누가더쎔?",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "#ff2e35",
+  "theme_color": "#ff2e35",
+  "description": "덧셈 능력, 친구보다 내가 더 쎌까?",
+  "icons": [
+    {
+      "src": "%PUBLIC_URL%/images/boxing-gloves.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "%PUBLIC_URL%/images/boxing-gloves.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "%PUBLIC_URL%/images/boxing-gloves.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "%PUBLIC_URL%/images/boxing-gloves.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "%PUBLIC_URL%/images/boxing-gloves.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "%PUBLIC_URL%/images/boxing-gloves.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": []
+}
