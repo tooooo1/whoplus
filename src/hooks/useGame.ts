@@ -1,4 +1,5 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import type React from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ACTION_TYPES } from '../constants/actionTypes';
@@ -146,7 +147,7 @@ export const useGame = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: ACTION_TYPES.UPDATE_VALUE, payload: e.target.value });
 
-    if (parseInt(e.target.value) === first + second) {
+    if (parseInt(e.target.value, 10) === first + second) {
       dispatch({ type: ACTION_TYPES.CORRECT_ANSWER });
       setTimeout(() => {
         dispatch({ type: ACTION_TYPES.SCORE_ACTIVE_FALSE });
@@ -176,7 +177,7 @@ export const useGame = () => {
   const tick = () => {
     if (typeof timeDown === 'string') return;
     if (timeDown > 0) dispatch({ type: ACTION_TYPES.TIME_TICK });
-    else if (timeDown === 0 || isNaN(timeDown)) {
+    else if (timeDown === 0 || Number.isNaN(timeDown)) {
       dispatch({ type: ACTION_TYPES.WRONG_ANSWER });
       setTimeout(() => {
         navigate(ROUTES.END);
