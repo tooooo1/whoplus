@@ -32,7 +32,7 @@ const Ready = () => {
   };
 
   return (
-    <div>
+    <div role="main">
       <img
         src="https://img.icons8.com/color/48/000000/box-important--v1.png"
         width={48}
@@ -47,7 +47,10 @@ const Ready = () => {
         3. 게임은 총<HighlightedText> 70 ROUND</HighlightedText>입니다.
       </GameInstruction>
       <Note id="last-note">전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Note>
+      <VisuallyHiddenLabel htmlFor="nickname">Nickname</VisuallyHiddenLabel>
       <NicknameInput
+        id="nickname"
+        autoFocus
         ref={inputRef}
         aria-label="닉네임 입력"
         placeholder="닉네임을 입력하세요"
@@ -77,9 +80,20 @@ const GameInstruction = styled.p`
   }
 `;
 
+const VisuallyHiddenLabel = styled.label`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;
+
 const Note = styled.p`
   font-size: 14px;
-  padding-bottom: 1.5vh;
+  padding-bottom: 16px;
   text-align: center;
   color: darkblue;
 `;
@@ -90,10 +104,13 @@ const HighlightedText = styled.span`
 
 const NicknameInput = styled.input`
   border: 1px solid #474747;
-  outline: none;
   border-radius: 12px;
   font-size: 16px;
   padding: 16px 40px 16px 14px;
   margin-bottom: 16px;
   font-family: 'Pretendard-SemiBold';
+  &:focus {
+    border-color: #01a8ff;
+    box-shadow: 0 0 0 3px #01a8ff33;
+  }
 `;
