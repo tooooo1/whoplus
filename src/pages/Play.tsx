@@ -31,7 +31,7 @@ const Play = () => {
         </Round>
         <TimeUp active={timeActive}>{timeDown}</TimeUp>
         <LinearProgress
-          aria-label="남은 시간"
+          aria-label="remaining time"
           variant="determinate"
           value={progress}
           color={barColor}
@@ -46,7 +46,8 @@ const Play = () => {
           {first} + {second}
         </SubMissionQuestion>
         <SubMissionInput
-          aria-label="정답 입력"
+          autoFocus
+          aria-label="answer input"
           ref={inputRef}
           value={value}
           onChange={handleChange}
@@ -74,12 +75,8 @@ const Wrapper = styled.div`
 `;
 
 const Score = styled.div<ActiveProp>`
-  font-size: 3vw;
-
+  font-size: 12px;
   font-family: 'RixYeoljeongdo';
-  @media (min-width: 768px) {
-    font-size: 30px;
-  }
 
   animation: ${(props) => props.active && `shake 0.3s infinite`};
   @keyframes shake {
@@ -120,16 +117,12 @@ const Score = styled.div<ActiveProp>`
 `;
 
 const Round = styled.div`
-  font-size: 6vw;
-  margin-bottom: 1rem;
-
-  @media (min-width: 768px) {
-    font-size: 40px;
-  }
+  font-size: 36px;
+  margin-bottom: 16px;
 `;
 
 const SubMissionQuestion = styled.div`
-  font-size: 7vw;
+  font-size: 48px;
   font-family: 'Pretendard-Bold';
 `;
 
@@ -142,17 +135,10 @@ const SubMissionInput = styled.input<{
   color: ${(props) => props.color};
   border: 2px solid ${(props) => props.color};
   text-align: center;
-  font-size: 3vw;
-  padding: 0.8rem;
-  margin: 1rem 0;
+  font-size: 24px;
+  padding: 10px;
+  margin: 16px 0;
   font-family: 'Pretendard-Bold';
-  &:focus {
-    outline: none;
-  }
-
-  @media (min-width: 768px) {
-    font-size: 25px;
-  }
 `;
 
 const Stage = styled.span<ActiveProp>`
