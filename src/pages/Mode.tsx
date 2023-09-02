@@ -29,12 +29,12 @@ const Mode = () => {
       <Description id="last-instruction">난이도는 동일합니다.</Description>
       <Example>치매 예방 : 5초</Example>
       <Example>두뇌 회전 : 3초</Example>
-      <Button id="list" onClick={() => modeChoice('Dementia')}>
-        치매 예방
-      </Button>
-      <Button color="#01a8ff" id="list" onClick={() => modeChoice('Brain')}>
-        두뇌 회전
-      </Button>
+      <ButtonWrapper>
+        <Button onClick={() => modeChoice('Dementia')}>치매 예방</Button>
+        <Button color="#01a8ff" onClick={() => modeChoice('Brain')}>
+          두뇌 회전
+        </Button>
+      </ButtonWrapper>
     </section>
   );
 };
@@ -59,4 +59,10 @@ const Example = styled.p`
   font-size: 14px;
   text-align: center;
   color: darkblue;
+`;
+
+const ButtonWrapper = styled.div`
+  padding-top: 16px;
+  display: flex;
+  gap: 8px;
 `;

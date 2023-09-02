@@ -15,22 +15,20 @@ const Button = ({
 export default Button;
 
 export const ButtonWrapper = styled.button`
-  width: 100%;
   border: none;
-  padding: 0.9rem 2.2rem;
+  padding: 12px 24px;
   color: #f9f9f9;
   background: ${(props) => props.color};
-  font-size: 1.5rem;
-  border-radius: 7px;
+  font-size: 20px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s all;
   font-family: 'Pretendard-Bold';
-  &:hover,
-  &:active {
+  &:hover {
     transform: scale(1.02);
   }
-
-  &#list {
-    margin: 10px 0;
+  &:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
   }
 `;
