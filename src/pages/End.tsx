@@ -24,12 +24,16 @@ const End = () => {
       </GameRound>
       <PlayerName>닉네임 : {name}</PlayerName>
       <PowerDisplay>
-        <img
-          src="images/boxing-gloves.png"
-          alt="Boxing Gloves"
-          width={50}
-          height={50}
-        />
+        <picture>
+          <source srcSet="images/boxing-gloves_resize.webp" type="image/webp" />
+          <img
+            src="images/boxing-gloves_resize.png"
+            width={36}
+            height={36}
+            alt="Boxing Gloves"
+            aria-hidden="true"
+          />
+        </picture>
         <div>전투력</div>
         <div>{formattedPower}</div>
       </PowerDisplay>

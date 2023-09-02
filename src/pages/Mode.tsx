@@ -17,13 +17,16 @@ const Mode = () => {
 
   return (
     <section>
-      <img
-        src="images/options.png"
-        alt="Game mode options"
-        width={50}
-        height={50}
-        aria-hidden="true"
-      />
+      <picture>
+        <source srcSet="images/options_resize.webp" type="image/webp" />
+        <img
+          src="images/options_resize.png"
+          width={36}
+          height={36}
+          alt="Game mode options"
+          aria-hidden="true"
+        />
+      </picture>
       <ModeTitle>게임 모드</ModeTitle>
       <Description>모드 선택에 따라 첫 시작 시간이 다릅니다.</Description>
       <Description id="last-instruction">난이도는 동일합니다.</Description>

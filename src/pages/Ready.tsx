@@ -32,13 +32,16 @@ const Ready = () => {
 
   return (
     <section>
-      <img
-        src="https://img.icons8.com/color/48/000000/box-important--v1.png"
-        width={50}
-        height={50}
-        alt="Important information icon"
-        aria-hidden="true"
-      />
+      <picture>
+        <source srcSet="images/information_resize.webp" type="image/webp" />
+        <img
+          src="images/information_resize.png"
+          width={36}
+          height={36}
+          alt="Important information icon"
+          aria-hidden="true"
+        />
+      </picture>
       <GameTitle>게임 설명</GameTitle>
       <GameInstruction>1. 주어진 시간 안에 문제를 해결합니다.</GameInstruction>
       <GameInstruction>2. 10라운드마다 난이도가 상승합니다.</GameInstruction>
