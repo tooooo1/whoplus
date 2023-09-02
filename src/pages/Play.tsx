@@ -6,34 +6,19 @@ import { useGame } from '../hooks';
 
 const Play = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const {
-    power,
-    round,
-    barColor,
-    active,
-    first,
-    second,
-    timeActive,
-    value,
-    progress,
-    timeDown,
-    inputColor,
-    inputBackGroundColor,
-    handleChange,
-  } = useGame();
+  const { state, handleChange } = useGame();
 
   return (
     <section>
       <Round>
-        ROUND <Stage active={active}>{round}</Stage>
+        ROUND <Stage active={state.active}>{state.round}</Stage>
       </Round>
-      <TimeUp active={timeActive}>{timeDown}</TimeUp>
+      <TimeUp active={state.timeActive}>{state.timeDown}</TimeUp>
       <LinearProgress
         aria-label="remaining time"
         variant="determinate"
-        value={progress}
-        color={barColor}
+        value={state.progress}
+        color={state.barColor}
         sx={{
           borderRadius: '10px',
           marginBottom: '1.2rem',
@@ -42,20 +27,20 @@ const Play = () => {
         }}
       />
       <SubMissionQuestion>
-        {first} + {second}
+        {state.first} + {state.second}
       </SubMissionQuestion>
       <SubMissionInput
         autoFocus
         aria-label="answer input"
         ref={inputRef}
-        value={value}
+        value={state.value}
         onChange={handleChange}
-        color={inputColor}
-        background={inputBackGroundColor}
+        color={state.inputColor}
+        background={state.inputBackGroundColor}
         inputMode="numeric"
         pattern="[0-9]*"
       />
-      <Score active={active}>{power.toLocaleString()}</Score>
+      <Score active={state.active}>{state.power.toLocaleString()}</Score>
     </section>
   );
 };
