@@ -1,16 +1,12 @@
 import styled from '@emotion/styled';
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: string;
-}
-
 const Button = ({
   children,
   color = '#ff2e35',
   type = 'button',
   ...props
-}: PropsWithChildren<ButtonProps>) => (
+}: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) => (
   <ButtonWrapper color={color} type={type} {...props}>
     {children}
   </ButtonWrapper>
@@ -18,7 +14,7 @@ const Button = ({
 
 export default Button;
 
-export const ButtonWrapper = styled.button<Pick<ButtonProps, 'color'>>`
+export const ButtonWrapper = styled.button`
   width: 100%;
   border: none;
   padding: 0.9rem 2.2rem;
