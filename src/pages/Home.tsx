@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
-import { ROUTES } from '../constants/routes';
+import { ROUTES } from '../constants';
 
 const Home = () => {
   const navigate = useNavigate();

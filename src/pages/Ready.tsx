@@ -3,8 +3,7 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
-import { ROUTES } from '../constants/routes';
-import { STORAGE_KEY } from '../constants/storage';
+import { ROUTES, STORAGE_KEY } from '../constants';
 import { setItem } from '../utils/storage';
 
 const Ready = () => {

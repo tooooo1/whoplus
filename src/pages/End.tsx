@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 import Button from '../components/Button';
-import { ROUTES } from '../constants/routes';
-import { STORAGE_KEY } from '../constants/storage';
+import { ROUTES, STORAGE_KEY } from '../constants';
 import { getItem } from '../utils/storage';
 
 const End = () => {

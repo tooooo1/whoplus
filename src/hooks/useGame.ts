@@ -2,15 +2,15 @@ import type React from 'react';
 import { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ACTION_TYPES } from '../constants/actionTypes';
 import {
+  ACTION_TYPES,
   BAR_COLORS,
   INPUT_BACKGROUND_COLORS,
   INPUT_COLORS,
+  ROUTES,
+  STORAGE_KEY,
   TIME_DOWN_COLORS,
-} from '../constants/color';
-import { ROUTES } from '../constants/routes';
-import { STORAGE_KEY } from '../constants/storage';
+} from '../constants';
 import { getItem, setItem } from '../utils/storage';
 
 interface GameState {

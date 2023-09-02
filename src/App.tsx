@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Logo from './components/Logo';
-import { ROUTES } from './constants/routes';
+import { ROUTES } from './constants';
 import { End, Home, Mode, Play, Ready } from './pages';
 import { global } from './styles/global';
 
