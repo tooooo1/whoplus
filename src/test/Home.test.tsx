@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useNavigate } from 'react-router-dom';
 
+import { ROUTES } from '../constants';
 import { Home } from '../pages';
 
 jest.mock('react-router-dom', () => ({
@@ -15,7 +16,7 @@ describe('Home', () => {
   it('HOME 렌더링 테스트', () => {
     render(<Home />);
 
-    const gameTitle = screen.getByText('누가 더쎔?');
+    const gameTitle = screen.getByText('누가더쎔?');
     expect(gameTitle).toBeInTheDocument();
 
     const startButton = screen.getByText('게임시작');
@@ -30,6 +31,6 @@ describe('Home', () => {
     const startButton = screen.getByText('게임시작');
     userEvent.click(startButton);
 
-    expect(navigate).toHaveBeenCalledWith('/ready');
+    expect(navigate).toHaveBeenCalledWith(ROUTES.READY);
   });
 });
