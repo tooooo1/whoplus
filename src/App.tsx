@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { Logo } from './components';
 import { ROUTES } from './constants';
@@ -15,6 +15,7 @@ const App = () => (
       <Route path={ROUTES.MODE} element={<Mode />} />
       <Route path={ROUTES.PLAY} element={<Play />} />
       <Route path={ROUTES.END} element={<End />} />
+      <Route path="*" element={<Navigate replace to={ROUTES.HOME} />} />
     </Routes>
   </BrowserRouter>
 );
