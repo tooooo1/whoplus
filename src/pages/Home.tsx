@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button';
+import { Button } from '../components';
 import { ROUTES } from '../constants';
 
 const Home = () => {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useRef } from 'react';
 
-import { useGame } from '../hooks/useGame';
+import { useGame } from '../hooks';
 
 const Play = () => {
   const inputRef = useRef<HTMLInputElement>(null);

@@ -11,7 +11,7 @@ import {
   STORAGE_KEY,
   TIME_DOWN_COLORS,
 } from '../constants';
-import { getItem, setItem } from '../utils/storage';
+import { getItem, setItem } from '../utils';
 
 interface GameState {
   difficulty: number;
@@ -124,7 +124,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
   }
 };
 
-export const useGame = () => {
+const useGame = () => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -206,3 +206,5 @@ export const useGame = () => {
     handleChange,
   };
 };
+
+export default useGame;

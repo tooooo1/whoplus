@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import Button from '../components/Button';
+import { Button } from '../components';
 import { ROUTES, STORAGE_KEY } from '../constants';
-import { getItem } from '../utils/storage';
+import { getItem } from '../utils';
 
 const End = () => {
   const round = getItem(STORAGE_KEY.ROUND, '1');
