@@ -14,12 +14,14 @@ const Ready = () => {
   const handleStartClick = () => {
     if (!inputRef.current) return;
 
-    if (inputRef.current.value.trim().length === 0) {
+    const trimmedValue = inputRef.current.value.trim();
+    if (trimmedValue.length === 0) {
       // eslint-disable-next-line no-alert
       alert('닉네임을 입력해주세요.');
       return;
     }
-    setItem(STORAGE_KEY.NAME, inputRef.current.value.trim());
+
+    setItem(STORAGE_KEY.NAME, trimmedValue);
     navigate(ROUTES.MODE);
   };
 
@@ -35,18 +37,17 @@ const Ready = () => {
         src="https://img.icons8.com/color/48/000000/box-important--v1.png"
         width={48}
         height={48}
-        alt="!"
+        alt="Important information icon"
+        aria-hidden="true"
       />
-      <Title>게임 설명</Title>
-
-      <Text>1. 주어진 시간 안에 문제를 해결합니다.</Text>
-      <Text>2. 10라운드마다 난이도가 상승합니다.</Text>
-      <Text id="last">
-        3. 게임은 총<Color> 70 ROUND</Color>입니다.
-      </Text>
-      <Ex id="last"> 전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Ex>
-
-      <ReadyInput
+      <GameTitle>게임 설명</GameTitle>
+      <GameInstruction>1. 주어진 시간 안에 문제를 해결합니다.</GameInstruction>
+      <GameInstruction>2. 10라운드마다 난이도가 상승합니다.</GameInstruction>
+      <GameInstruction id="last-instruction">
+        3. 게임은 총<HighlightedText> 70 ROUND</HighlightedText>입니다.
+      </GameInstruction>
+      <Note id="last-note">전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Note>
+      <NicknameInput
         ref={inputRef}
         aria-label="닉네임 입력"
         placeholder="닉네임을 입력하세요"
@@ -61,54 +62,38 @@ const Ready = () => {
 
 export default Ready;
 
-const Title = styled.div`
-  font-size: 8vw;
-  padding: 1rem 0 1.5rem 0;
+const GameTitle = styled.h1`
+  font-size: 32px;
+  padding: 16px 0 24px 0;
   font-family: 'RixYeoljeongdo';
   word-break: keep-all;
-  @media (min-width: 768px) {
-    font-size: 60px;
-  }
 `;
 
-const Text = styled.div`
-  font-size: 3vw;
-  line-height: 2rem;
+const GameInstruction = styled.p`
+  font-size: 16px;
   text-align: center;
-  &#last {
-    padding-bottom: 1rem;
-  }
-  @media (min-width: 768px) {
-    font-size: 20px;
+  &#last-instruction {
+    padding-bottom: 16px;
   }
 `;
 
-const Ex = styled.div`
-  font-size: 3vw;
+const Note = styled.p`
+  font-size: 14px;
   padding-bottom: 1.5vh;
   text-align: center;
   color: darkblue;
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
 `;
 
-const Color = styled.span`
+const HighlightedText = styled.span`
   color: #ff2e35;
 `;
 
-const ReadyInput = styled.input`
+const NicknameInput = styled.input`
   border: 1px solid #474747;
   outline: none;
   border-radius: 12px;
-  font-size: 1rem;
-  padding: 1rem 40px 1rem 14px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
+  font-size: 16px;
+  padding: 16px 40px 16px 14px;
+  margin-bottom: 16px;
   font-family: 'Pretendard-SemiBold';
-
-  @media (min-width: 768px) {
-    width: 365px;
-  }
 `;
