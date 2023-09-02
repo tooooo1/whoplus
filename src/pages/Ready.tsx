@@ -35,8 +35,8 @@ const Ready = () => {
     <div role="main">
       <img
         src="https://img.icons8.com/color/48/000000/box-important--v1.png"
-        width={48}
-        height={48}
+        width={50}
+        height={50}
         alt="Important information icon"
         aria-hidden="true"
       />
@@ -84,11 +84,7 @@ const VisuallyHiddenLabel = styled.label`
   position: absolute;
   width: 1px;
   height: 1px;
-  margin: -1px;
-  padding: 0;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 `;
 
 const Note = styled.p`
