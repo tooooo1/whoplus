@@ -37,8 +37,4 @@ export const ButtonWrapper = styled.button<Pick<ButtonProps, 'color'>>`
   &#list {
     margin: 10px 0;
   }
-
-  @media (min-width: 536px) {
-    width: 365px;
-  }
 `;

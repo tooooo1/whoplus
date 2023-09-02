@@ -18,7 +18,7 @@ const Home = () => {
 export default Home;
 
 const GameTitle = styled.h1`
-  font-size: 8vh;
+  font-size: 60px;
   text-align: center;
   padding-bottom: 2rem;
   font-family: 'RixYeoljeongdo';
