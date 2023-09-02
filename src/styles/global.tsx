@@ -164,7 +164,7 @@ export const global = (
           box-shadow: none;
         }
 
-        @media only screen and (max-height: 664px) {
+        @media (max-height: 664px) {
           height: 100%;
         }
       }

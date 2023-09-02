@@ -38,7 +38,7 @@ export const ButtonWrapper = styled.button<Pick<ButtonProps, 'color'>>`
     margin: 10px 0;
   }
 
-  @media only screen and (min-width: 536px) {
+  @media (min-width: 536px) {
     width: 365px;
   }
 `;

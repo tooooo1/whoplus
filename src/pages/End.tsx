@@ -64,7 +64,7 @@ const GameTitle = styled.h1`
   text-align: center;
   font-family: 'RixYeoljeongdo';
   word-break: keep-all;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 60px;
   }
 `;
@@ -73,7 +73,7 @@ const PlayerName = styled.p`
   font-size: 5vw;
   padding-bottom: 2vh;
   text-align: center;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 30px;
   }
 `;
@@ -88,7 +88,7 @@ const PowerDisplay = styled.div`
   border-radius: 12px;
   background: #f1f1f1;
 
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 25px;
     width: 100%;
   }

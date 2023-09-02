@@ -77,7 +77,7 @@ const Score = styled.div<ActiveProp>`
   font-size: 3vw;
 
   font-family: 'RixYeoljeongdo';
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 30px;
   }
 
@@ -123,7 +123,7 @@ const Round = styled.div`
   font-size: 6vw;
   margin-bottom: 1rem;
 
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 40px;
   }
 `;
@@ -152,7 +152,7 @@ const SubMissionInput = styled.input<{
     outline: none;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 25px;
   }
 `;

@@ -65,7 +65,7 @@ const Title = styled.div`
   padding: 1rem 0 1.5rem 0;
   font-family: 'RixYeoljeongdo';
   word-break: keep-all;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 60px;
   }
 `;
@@ -77,7 +77,7 @@ const Text = styled.div`
   &#last {
     padding-bottom: 1rem;
   }
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 20px;
   }
 `;
@@ -87,7 +87,7 @@ const Ex = styled.div`
   padding-bottom: 1.5vh;
   text-align: center;
   color: darkblue;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 18px;
   }
 `;
@@ -107,7 +107,7 @@ const ReadyInput = styled.input`
   margin-bottom: 1rem;
   font-family: 'Pretendard-SemiBold';
 
-  @media only screen and (min-width: 536px) {
+  @media (min-width: 768px) {
     width: 365px;
   }
 `;

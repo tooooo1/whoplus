@@ -42,7 +42,7 @@ const ModeTitle = styled.h2`
   padding: 1rem 0 1.5rem 0;
   font-family: 'RixYeoljeongdo';
   word-break: keep-all;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 60px;
   }
 `;
@@ -50,7 +50,7 @@ const ModeTitle = styled.h2`
 const Description = styled.p`
   font-size: 3vw;
   line-height: 2rem;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 20px;
   }
 `;
@@ -60,7 +60,7 @@ const Example = styled.p`
   padding: 5px 0;
   text-align: center;
   color: darkblue;
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 18px;
   }
 `;
