@@ -14,40 +14,42 @@ const End = () => {
   const reset = () => {
     window.sessionStorage.clear();
     window.location.replace(ROUTES.HOME);
-    setTimeout(() => {
-      window.location.replace(ROUTES.HOME);
-    }, 1000);
   };
 
   return (
-    <EndGameWrapper>
+    <section>
       <GameTitle>누가더쎔?</GameTitle>
       <GameRound>
         ROUND <RoundNumber>{round}</RoundNumber> / 70
       </GameRound>
       <PlayerName>닉네임 : {name}</PlayerName>
-      <ResultContainer>
-        <PowerDisplay>
-          <img
-            src="images/boxing-gloves.png"
-            alt="boxing"
-            width={50}
-            height={50}
-          />
-          <div>전투력</div>
-          <div>{formattedPower}</div>
-        </PowerDisplay>
-        <Button onClick={reset}>다시하기</Button>
-      </ResultContainer>
-    </EndGameWrapper>
+      <PowerDisplay>
+        <img
+          src="images/boxing-gloves.png"
+          alt="Boxing Gloves"
+          width={50}
+          height={50}
+        />
+        <div>전투력</div>
+        <div>{formattedPower}</div>
+      </PowerDisplay>
+      <Button onClick={reset}>다시하기</Button>
+    </section>
   );
 };
 
 export default End;
 
+const GameTitle = styled.h1`
+  font-size: 32px;
+  padding: 16px 0 24px 0;
+  font-family: 'RixYeoljeongdo';
+  word-break: keep-all;
+`;
+
 const GameRound = styled.h2`
-  padding: 1vh;
-  font-size: 3vh;
+  padding: 10px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
 `;
@@ -57,55 +59,19 @@ const RoundNumber = styled.span`
   text-align: center;
 `;
 
-const GameTitle = styled.h1`
-  font-size: 9vw;
-  padding: 1rem 0 1.2rem 0;
-  text-align: center;
-  font-family: 'RixYeoljeongdo';
-  word-break: keep-all;
-  @media (min-width: 768px) {
-    font-size: 60px;
-  }
-`;
-
 const PlayerName = styled.p`
-  font-size: 5vw;
-  padding-bottom: 2vh;
+  font-size: 20px;
+  padding-bottom: 16px;
   text-align: center;
-  @media (min-width: 768px) {
-    font-size: 30px;
-  }
 `;
 
 const PowerDisplay = styled.div`
-  font-size: 5vw;
+  font-size: 20px;
   width: 60%;
   margin: 0 auto;
-  margin-bottom: 2vh;
+  margin-bottom: 16px;
   text-align: center;
   padding: 12px;
   border-radius: 12px;
   background: #f1f1f1;
-
-  @media (min-width: 768px) {
-    font-size: 25px;
-    width: 100%;
-  }
-`;
-
-const EndGameWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
-
-  @media (min-width: 768px) {
-    padding: 5vw 0;
-  }
-`;
-
-const ResultContainer = styled.div`
-  padding: 1vh 14vw;
 `;
