@@ -157,6 +157,7 @@ export const global = (
         justify-content: center;
         align-items: center;
         border-radius: 12px;
+        padding: 48px;
 
         &#home {
           background-color: #f2f2f2;
