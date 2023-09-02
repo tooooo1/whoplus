@@ -15,6 +15,7 @@ const Ready = () => {
     if (!inputRef.current) return;
 
     if (inputRef.current.value.trim().length === 0) {
+      // eslint-disable-next-line no-alert
       alert('닉네임을 입력해주세요.');
       return;
     }
