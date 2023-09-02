@@ -17,12 +17,17 @@ const Mode = () => {
   };
 
   return (
-    <div>
-      <img src="images/options.png" alt="options" width={50} height={50} />
+    <div role="main">
+      <img
+        src="images/options.png"
+        alt="Game mode options"
+        width={50}
+        height={50}
+        aria-hidden="true"
+      />
       <ModeTitle>게임 모드</ModeTitle>
-
       <Description>모드 선택에 따라 첫 시작 시간이 다릅니다.</Description>
-      <Description>난이도는 동일합니다.</Description>
+      <Description id="last-instruction">난이도는 동일합니다.</Description>
       <Example>치매 예방 : 5초</Example>
       <Example>두뇌 회전 : 3초</Example>
       <Button id="list" onClick={() => modeChoice('Dementia')}>
@@ -37,30 +42,22 @@ const Mode = () => {
 
 export default Mode;
 
-const ModeTitle = styled.h2`
-  font-size: 8vw;
-  padding: 1rem 0 1.5rem 0;
+const ModeTitle = styled.h1`
+  font-size: 32px;
+  padding: 16px 0 24px 0;
   font-family: 'RixYeoljeongdo';
   word-break: keep-all;
-  @media (min-width: 768px) {
-    font-size: 60px;
-  }
 `;
 
 const Description = styled.p`
-  font-size: 3vw;
-  line-height: 2rem;
-  @media (min-width: 768px) {
-    font-size: 20px;
+  font-size: 16px;
+  &#last-instruction {
+    padding-bottom: 8px;
   }
 `;
 
 const Example = styled.p`
-  font-size: 3vw;
-  padding: 5px 0;
+  font-size: 14px;
   text-align: center;
   color: darkblue;
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
 `;
