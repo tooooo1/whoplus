@@ -111,6 +111,7 @@ export const global = (
         display: block;
       }
       body {
+        height: 100%;
         line-height: 1;
       }
       ol,
@@ -137,9 +138,12 @@ export const global = (
         outline: none;
         box-sizing: border-box;
       }
+      html {
+        height: 100%;
+      }
       #root {
         background-color: #f2f2f2;
-        height: 100vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -150,18 +154,18 @@ export const global = (
       #root > div {
         background-color: #ffffff;
         box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
-        width: 70%;
-        height: 70%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 4px;
         border-radius: 12px;
         padding: 48px;
 
         &#home {
           background-color: #f2f2f2;
           box-shadow: none;
+          padding: 0;
         }
 
         @media (max-height: 664px) {
