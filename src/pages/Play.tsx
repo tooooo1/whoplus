@@ -131,8 +131,6 @@ const Round = styled.div`
 const SubMissionQuestion = styled.div`
   font-size: 7vw;
   font-family: 'Pretendard-Bold';
-
-  background-color: #ffffff;
 `;
 
 const SubMissionInput = styled.input<{

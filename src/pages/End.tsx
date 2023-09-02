@@ -73,5 +73,5 @@ const PowerDisplay = styled.div`
   text-align: center;
   padding: 12px;
   border-radius: 12px;
-  background: #f1f1f1;
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
 `;

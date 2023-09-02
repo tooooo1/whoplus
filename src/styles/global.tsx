@@ -24,23 +24,13 @@ export const global = (
         justify-content: center;
         align-items: center;
         font-family: 'Pretendard-SemiBold', sans-serif;
-      }
 
-      #root > section {
-        background-color: #ffffff;
-        box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        border-radius: 12px;
-        padding: 48px;
-
-        &#home {
-          background-color: #f2f2f2;
-          box-shadow: none;
-          padding: 0;
+        & > section {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
         }
       }
     `}

@@ -8,7 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="home">
+    <section>
       <GameTitle>누가 더쎔?</GameTitle>
       <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
     </section>
