@@ -1,1 +1,6 @@
-export { default as gameReducer, initialState } from './gameReducer';
+export {
+  type GameAction,
+  type GameState,
+  default as gameReducer,
+  initialState,
+} from './gameReducer';

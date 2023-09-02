@@ -9,7 +9,7 @@ import {
 } from '../constants';
 import { getItem, setItem } from '../utils';
 
-interface GameState {
+export interface GameState {
   difficulty: number;
   power: number;
   round: number;
@@ -29,7 +29,7 @@ interface GameState {
 type GameActionTypes = typeof ACTION_TYPES;
 type GameActionKeys = keyof GameActionTypes;
 
-interface GameAction {
+export interface GameAction {
   type: GameActionKeys;
   payload?: string;
 }
@@ -118,7 +118,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         active: false,
       };
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      return state;
   }
 };
 
