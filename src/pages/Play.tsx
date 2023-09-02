@@ -25,39 +25,37 @@ const Play = () => {
 
   return (
     <section>
-      <Wrapper>
-        <Round>
-          ROUND <Stage active={active}>{round}</Stage>
-        </Round>
-        <TimeUp active={timeActive}>{timeDown}</TimeUp>
-        <LinearProgress
-          aria-label="remaining time"
-          variant="determinate"
-          value={progress}
-          color={barColor}
-          sx={{
-            borderRadius: '10px',
-            marginBottom: '1.2rem',
-            height: '1.2vh',
-            width: '100%',
-          }}
-        />
-        <SubMissionQuestion>
-          {first} + {second}
-        </SubMissionQuestion>
-        <SubMissionInput
-          autoFocus
-          aria-label="answer input"
-          ref={inputRef}
-          value={value}
-          onChange={handleChange}
-          color={inputColor}
-          background={inputBackGroundColor}
-          inputMode="numeric"
-          pattern="[0-9]*"
-        />
-        <Score active={active}>{power.toLocaleString()}</Score>
-      </Wrapper>
+      <Round>
+        ROUND <Stage active={active}>{round}</Stage>
+      </Round>
+      <TimeUp active={timeActive}>{timeDown}</TimeUp>
+      <LinearProgress
+        aria-label="remaining time"
+        variant="determinate"
+        value={progress}
+        color={barColor}
+        sx={{
+          borderRadius: '10px',
+          marginBottom: '1.2rem',
+          height: '1.2vh',
+          width: '100%',
+        }}
+      />
+      <SubMissionQuestion>
+        {first} + {second}
+      </SubMissionQuestion>
+      <SubMissionInput
+        autoFocus
+        aria-label="answer input"
+        ref={inputRef}
+        value={value}
+        onChange={handleChange}
+        color={inputColor}
+        background={inputBackGroundColor}
+        inputMode="numeric"
+        pattern="[0-9]*"
+      />
+      <Score active={active}>{power.toLocaleString()}</Score>
     </section>
   );
 };
@@ -67,12 +65,6 @@ export default Play;
 interface ActiveProp {
   active: boolean;
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const Score = styled.div<ActiveProp>`
   font-size: 12px;
