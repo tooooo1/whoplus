@@ -24,7 +24,7 @@ const Play = () => {
   } = useGame();
 
   return (
-    <div>
+    <section>
       <Wrapper>
         <Round>
           ROUND <Stage active={active}>{round}</Stage>
@@ -57,7 +57,7 @@ const Play = () => {
         />
         <Score active={active}>{power.toLocaleString()}</Score>
       </Wrapper>
-    </div>
+    </section>
   );
 };
 

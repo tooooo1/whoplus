@@ -94,7 +94,7 @@ const PowerDisplay = styled.div`
   }
 `;
 
-const EndGameWrapper = styled.div`
+const EndGameWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;

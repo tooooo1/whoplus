@@ -32,7 +32,7 @@ const Ready = () => {
   };
 
   return (
-    <div role="main">
+    <section>
       <img
         src="https://img.icons8.com/color/48/000000/box-important--v1.png"
         width={50}
@@ -59,7 +59,7 @@ const Ready = () => {
       <Button color="#01a8ff" onClick={handleStartClick}>
         시작
       </Button>
-    </div>
+    </section>
   );
 };
 

@@ -8,10 +8,10 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div id="home">
+    <section id="home">
       <GameTitle>누가 더쎔?</GameTitle>
       <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
-    </div>
+    </section>
   );
 };
 

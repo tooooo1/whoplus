@@ -17,7 +17,7 @@ const Mode = () => {
   };
 
   return (
-    <div role="main">
+    <section>
       <img
         src="images/options.png"
         alt="Game mode options"
@@ -36,7 +36,7 @@ const Mode = () => {
       <Button color="#01a8ff" id="list" onClick={() => modeChoice('Brain')}>
         두뇌 회전
       </Button>
-    </div>
+    </section>
   );
 };
 
