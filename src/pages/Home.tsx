@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <section>
-      <GameTitle>누가 더쎔?</GameTitle>
+      <GameTitle>누가더쎔?</GameTitle>
       <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
     </section>
   );
