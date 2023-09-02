@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
-import { ROUTES, STORAGE_KEY } from '../constants';
+import { MAX_ROUND, ROUTES, STORAGE_KEY } from '../constants';
 import { setItem } from '../utils';
 
 const Ready = () => {
@@ -46,7 +46,7 @@ const Ready = () => {
       <GameInstruction>1. 주어진 시간 안에 문제를 해결합니다.</GameInstruction>
       <GameInstruction>2. 10라운드마다 난이도가 상승합니다.</GameInstruction>
       <GameInstruction id="last-instruction">
-        3. 게임은 총<HighlightedText> 70 ROUND</HighlightedText>입니다.
+        3. 게임은 총<HighlightedText> {MAX_ROUND} ROUND</HighlightedText>입니다.
       </GameInstruction>
       <Note id="last-note">전투력은 자릿수가 높아지면 더 높게 측정됩니다.</Note>
       <VisuallyHiddenLabel htmlFor="nickname">Nickname</VisuallyHiddenLabel>

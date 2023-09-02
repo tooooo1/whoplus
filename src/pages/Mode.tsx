@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
-import { ROUTES, STORAGE_KEY } from '../constants';
+import { INITIAL_TIMES, ROUTES, STORAGE_KEY } from '../constants';
 import { setItem } from '../utils';
 
 type GameMode = 'Dementia' | 'Brain';
@@ -30,8 +30,8 @@ const Mode = () => {
       <ModeTitle>게임 모드</ModeTitle>
       <Description>모드 선택에 따라 첫 시작 시간이 다릅니다.</Description>
       <Description id="last-instruction">난이도는 동일합니다.</Description>
-      <Example>치매 예방 : 5초</Example>
-      <Example>두뇌 회전 : 3초</Example>
+      <Example>치매 예방 : {INITIAL_TIMES.DEMENTIA}초</Example>
+      <Example>두뇌 회전 : {INITIAL_TIMES.BRAIN}초</Example>
       <ButtonWrapper>
         <Button onClick={() => modeChoice('Dementia')}>치매 예방</Button>
         <Button color="#01a8ff" onClick={() => modeChoice('Brain')}>

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Button } from '../components';
-import { ROUTES, STORAGE_KEY } from '../constants';
+import { MAX_ROUND, ROUTES, STORAGE_KEY } from '../constants';
 import { getItem } from '../utils';
 
 const End = () => {
@@ -20,7 +20,7 @@ const End = () => {
     <section>
       <GameTitle>누가더쎔?</GameTitle>
       <GameRound>
-        ROUND <RoundNumber>{round}</RoundNumber> / 70
+        ROUND <RoundNumber>{round}</RoundNumber> / {MAX_ROUND}
       </GameRound>
       <PlayerName>닉네임 : {name}</PlayerName>
       <PowerDisplay>
