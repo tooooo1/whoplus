@@ -23,7 +23,7 @@ const Play = () => {
           borderRadius: '10px',
           marginBottom: '1.2rem',
           height: '1.2vh',
-          width: '100%',
+          width: '80%',
         }}
       />
       <SubMissionQuestion>
@@ -107,6 +107,7 @@ const SubMissionInput = styled.input<{
   color: string;
   background: string;
 }>`
+  width: 80%;
   border-radius: 30px;
   background: ${(props) => props.background};
   color: ${(props) => props.color};
