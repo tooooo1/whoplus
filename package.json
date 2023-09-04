@@ -1,7 +1,9 @@
 {
   "name": "whoplus",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "private": true,
+  "description": "덧셈 능력, 친구보다 내가 더 쎌까?",
+  "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
