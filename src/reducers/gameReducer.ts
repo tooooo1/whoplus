@@ -1,3 +1,5 @@
+import type { LinearProgressProps } from '@mui/material';
+
 import {
   ACTION_TYPES,
   BAR_COLORS,
@@ -21,7 +23,7 @@ export interface GameState {
   second: number;
   value: string;
   progress: number;
-  barColor: 'success' | 'secondary';
+  barColor: Extract<LinearProgressProps['color'], 'success' | 'secondary'>;
   inputColor: string;
   inputBackGroundColor: string;
 }
