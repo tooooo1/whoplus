@@ -31,6 +31,7 @@ export interface GameState {
 type GameActionTypes = typeof ACTION_TYPES;
 type GameActionKeys = keyof GameActionTypes;
 
+export type GameMode = 'Dementia' | 'Brain';
 export interface GameAction {
   type: GameActionKeys;
   payload?: string;
@@ -39,9 +40,10 @@ export interface GameAction {
 const rand = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min)) + min;
 
-const initialTime = getItem(STORAGE_KEY.MODE, 'Dementia')
-  ? INITIAL_TIMES.DEMENTIA
-  : INITIAL_TIMES.BRAIN;
+const initialTime =
+  getItem(STORAGE_KEY.MODE, 'Brain') !== 'Brain'
+    ? INITIAL_TIMES.DEMENTIA
+    : INITIAL_TIMES.BRAIN;
 
 export const initialState: GameState = {
   difficulty: 10,

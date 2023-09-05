@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
 import { INITIAL_TIMES, ROUTES, STORAGE_KEY } from '../constants';
+import type { GameMode } from '../reducers/gameReducer';
 import { setItem } from '../utils';
-
-type GameMode = 'Dementia' | 'Brain';
 
 const Mode = () => {
   const navigate = useNavigate();
