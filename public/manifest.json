@@ -8,33 +8,8 @@
   "description": "덧셈 능력, 친구보다 내가 더 쎌까?",
   "icons": [
     {
-      "src": "/images/boxing-gloves.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/boxing-gloves.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/boxing-gloves.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/boxing-gloves.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/boxing-gloves.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/boxing-gloves.png",
-      "sizes": "512x512",
+      "src": "/images/boxing-gloves_resize.png",
+      "sizes": "36x36",
       "type": "image/png"
     }
   ],
