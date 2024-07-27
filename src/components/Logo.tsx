@@ -1,25 +1,18 @@
 import { css } from '@emotion/react';
 
-const Logo = () => (
-  <a
-    href="https://tooo1.tistory.com"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="tooo1 Blog"
-  >
+export const Logo = () => (
+  <a href="https://tooo1.tistory.com" target="_blank" rel="noopener noreferrer">
     <img
-      css={logoStyle}
+      css={style}
       src="images/il.jpg"
-      alt="tooo1 Blog Logo"
+      alt="tooooo1 Blog Logo"
       width={50}
       height={50}
     />
   </a>
 );
 
-export default Logo;
-
-const logoStyle = css`
+const style = css`
   position: absolute;
   top: 10px;
   left: 10px;

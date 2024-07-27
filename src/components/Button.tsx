@@ -1,20 +1,18 @@
 import { css } from '@emotion/react';
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
-const Button = ({
+export const Button = ({
   children,
   color = '#ff2e35',
   type = 'button',
   ...props
 }: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) => (
-  <button {...props} css={buttonStyle(color)} color={color} type={type}>
+  <button {...props} css={style(color)} color={color} type={type}>
     {children}
   </button>
 );
 
-export default Button;
-
-const buttonStyle = (color: string) => css`
+const style = (color: string) => css`
   border: none;
   padding: 12px 24px;
   color: #f9f9f9;
