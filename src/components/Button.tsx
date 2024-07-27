@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
 const Button = ({
@@ -7,18 +7,18 @@ const Button = ({
   type = 'button',
   ...props
 }: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) => (
-  <ButtonWrapper color={color} type={type} {...props}>
+  <button {...props} css={buttonStyle(color)} color={color} type={type}>
     {children}
-  </ButtonWrapper>
+  </button>
 );
 
 export default Button;
 
-export const ButtonWrapper = styled.button`
+const buttonStyle = (color: string) => css`
   border: none;
   padding: 12px 24px;
   color: #f9f9f9;
-  background: ${(props) => props.color};
+  background: ${color};
   font-size: 20px;
   border-radius: 8px;
   cursor: pointer;

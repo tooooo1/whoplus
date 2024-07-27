@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <section>
-      <GameTitle>누가더쎔?</GameTitle>
+      <h1 css={styles.title}>누가더쎔?</h1>
       <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
     </section>
   );
@@ -17,10 +17,12 @@ const Home = () => {
 
 export default Home;
 
-const GameTitle = styled.h1`
-  font-size: 60px;
-  text-align: center;
-  padding-bottom: 2rem;
-  font-family: 'RixYeoljeongdo';
-  word-break: keep-all;
-`;
+const styles = {
+  title: css`
+    font-size: 60px;
+    text-align: center;
+    padding-bottom: 2rem;
+    font-family: 'RixYeoljeongdo';
+    word-break: keep-all;
+  `,
+};

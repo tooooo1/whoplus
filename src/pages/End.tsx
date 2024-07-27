@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import { Button } from '../components';
 import { MAX_ROUND, ROUTES, STORAGE_KEY } from '../constants';
@@ -18,12 +18,12 @@ const End = () => {
 
   return (
     <section>
-      <GameTitle>누가더쎔?</GameTitle>
-      <GameRound>
-        ROUND <RoundNumber>{round}</RoundNumber> / {MAX_ROUND}
-      </GameRound>
-      <PlayerName>닉네임 : {name}</PlayerName>
-      <PowerDisplay>
+      <h1 css={styles.gameTitle}>누가더쎔?</h1>
+      <h2 css={styles.gameRound}>
+        ROUND <span css={styles.roundNumber}>{round}</span> / {MAX_ROUND}
+      </h2>
+      <p css={styles.playerName}>닉네임 : {name}</p>
+      <div css={styles.powerDisplay}>
         <picture>
           <source srcSet="images/boxing-gloves_resize.webp" type="image/webp" />
           <img
@@ -36,7 +36,7 @@ const End = () => {
         </picture>
         <div>전투력</div>
         <div>{formattedPower}</div>
-      </PowerDisplay>
+      </div>
       <Button onClick={reset}>다시하기</Button>
     </section>
   );
@@ -44,38 +44,36 @@ const End = () => {
 
 export default End;
 
-const GameTitle = styled.h1`
-  font-size: 32px;
-  padding: 16px 0 24px 0;
-  font-family: 'RixYeoljeongdo';
-  word-break: keep-all;
-`;
-
-const GameRound = styled.h2`
-  padding: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-`;
-
-const RoundNumber = styled.span`
-  color: #1bb749;
-  text-align: center;
-`;
-
-const PlayerName = styled.p`
-  font-size: 20px;
-  padding-bottom: 16px;
-  text-align: center;
-`;
-
-const PowerDisplay = styled.div`
-  font-size: 20px;
-  width: 60%;
-  margin: 0 auto;
-  margin-bottom: 16px;
-  text-align: center;
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
-`;
+const styles = {
+  gameTitle: css`
+    font-size: 32px;
+    padding: 16px 0 24px 0;
+    font-family: 'RixYeoljeongdo';
+    word-break: keep-all;
+  `,
+  gameRound: css`
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  `,
+  roundNumber: css`
+    color: #1bb749;
+    text-align: center;
+  `,
+  playerName: css`
+    font-size: 20px;
+    padding-bottom: 16px;
+    text-align: center;
+  `,
+  powerDisplay: css`
+    font-size: 20px;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 16px;
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+  `,
+};

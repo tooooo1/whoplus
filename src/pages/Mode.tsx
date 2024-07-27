@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
@@ -26,45 +26,46 @@ const Mode = () => {
           aria-hidden="true"
         />
       </picture>
-      <ModeTitle>게임 모드</ModeTitle>
-      <Description>모드 선택에 따라 첫 시작 시간이 다릅니다.</Description>
-      <Description id="last-instruction">난이도는 동일합니다.</Description>
-      <Example>치매 예방 : {INITIAL_TIMES.DEMENTIA}초</Example>
-      <Example>두뇌 회전 : {INITIAL_TIMES.BRAIN}초</Example>
-      <ButtonWrapper>
+      <h1 css={styles.modeTitle}>게임 모드</h1>
+      <p css={styles.description}>모드 선택에 따라 첫 시작 시간이 다릅니다.</p>
+      <p css={styles.description} id="last-instruction">
+        난이도는 동일합니다.
+      </p>
+      <p css={styles.example}>치매 예방 : {INITIAL_TIMES.DEMENTIA}초</p>
+      <p css={styles.example}>두뇌 회전 : {INITIAL_TIMES.BRAIN}초</p>
+      <div css={styles.buttonWrapper}>
         <Button onClick={() => modeChoice('Dementia')}>치매 예방</Button>
         <Button color="#01a8ff" onClick={() => modeChoice('Brain')}>
           두뇌 회전
         </Button>
-      </ButtonWrapper>
+      </div>
     </section>
   );
 };
 
 export default Mode;
 
-const ModeTitle = styled.h1`
-  font-size: 32px;
-  padding: 16px 0 24px 0;
-  font-family: 'RixYeoljeongdo';
-  word-break: keep-all;
-`;
-
-const Description = styled.p`
-  font-size: 16px;
-  &#last-instruction {
-    padding-bottom: 8px;
-  }
-`;
-
-const Example = styled.p`
-  font-size: 14px;
-  text-align: center;
-  color: darkblue;
-`;
-
-const ButtonWrapper = styled.div`
-  padding-top: 16px;
-  display: flex;
-  gap: 8px;
-`;
+const styles = {
+  modeTitle: css`
+    font-size: 32px;
+    padding: 16px 0 24px 0;
+    font-family: 'RixYeoljeongdo';
+    word-break: keep-all;
+  `,
+  description: css`
+    font-size: 16px;
+    &#last-instruction {
+      padding-bottom: 8px;
+    }
+  `,
+  example: css`
+    font-size: 14px;
+    text-align: center;
+    color: darkblue;
+  `,
+  buttonWrapper: css`
+    padding-top: 16px;
+    display: flex;
+    gap: 8px;
+  `,
+};

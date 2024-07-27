@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 const Logo = () => (
   <a
@@ -7,7 +7,8 @@ const Logo = () => (
     rel="noopener noreferrer"
     aria-label="tooo1 Blog"
   >
-    <StyledImg
+    <img
+      css={logoStyle}
       src="images/il.jpg"
       alt="tooo1 Blog Logo"
       width={50}
@@ -18,7 +19,7 @@ const Logo = () => (
 
 export default Logo;
 
-const StyledImg = styled.img`
+const logoStyle = css`
   position: absolute;
   top: 10px;
   left: 10px;
