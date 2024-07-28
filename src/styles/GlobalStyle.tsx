@@ -15,7 +15,6 @@ export const GlobalStyle = () => (
       }
       html {
         height: 100%;
-        font-family: 'Pretendard-SemiBold', sans-serif;
       }
       #root {
         background-color: #f2f2f2;

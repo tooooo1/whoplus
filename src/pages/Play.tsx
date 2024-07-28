@@ -88,7 +88,7 @@ const styles = {
   `,
   subMissionQuestion: css`
     font-size: 48px;
-    font-family: 'Pretendard-Bold';
+    font-weight: 700;
   `,
   subMissionInput: (color: string, background: string) => css`
     width: 80%;
@@ -100,7 +100,7 @@ const styles = {
     font-size: 24px;
     padding: 10px;
     margin: 16px 0;
-    font-family: 'Pretendard-Bold';
+    font-weight: 700;
   `,
   stage: (active: boolean) => css`
     animation: ${active && 'bounce 0.3s infinite ease'};

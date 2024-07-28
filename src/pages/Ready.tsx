@@ -103,10 +103,11 @@ const styles = {
   nicknameInput: css`
     border: 1px solid;
     border-radius: 12px;
+    width: 240px;
     font-size: 16px;
     padding: 16px 40px 16px 14px;
     margin-bottom: 16px;
-    font-family: 'Pretendard-SemiBold';
+    font-weight: 600;
     &:focus {
       border-color: var(--secondary);
       box-shadow: 0 0 0 3px #01a8ff33;

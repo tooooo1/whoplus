@@ -24,9 +24,9 @@ const style = (color: string) => css`
   background: var(--${color});
   font-size: 20px;
   border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s all;
-  font-family: 'Pretendard-Bold';
   &:hover {
     transform: scale(1.02);
   }
