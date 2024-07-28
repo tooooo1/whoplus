@@ -1,4 +1,4 @@
-export const TIME_DOWN_COLORS = {
+export const INDICATOR_COLORS = {
   GREEN: '🟢',
   RED: '🔴',
 } as const;

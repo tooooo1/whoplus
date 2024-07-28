@@ -13,7 +13,9 @@ const Play = () => {
       <div css={styles.round}>
         ROUND <span css={styles.stage(state.active)}>{state.round}</span>
       </div>
-      <p css={styles.timeUp(state.timeActive)}>{state.timeDown}</p>
+      <p css={styles.timeUp(state.timeActive)}>
+        {state.indicatorColor ? state.indicatorColor : state.timeDown}
+      </p>
       <LinearProgress
         aria-label="remaining time"
         value={state.progress}

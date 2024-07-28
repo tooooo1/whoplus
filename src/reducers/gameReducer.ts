@@ -4,7 +4,7 @@ import {
   INPUT_BACKGROUND_COLORS,
   INPUT_COLORS,
   STORAGE_KEY,
-  TIME_DOWN_COLORS,
+  INDICATOR_COLORS,
 } from '../constants';
 import { getItem, setItem } from '../utils';
 
@@ -13,7 +13,8 @@ export interface GameState {
   power: number;
   round: number;
   time: number;
-  timeDown: number | string;
+  timeDown: number;
+  indicatorColor: string | null;
   timeActive: boolean;
   active: boolean;
   first: number;
@@ -48,6 +49,7 @@ export const initialState: GameState = {
   round: 1,
   time: initialTime,
   timeDown: initialTime,
+  indicatorColor: null,
 
   timeActive: false,
   active: false,
@@ -70,9 +72,13 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         time: state.time + 2,
       };
     case ACTION_TYPES.UPDATE_VALUE:
+      if (typeof action.payload === 'undefined') {
+        throw new Error('UPDATE_VALUE action requires a payload');
+      }
+
       return {
         ...state,
-        value: action.payload!,
+        value: action.payload,
       };
     case ACTION_TYPES.CORRECT_ANSWER:
       setItem(STORAGE_KEY.ROUND, state.round);
@@ -82,7 +88,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
       );
       return {
         ...state,
-        timeDown: TIME_DOWN_COLORS.GREEN,
+        indicatorColor: INDICATOR_COLORS.GREEN,
         power:
           state.power +
           Math.floor(state.first + state.second / state.difficulty),
@@ -96,7 +102,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
       setItem(STORAGE_KEY.POWER, state.power);
       return {
         ...state,
-        timeDown: TIME_DOWN_COLORS.RED,
+        indicatorColor: INDICATOR_COLORS.RED,
         inputColor: INPUT_COLORS.WRONG,
         inputBackGroundColor: INPUT_BACKGROUND_COLORS.WRONG,
         barColor: 'primary',
@@ -104,7 +110,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
     case ACTION_TYPES.TIME_TICK:
       return {
         ...state,
-        timeDown: (state.timeDown as number) - 1,
+        timeDown: state.timeDown - 1,
         progress: state.progress + 100 / state.time,
       };
     case ACTION_TYPES.NEW_ROUND:
@@ -114,6 +120,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         first: rand(state.difficulty / 10, state.difficulty),
         second: rand(state.difficulty / 10, state.difficulty),
         value: '',
+        indicatorColor: null,
         inputColor: INPUT_COLORS.DEFAULT,
         inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
         timeDown: state.time,

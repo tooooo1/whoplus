@@ -14,7 +14,7 @@ const Mode = () => {
 
     setTimeout(() => {
       navigate(ROUTES.PLAY);
-    });
+    }, 100);
   };
 
   return (
