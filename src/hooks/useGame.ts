@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
