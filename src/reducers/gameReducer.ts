@@ -75,6 +75,11 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         value: action.payload!,
       };
     case ACTION_TYPES.CORRECT_ANSWER:
+      setItem(STORAGE_KEY.ROUND, state.round);
+      setItem(
+        STORAGE_KEY.POWER,
+        state.power + Math.floor(state.first + state.second / state.difficulty)
+      );
       return {
         ...state,
         timeDown: TIME_DOWN_COLORS.GREEN,

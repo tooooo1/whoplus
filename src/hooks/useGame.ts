@@ -22,14 +22,14 @@ const useGame = () => {
       if (state.round === MAX_ROUND) {
         setTimeout(() => {
           navigate(ROUTES.END);
-        }, NAVIGATE_END_TIMEOUT);
+        }, NEXT_TIMEOUT);
       } else {
         setTimeout(() => {
           dispatch({ type: ACTION_TYPES.NEW_ROUND });
           if (inputRef.current) {
             inputRef.current.focus();
           }
-        }, NEW_ROUND_TIMEOUT);
+        }, NEXT_TIMEOUT);
       }
     }
   };
@@ -47,7 +47,7 @@ const useGame = () => {
       dispatch({ type: ACTION_TYPES.WRONG_ANSWER });
       setTimeout(() => {
         navigate(ROUTES.END);
-      }, NAVIGATE_END_TIMEOUT);
+      }, NEXT_TIMEOUT);
     }
   };
 
@@ -61,6 +61,5 @@ const useGame = () => {
 
 export default useGame;
 
-const NEW_ROUND_TIMEOUT = 1000;
+const NEXT_TIMEOUT = 1_000;
 const SCORE_ACTIVE_FALSE_TIMEOUT = 100;
-const NAVIGATE_END_TIMEOUT = 1000;

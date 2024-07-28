@@ -8,7 +8,7 @@ export const setItem = <T>(key: string, value: T) => {
   }
 };
 
-export const getItem = <T>(key: string, defaultValue: T): T => {
+export const getItem = (key: string, defaultValue: string): string => {
   try {
     const storeState = storage.getItem(key);
 

@@ -11,7 +11,10 @@ const Mode = () => {
 
   const modeChoice = (mode: GameMode) => {
     setItem(STORAGE_KEY.MODE, mode);
-    navigate(ROUTES.PLAY);
+
+    setTimeout(() => {
+      navigate(ROUTES.PLAY);
+    });
   };
 
   return (

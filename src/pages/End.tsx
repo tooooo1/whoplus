@@ -9,8 +9,6 @@ const End = () => {
   const name = getItem(STORAGE_KEY.NAME, '1');
   const power = getItem(STORAGE_KEY.POWER, '1');
 
-  const formattedPower = power.toLocaleString();
-
   const reset = () => {
     window.sessionStorage.clear();
     window.location.replace(ROUTES.HOME);
@@ -35,7 +33,7 @@ const End = () => {
           />
         </picture>
         <div>전투력</div>
-        <div>{formattedPower}</div>
+        <div>{power.toLocaleString()}</div>
       </div>
       <Button onClick={reset}>다시하기</Button>
     </section>
