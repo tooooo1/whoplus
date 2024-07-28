@@ -17,5 +17,5 @@ export const INPUT_BACKGROUND_COLORS = {
 
 export const BAR_COLORS = {
   SUCCESS: 'success',
-  SECONDARY: 'secondary',
+  FAILURE: 'failure',
 } as const;

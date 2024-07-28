@@ -1,5 +1,3 @@
-import type { LinearProgressProps } from '@mui/material';
-
 import {
   ACTION_TYPES,
   BAR_COLORS,
@@ -23,7 +21,7 @@ export interface GameState {
   second: number;
   value: string;
   progress: number;
-  barColor: Extract<LinearProgressProps['color'], 'success' | 'secondary'>;
+  barColor: 'success' | 'failure';
   inputColor: string;
   inputBackGroundColor: string;
 }
@@ -97,7 +95,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         timeDown: TIME_DOWN_COLORS.RED,
         inputColor: INPUT_COLORS.WRONG,
         inputBackGroundColor: INPUT_BACKGROUND_COLORS.WRONG,
-        barColor: BAR_COLORS.SECONDARY,
+        barColor: BAR_COLORS.FAILURE,
       };
     case ACTION_TYPES.TIME_TICK:
       return {

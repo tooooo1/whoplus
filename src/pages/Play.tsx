@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import LinearProgress from '@mui/material/LinearProgress';
 import { useRef } from 'react';
 
+import { LinearProgress } from '../components';
 import { useGame } from '../hooks';
 
 const Play = () => {
@@ -16,15 +16,8 @@ const Play = () => {
       <p css={styles.timeUp(state.timeActive)}>{state.timeDown}</p>
       <LinearProgress
         aria-label="remaining time"
-        variant="determinate"
         value={state.progress}
-        color={state.barColor}
-        sx={{
-          borderRadius: '10px',
-          marginBottom: '1.2rem',
-          height: '1.2vh',
-          width: '80%',
-        }}
+        barColor={state.barColor}
       />
       <div css={styles.subMissionQuestion}>
         {state.first} + {state.second}
