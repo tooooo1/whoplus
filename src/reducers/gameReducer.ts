@@ -1,6 +1,5 @@
 import {
   ACTION_TYPES,
-  BAR_COLORS,
   INITIAL_TIMES,
   INPUT_BACKGROUND_COLORS,
   INPUT_COLORS,
@@ -21,7 +20,7 @@ export interface GameState {
   second: number;
   value: string;
   progress: number;
-  barColor: 'success' | 'failure';
+  barColor: 'primary' | 'secondary';
   inputColor: string;
   inputBackGroundColor: string;
 }
@@ -57,7 +56,7 @@ export const initialState: GameState = {
   value: '',
   progress: 0,
 
-  barColor: BAR_COLORS.SUCCESS,
+  barColor: 'secondary',
   inputColor: INPUT_COLORS.DEFAULT,
   inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
 };
@@ -95,7 +94,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         timeDown: TIME_DOWN_COLORS.RED,
         inputColor: INPUT_COLORS.WRONG,
         inputBackGroundColor: INPUT_BACKGROUND_COLORS.WRONG,
-        barColor: BAR_COLORS.FAILURE,
+        barColor: 'primary',
       };
     case ACTION_TYPES.TIME_TICK:
       return {

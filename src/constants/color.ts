@@ -14,8 +14,3 @@ export const INPUT_BACKGROUND_COLORS = {
   WRONG: '#ffd2d7',
   DEFAULT: '#f4f4f4',
 } as const;
-
-export const BAR_COLORS = {
-  SUCCESS: 'success',
-  FAILURE: 'failure',
-} as const;

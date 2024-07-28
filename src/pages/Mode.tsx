@@ -35,7 +35,7 @@ const Mode = () => {
       <p css={styles.example}>두뇌 회전 : {INITIAL_TIMES.BRAIN}초</p>
       <div css={styles.buttonWrapper}>
         <Button onClick={() => modeChoice('Dementia')}>치매 예방</Button>
-        <Button color="#01a8ff" onClick={() => modeChoice('Brain')}>
+        <Button color="secondary" onClick={() => modeChoice('Brain')}>
           두뇌 회전
         </Button>
       </div>

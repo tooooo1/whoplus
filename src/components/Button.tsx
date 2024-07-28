@@ -1,13 +1,18 @@
 import { css } from '@emotion/react';
-import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: 'primary' | 'secondary';
+  children: React.ReactNode;
+}
 
 export const Button = ({
   children,
-  color = '#ff2e35',
+  color = 'primary',
   type = 'button',
   ...props
-}: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) => (
-  <button {...props} css={style(color)} color={color} type={type}>
+}: ButtonProps) => (
+  <button css={style(color)} color={color} type={type} {...props}>
     {children}
   </button>
 );
@@ -16,7 +21,7 @@ const style = (color: string) => css`
   border: none;
   padding: 12px 24px;
   color: #f9f9f9;
-  background: ${color};
+  background: var(--${color});
   font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -24,9 +29,5 @@ const style = (color: string) => css`
   font-family: 'Pretendard-Bold';
   &:hover {
     transform: scale(1.02);
-  }
-  &:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
   }
 `;

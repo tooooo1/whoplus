@@ -6,6 +6,10 @@ import { css, Global } from '@emotion/react';
 export const GlobalStyle = () => (
   <Global
     styles={css`
+      :root {
+        --primary: #ff2e35;
+        --secondary: #01a8ff;
+      }
       body {
         height: 100%;
       }

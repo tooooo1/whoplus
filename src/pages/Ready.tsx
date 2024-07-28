@@ -62,7 +62,7 @@ const Ready = () => {
         placeholder="닉네임을 입력하세요"
         onKeyDown={handleEnterKeyDown}
       />
-      <Button color="#01a8ff" onClick={handleStartClick}>
+      <Button color="secondary" onClick={handleStartClick}>
         시작
       </Button>
     </section>
@@ -98,17 +98,17 @@ const styles = {
     color: darkblue;
   `,
   highlightedText: css`
-    color: #ff2e35;
+    color: var(--primary);
   `,
   nicknameInput: css`
-    border: 1px solid #474747;
+    border: 1px solid;
     border-radius: 12px;
     font-size: 16px;
     padding: 16px 40px 16px 14px;
     margin-bottom: 16px;
     font-family: 'Pretendard-SemiBold';
     &:focus {
-      border-color: #01a8ff;
+      border-color: var(--secondary);
       box-shadow: 0 0 0 3px #01a8ff33;
     }
   `,

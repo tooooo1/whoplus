@@ -58,7 +58,7 @@ const styles = {
     text-align: center;
   `,
   roundNumber: css`
-    color: #1bb749;
+    color: var(--secondary);
     text-align: center;
   `,
   playerName: css`
