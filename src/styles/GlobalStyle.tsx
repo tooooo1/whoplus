@@ -3,18 +3,15 @@ import './fonts/font.css';
 
 import { css, Global } from '@emotion/react';
 
-export const global = (
+export const GlobalStyle = () => (
   <Global
     styles={css`
       body {
         height: 100%;
       }
-      * {
-        outline: none;
-        box-sizing: border-box;
-      }
       html {
         height: 100%;
+        font-family: 'Pretendard-SemiBold', sans-serif;
       }
       #root {
         background-color: #f2f2f2;
@@ -23,7 +20,6 @@ export const global = (
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: 'Pretendard-SemiBold', sans-serif;
 
         & > section {
           display: flex;

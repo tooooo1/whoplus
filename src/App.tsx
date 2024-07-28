@@ -1,23 +1,29 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
 import { Logo } from './components';
 import { ROUTES } from './constants';
 import { End, Home, Mode, Play, Ready } from './pages';
-import { global } from './styles/global';
+import { GlobalStyle } from './styles/GlobalStyle';
+
+const router = createBrowserRouter([
+  { path: ROUTES.HOME, element: <Home /> },
+  { path: ROUTES.READY, element: <Ready /> },
+  { path: ROUTES.MODE, element: <Mode /> },
+  { path: ROUTES.PLAY, element: <Play /> },
+  { path: ROUTES.END, element: <End /> },
+  { path: '*', element: <Navigate replace to={ROUTES.HOME} /> },
+]);
 
 const App = () => (
-  <BrowserRouter>
-    {global}
+  <>
+    <GlobalStyle />
     <Logo />
-    <Routes>
-      <Route path={ROUTES.HOME} element={<Home />} />
-      <Route path={ROUTES.READY} element={<Ready />} />
-      <Route path={ROUTES.MODE} element={<Mode />} />
-      <Route path={ROUTES.PLAY} element={<Play />} />
-      <Route path={ROUTES.END} element={<End />} />
-      <Route path="*" element={<Navigate replace to={ROUTES.HOME} />} />
-    </Routes>
-  </BrowserRouter>
+    <RouterProvider router={router} />
+  </>
 );
 
 export default App;
