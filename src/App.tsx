@@ -8,6 +8,7 @@ import { Logo } from './components';
 import { ROUTES } from './constants';
 import { End, Home, Mode, Play, Ready } from './pages';
 import { GlobalStyle } from './styles/GlobalStyle';
+import { load, checkWebPSupport } from '@fepack/image';
 
 const router = createBrowserRouter([
   { path: ROUTES.HOME, element: <Home /> },
@@ -17,6 +18,16 @@ const router = createBrowserRouter([
   { path: ROUTES.END, element: <End /> },
   { path: '*', element: <Navigate replace to={ROUTES.HOME} /> },
 ]);
+
+const checkWebPSupportAndLoad = async () => {
+  if (await checkWebPSupport()) {
+    load('images/information_resize.webp');
+    load('images/options_resize.webp');
+    load('images/boxing-gloves_resize.webp');
+  }
+};
+
+checkWebPSupportAndLoad();
 
 const App = () => (
   <>
