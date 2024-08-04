@@ -20,10 +20,16 @@ const router = createBrowserRouter([
 ]);
 
 const checkWebPSupportAndLoad = async () => {
-  if (await checkWebPSupport()) {
+  const isSupportWebP = await checkWebPSupport();
+
+  if (isSupportWebP) {
     load('images/information_resize.webp');
     load('images/options_resize.webp');
     load('images/boxing-gloves_resize.webp');
+  } else {
+    load('images/information_resize.png');
+    load('images/options_resize.png');
+    load('images/boxing-gloves_resize.png');
   }
 };
 
