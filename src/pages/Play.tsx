@@ -8,27 +8,32 @@ const Play = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { state, handleChange, progress, time } = useGame();
 
+  const indicator = (() => {
+    if (state.status === 'correct') return '🟢';
+    if (state.status === 'wrong') return '🔴';
+    return time;
+  })();
+
+  const barColor = (() => {
+    return state.status === 'wrong' ? 'primary' : 'secondary';
+  })();
+
   return (
     <section>
       <div css={styles.round}>
         ROUND <span css={styles.stage(state.active)}>{state.round}</span>
       </div>
-      <p css={styles.timeUp}>
-        {state.indicatorColor ? state.indicatorColor : time}
-      </p>
+      <p css={styles.timeUp}>{indicator}</p>
       <LinearProgress
         aria-label="remaining time"
         value={progress}
-        barColor={state.barColor}
+        barColor={barColor}
       />
       <div css={styles.subMissionQuestion}>
         {state.first} + {state.second}
       </div>
       <input
-        css={styles.subMissionInput(
-          state.inputColor,
-          state.inputBackGroundColor
-        )}
+        css={styles.subMissionInput(state.status)}
         aria-label="answer input"
         ref={inputRef}
         value={state.value}
@@ -92,18 +97,32 @@ const styles = {
     font-size: 48px;
     font-weight: 700;
   `,
-  subMissionInput: (color: string, background: string) => css`
-    width: 80%;
-    border-radius: 30px;
-    background: ${background};
-    color: ${color};
-    border: 2px solid ${color};
-    text-align: center;
-    font-size: 24px;
-    padding: 10px;
-    margin: 16px 0;
-    font-weight: 700;
-  `,
+  subMissionInput: (status: 'default' | 'correct' | 'wrong') => {
+    const colorMap = {
+      default: '#000000',
+      correct: '#1bb749',
+      wrong: '#ff2e35',
+    };
+
+    const backgroundMap = {
+      default: '#f4f4f4',
+      correct: '#c0f2cd',
+      wrong: '#ffd2d7',
+    };
+
+    return css`
+      width: 80%;
+      border-radius: 30px;
+      background: ${backgroundMap[status]};
+      color: ${colorMap[status]};
+      border: 2px solid ${colorMap[status]};
+      text-align: center;
+      font-size: 24px;
+      padding: 10px;
+      margin: 16px 0;
+      font-weight: 700;
+    `;
+  },
   stage: (active: boolean) => css`
     animation: ${active && 'bounce 0.3s infinite ease'};
     font-weight: bold;

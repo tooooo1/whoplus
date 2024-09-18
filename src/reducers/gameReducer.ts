@@ -1,24 +1,14 @@
-import {
-  ACTION_TYPES,
-  INDICATOR_COLORS,
-  INITIAL_TIMES,
-  INPUT_BACKGROUND_COLORS,
-  INPUT_COLORS,
-  STORAGE_KEY,
-} from '../constants';
+import { ACTION_TYPES, INITIAL_TIMES, STORAGE_KEY } from '../constants';
 import { getItem, setItem } from '../utils';
 
 export interface GameState {
   power: number;
   round: number;
-  indicatorColor: string | null;
+  status: 'default' | 'correct' | 'wrong';
   active: boolean;
   first: number;
   second: number;
   value: string;
-  barColor: 'primary' | 'secondary';
-  inputColor: string;
-  inputBackGroundColor: string;
 }
 
 export interface GameAction {
@@ -39,14 +29,11 @@ const calculateDifficulty = (round: number) => 10 ** Math.floor(round / 10 + 1);
 export const initialState: GameState = {
   power: 0,
   round: 1,
-  indicatorColor: null,
+  status: 'default',
   active: false,
   first: getRandomNumber(1, 10),
   second: getRandomNumber(1, 10),
   value: '',
-  barColor: 'secondary',
-  inputColor: INPUT_COLORS.DEFAULT,
-  inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
 };
 
 const updateValue = (state: GameState, value: string): GameState => ({
@@ -63,10 +50,8 @@ const handleCorrectAnswer = (state: GameState): GameState => {
 
   return {
     ...state,
-    indicatorColor: INDICATOR_COLORS.GREEN,
     power: newPower,
-    inputColor: INPUT_COLORS.CORRECT,
-    inputBackGroundColor: INPUT_BACKGROUND_COLORS.CORRECT,
+    status: 'correct',
     active: true,
   };
 };
@@ -77,10 +62,7 @@ const handleWrongAnswer = (state: GameState): GameState => {
 
   return {
     ...state,
-    indicatorColor: INDICATOR_COLORS.RED,
-    inputColor: INPUT_COLORS.WRONG,
-    inputBackGroundColor: INPUT_BACKGROUND_COLORS.WRONG,
-    barColor: 'primary',
+    status: 'wrong',
   };
 };
 
@@ -96,9 +78,7 @@ const startNewRound = (state: GameState): GameState => ({
     calculateDifficulty(state.round)
   ),
   value: '',
-  indicatorColor: null,
-  inputColor: INPUT_COLORS.DEFAULT,
-  inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
+  status: 'default',
 });
 
 const deactivateScore = (state: GameState): GameState => ({
