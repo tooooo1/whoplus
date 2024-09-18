@@ -11,7 +11,7 @@ import { getItem, setItem } from '../utils';
 export interface GameState {
   power: number;
   round: number;
-  timeDown: number;
+  time: number;
   indicatorColor: string | null;
   active: boolean;
   first: number;
@@ -41,7 +41,7 @@ const calculateDifficulty = (round: number) => 10 ** Math.floor(round / 10 + 1);
 export const initialState: GameState = {
   power: 0,
   round: 1,
-  timeDown: getInitialTime(),
+  time: getInitialTime(),
   indicatorColor: null,
   active: false,
   first: getRandomNumber(1, 10),
@@ -92,8 +92,8 @@ const handleWrongAnswer = (state: GameState): GameState => {
 const handleTimeTick = (state: GameState): GameState => {
   return {
     ...state,
-    timeDown: state.timeDown - 1,
-    progress: state.progress + 100 / state.timeDown,
+    time: state.time - 1,
+    progress: state.progress + 100 / state.time,
   };
 };
 
@@ -112,7 +112,7 @@ const startNewRound = (state: GameState): GameState => ({
   indicatorColor: null,
   inputColor: INPUT_COLORS.DEFAULT,
   inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
-  timeDown: getInitialTime(),
+  time: getInitialTime(),
   progress: 0,
 });
 
@@ -124,7 +124,7 @@ const deactivateScore = (state: GameState): GameState => ({
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
     case ACTION_TYPES.UPDATE_VALUE:
-      if (!action.payload) {
+      if (action.payload === undefined) {
         throw new Error('UPDATE_VALUE action requires a payload');
       }
       return updateValue(state, action.payload);

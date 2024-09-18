@@ -34,9 +34,9 @@ const useGame = () => {
   };
 
   const tick = () => {
-    if (typeof state.timeDown === 'string') return;
-    if (state.timeDown > 0) dispatch({ type: ACTION_TYPES.TIME_TICK });
-    else if (state.timeDown === 0 || Number.isNaN(state.timeDown)) {
+    if (typeof state.time === 'string') return;
+    if (state.time > 0) dispatch({ type: ACTION_TYPES.TIME_TICK });
+    else if (state.time === 0 || Number.isNaN(state.time)) {
       dispatch({ type: ACTION_TYPES.WRONG_ANSWER });
       setTimeout(() => {
         navigate(ROUTES.END);
