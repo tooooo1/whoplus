@@ -6,12 +6,12 @@ import { useGame } from '../hooks';
 
 const Play = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { state, handleChange, progress, time } = useGame();
+  const { state, handleChange, progress } = useGame();
 
   const indicator = (() => {
     if (state.status === 'correct') return '🟢';
     if (state.status === 'wrong') return '🔴';
-    return time;
+    return state.time;
   })();
 
   const barColor = (() => {

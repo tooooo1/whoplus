@@ -1,4 +1,4 @@
-import { ACTION_TYPES, INITIAL_TIMES, STORAGE_KEY } from '../constants';
+import { INITIAL_TIMES, STORAGE_KEY } from '../constants';
 import { getItem, setItem } from '../utils';
 
 export interface GameState {
@@ -9,101 +9,109 @@ export interface GameState {
   first: number;
   second: number;
   value: string;
+  time: number;
 }
 
-export interface GameAction {
-  type: keyof typeof ACTION_TYPES;
-  payload?: string;
-}
+type GameAction =
+  | { type: 'UPDATE_VALUE'; payload: string }
+  | { type: 'CORRECT_ANSWER' }
+  | { type: 'WRONG_ANSWER' }
+  | { type: 'NEW_ROUND'; payload: { initialTime: number } }
+  | { type: 'SCORE_ACTIVE_FALSE' }
+  | { type: 'TICK' };
 
-const getRandomNumber = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min)) + min;
-
-export const getInitialTime = () => {
-  const mode = getItem(STORAGE_KEY.MODE, 'Brain');
-  return mode !== 'Brain' ? INITIAL_TIMES.DEMENTIA : INITIAL_TIMES.BRAIN;
-};
-
-const calculateDifficulty = (round: number) => 10 ** Math.floor(round / 10 + 1);
-
-export const initialState: GameState = {
-  power: 0,
-  round: 1,
-  status: 'default',
-  active: false,
-  first: getRandomNumber(1, 10),
-  second: getRandomNumber(1, 10),
-  value: '',
-};
-
-const updateValue = (state: GameState, value: string): GameState => ({
-  ...state,
-  value,
-});
-
-const handleCorrectAnswer = (state: GameState): GameState => {
-  const difficulty = calculateDifficulty(state.round);
-  const newPower =
-    state.power + Math.floor(state.first + state.second / difficulty);
-  setItem(STORAGE_KEY.ROUND, state.round);
-  setItem(STORAGE_KEY.POWER, newPower);
-
-  return {
-    ...state,
-    power: newPower,
-    status: 'correct',
-    active: true,
-  };
-};
-
-const handleWrongAnswer = (state: GameState): GameState => {
-  setItem(STORAGE_KEY.ROUND, state.round);
-  setItem(STORAGE_KEY.POWER, state.power);
-
-  return {
-    ...state,
-    status: 'wrong',
-  };
-};
-
-const startNewRound = (state: GameState): GameState => ({
-  ...state,
-  round: state.round + 1,
-  first: getRandomNumber(
-    calculateDifficulty(state.round) / 10,
-    calculateDifficulty(state.round)
-  ),
-  second: getRandomNumber(
-    calculateDifficulty(state.round) / 10,
-    calculateDifficulty(state.round)
-  ),
-  value: '',
-  status: 'default',
-});
-
-const deactivateScore = (state: GameState): GameState => ({
-  ...state,
-  active: false,
-});
-
+/**
+ * gameReducer는 게임 상태 전환을 관리하는 순수 함수입니다.
+ * 현재 상태와 액션을 받아 새로운 상태를 반환합니다.
+ */
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
-    case ACTION_TYPES.UPDATE_VALUE:
-      if (action.payload === undefined) {
-        throw new Error('UPDATE_VALUE action requires a payload');
-      }
-      return updateValue(state, action.payload);
-    case ACTION_TYPES.CORRECT_ANSWER:
-      return handleCorrectAnswer(state);
-    case ACTION_TYPES.WRONG_ANSWER:
-      return handleWrongAnswer(state);
-    case ACTION_TYPES.NEW_ROUND:
-      return startNewRound(state);
-    case ACTION_TYPES.SCORE_ACTIVE_FALSE:
-      return deactivateScore(state);
+    case 'UPDATE_VALUE':
+      return {
+        ...state,
+        value: action.payload,
+      };
+    case 'CORRECT_ANSWER':
+      const difficulty = calculateDifficulty(state.round);
+      const newPower =
+        state.power + Math.floor(state.first + state.second / difficulty);
+
+      setItem(STORAGE_KEY.ROUND, state.round);
+      setItem(STORAGE_KEY.POWER, newPower);
+
+      return {
+        ...state,
+        power: newPower,
+        status: 'correct',
+        active: true,
+      };
+    case 'WRONG_ANSWER':
+      setItem(STORAGE_KEY.ROUND, state.round);
+      setItem(STORAGE_KEY.POWER, state.power);
+
+      return {
+        ...state,
+        status: 'wrong',
+      };
+    case 'NEW_ROUND':
+      const nextRound = state.round + 1;
+      const newNumbers = generateNewNumbers(nextRound);
+      return {
+        ...state,
+        round: nextRound,
+        first: newNumbers.first,
+        second: newNumbers.second,
+        value: '',
+        status: 'default',
+        time: action.payload.initialTime,
+      };
+    case 'SCORE_ACTIVE_FALSE':
+      return {
+        ...state,
+        active: false,
+      };
+    case 'TICK':
+      return {
+        ...state,
+        time: state.time - 1,
+      };
     default:
       return state;
   }
 };
 
 export default gameReducer;
+
+const getRandomNumber = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+export const getInitialTime = () => {
+  const mode = getItem(STORAGE_KEY.MODE, 'Brain');
+  return mode !== 'Brain' ? INITIAL_TIMES.DEMENTIA : INITIAL_TIMES.BRAIN;
+};
+
+const calculateDifficulty = (round: number) =>
+  10 ** Math.floor((round - 1) / 10 + 1);
+
+const generateNewNumbers = (round: number) => {
+  const difficulty = calculateDifficulty(round);
+  const min = difficulty / 10;
+  const max = difficulty;
+  return {
+    first: getRandomNumber(min, max),
+    second: getRandomNumber(min, max),
+  };
+};
+
+const initialNumbers = generateNewNumbers(1);
+
+export const initialState: GameState = {
+  power: 0,
+  round: 1,
+  status: 'default',
+  active: false,
+  first: initialNumbers.first,
+  second: initialNumbers.second,
+  value: '',
+  time: getInitialTime(),
+};
