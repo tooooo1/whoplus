@@ -13,7 +13,7 @@ const Play = () => {
       <div css={styles.round}>
         ROUND <span css={styles.stage(state.active)}>{state.round}</span>
       </div>
-      <p css={styles.timeUp(state.timeActive)}>
+      <p css={styles.timeUp(state.timeDown < 2)}>
         {state.indicatorColor ? state.indicatorColor : state.timeDown}
       </p>
       <LinearProgress
@@ -128,19 +128,13 @@ const styles = {
   timeUp: (active: boolean) => css`
     padding-bottom: 4px;
     height: 25px;
-    animation: ${active && 'bounce 0.3s infinite ease'};
+    animation: ${active && 'bounce 0.4s infinite ease'};
     font-weight: bold;
     @keyframes bounce {
       0% {
-        transform: scale(1.6);
+        transform: scale(1);
       }
-      40% {
-        transform: scale(0.4);
-      }
-      60% {
-        transform: scale(1.3);
-      }
-      80% {
+      50% {
         transform: scale(0.8);
       }
       100% {

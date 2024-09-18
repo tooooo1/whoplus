@@ -13,7 +13,6 @@ export interface GameState {
   round: number;
   timeDown: number;
   indicatorColor: string | null;
-  timeActive: boolean;
   active: boolean;
   first: number;
   second: number;
@@ -44,7 +43,6 @@ export const initialState: GameState = {
   round: 1,
   timeDown: getInitialTime(),
   indicatorColor: null,
-  timeActive: false,
   active: false,
   first: getRandomNumber(1, 10),
   second: getRandomNumber(1, 10),
