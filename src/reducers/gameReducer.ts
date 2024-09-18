@@ -9,10 +9,8 @@ import {
 import { getItem, setItem } from '../utils';
 
 export interface GameState {
-  difficulty: number;
   power: number;
   round: number;
-  time: number;
   timeDown: number;
   indicatorColor: string | null;
   timeActive: boolean;
@@ -25,8 +23,6 @@ export interface GameState {
   inputColor: string;
   inputBackGroundColor: string;
 }
-
-export type GameMode = 'Dementia' | 'Brain';
 
 export interface GameAction {
   type: keyof typeof ACTION_TYPES;
@@ -41,11 +37,11 @@ const getInitialTime = () => {
   return mode !== 'Brain' ? INITIAL_TIMES.DEMENTIA : INITIAL_TIMES.BRAIN;
 };
 
+const calculateDifficulty = (round: number) => 10 ** Math.floor(round / 10 + 1);
+
 export const initialState: GameState = {
-  difficulty: 10,
   power: 0,
   round: 1,
-  time: getInitialTime(),
   timeDown: getInitialTime(),
   indicatorColor: null,
   timeActive: false,
@@ -59,20 +55,15 @@ export const initialState: GameState = {
   inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
 };
 
-const updateDifficulty = (state: GameState): GameState => ({
-  ...state,
-  difficulty: state.difficulty * 10,
-  time: state.time + 2,
-});
-
 const updateValue = (state: GameState, value: string): GameState => ({
   ...state,
   value,
 });
 
 const handleCorrectAnswer = (state: GameState): GameState => {
+  const difficulty = calculateDifficulty(state.round);
   const newPower =
-    state.power + Math.floor(state.first + state.second / state.difficulty);
+    state.power + Math.floor(state.first + state.second / difficulty);
   setItem(STORAGE_KEY.ROUND, state.round);
   setItem(STORAGE_KEY.POWER, newPower);
 
@@ -100,22 +91,31 @@ const handleWrongAnswer = (state: GameState): GameState => {
   };
 };
 
-const handleTimeTick = (state: GameState): GameState => ({
-  ...state,
-  timeDown: state.timeDown - 1,
-  progress: state.progress + 100 / state.time,
-});
+const handleTimeTick = (state: GameState): GameState => {
+  return {
+    ...state,
+    timeDown: state.timeDown - 1,
+    progress: state.progress + 100 / state.timeDown,
+  };
+};
 
 const startNewRound = (state: GameState): GameState => ({
   ...state,
   round: state.round + 1,
-  first: getRandomNumber(state.difficulty / 10, state.difficulty),
-  second: getRandomNumber(state.difficulty / 10, state.difficulty),
+  first: getRandomNumber(
+    calculateDifficulty(state.round) / 10,
+    calculateDifficulty(state.round)
+  ),
+  second: getRandomNumber(
+    calculateDifficulty(state.round) / 10,
+    calculateDifficulty(state.round)
+  ),
   value: '',
   indicatorColor: null,
   inputColor: INPUT_COLORS.DEFAULT,
   inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
-  timeDown: state.time,
+  timeDown: getInitialTime(),
+  progress: 0,
 });
 
 const deactivateScore = (state: GameState): GameState => ({
@@ -125,8 +125,6 @@ const deactivateScore = (state: GameState): GameState => ({
 
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
-    case ACTION_TYPES.UPDATE_DIFFICULTY:
-      return updateDifficulty(state);
     case ACTION_TYPES.UPDATE_VALUE:
       if (!action.payload) {
         throw new Error('UPDATE_VALUE action requires a payload');

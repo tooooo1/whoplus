@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components';
 import { INITIAL_TIMES, ROUTES, STORAGE_KEY } from '../constants';
-import type { GameMode } from '../reducers/gameReducer';
 import { setItem } from '../utils';
 
 const Mode = () => {
   const navigate = useNavigate();
 
-  const modeChoice = (mode: GameMode) => {
+  const modeChoice = (mode: 'Dementia' | 'Brain') => {
     setItem(STORAGE_KEY.MODE, mode);
 
     setTimeout(() => {

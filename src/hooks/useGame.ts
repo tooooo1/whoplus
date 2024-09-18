@@ -33,12 +33,6 @@ const useGame = () => {
     }
   };
 
-  useEffect(() => {
-    if (state.round % 10 === 0) {
-      dispatch({ type: ACTION_TYPES.UPDATE_DIFFICULTY });
-    }
-  }, [state.round]);
-
   const tick = () => {
     if (typeof state.timeDown === 'string') return;
     if (state.timeDown > 0) dispatch({ type: ACTION_TYPES.TIME_TICK });
