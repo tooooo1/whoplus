@@ -6,7 +6,7 @@ import { useGame } from '../hooks';
 
 const Play = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { state, handleChange } = useGame();
+  const { state, handleChange, progress, time } = useGame();
 
   return (
     <section>
@@ -14,11 +14,11 @@ const Play = () => {
         ROUND <span css={styles.stage(state.active)}>{state.round}</span>
       </div>
       <p css={styles.timeUp}>
-        {state.indicatorColor ? state.indicatorColor : state.time}
+        {state.indicatorColor ? state.indicatorColor : time}
       </p>
       <LinearProgress
         aria-label="remaining time"
-        value={state.progress}
+        value={progress}
         barColor={state.barColor}
       />
       <div css={styles.subMissionQuestion}>

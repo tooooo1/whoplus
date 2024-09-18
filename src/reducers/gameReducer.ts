@@ -11,13 +11,11 @@ import { getItem, setItem } from '../utils';
 export interface GameState {
   power: number;
   round: number;
-  time: number;
   indicatorColor: string | null;
   active: boolean;
   first: number;
   second: number;
   value: string;
-  progress: number;
   barColor: 'primary' | 'secondary';
   inputColor: string;
   inputBackGroundColor: string;
@@ -31,7 +29,7 @@ export interface GameAction {
 const getRandomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min)) + min;
 
-const getInitialTime = () => {
+export const getInitialTime = () => {
   const mode = getItem(STORAGE_KEY.MODE, 'Brain');
   return mode !== 'Brain' ? INITIAL_TIMES.DEMENTIA : INITIAL_TIMES.BRAIN;
 };
@@ -41,13 +39,11 @@ const calculateDifficulty = (round: number) => 10 ** Math.floor(round / 10 + 1);
 export const initialState: GameState = {
   power: 0,
   round: 1,
-  time: getInitialTime(),
   indicatorColor: null,
   active: false,
   first: getRandomNumber(1, 10),
   second: getRandomNumber(1, 10),
   value: '',
-  progress: 0,
   barColor: 'secondary',
   inputColor: INPUT_COLORS.DEFAULT,
   inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
@@ -72,7 +68,6 @@ const handleCorrectAnswer = (state: GameState): GameState => {
     inputColor: INPUT_COLORS.CORRECT,
     inputBackGroundColor: INPUT_BACKGROUND_COLORS.CORRECT,
     active: true,
-    progress: 0,
   };
 };
 
@@ -86,14 +81,6 @@ const handleWrongAnswer = (state: GameState): GameState => {
     inputColor: INPUT_COLORS.WRONG,
     inputBackGroundColor: INPUT_BACKGROUND_COLORS.WRONG,
     barColor: 'primary',
-  };
-};
-
-const handleTimeTick = (state: GameState): GameState => {
-  return {
-    ...state,
-    time: state.time - 1,
-    progress: state.progress + 100 / state.time,
   };
 };
 
@@ -112,8 +99,6 @@ const startNewRound = (state: GameState): GameState => ({
   indicatorColor: null,
   inputColor: INPUT_COLORS.DEFAULT,
   inputBackGroundColor: INPUT_BACKGROUND_COLORS.DEFAULT,
-  time: getInitialTime(),
-  progress: 0,
 });
 
 const deactivateScore = (state: GameState): GameState => ({
@@ -132,8 +117,6 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
       return handleCorrectAnswer(state);
     case ACTION_TYPES.WRONG_ANSWER:
       return handleWrongAnswer(state);
-    case ACTION_TYPES.TIME_TICK:
-      return handleTimeTick(state);
     case ACTION_TYPES.NEW_ROUND:
       return startNewRound(state);
     case ACTION_TYPES.SCORE_ACTIVE_FALSE:

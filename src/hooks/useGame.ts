@@ -1,13 +1,19 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ACTION_TYPES, MAX_ROUND, ROUTES } from '../constants';
 import { gameReducer, initialState } from '../reducers';
+import { getInitialTime } from '../reducers/gameReducer';
+
+const initialTime = getInitialTime();
 
 const useGame = () => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
+  const [time, setTime] = useState(initialTime);
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const progress = ((initialTime - time) / initialTime) * 100;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: ACTION_TYPES.UPDATE_VALUE, payload: e.target.value });
@@ -25,6 +31,7 @@ const useGame = () => {
       } else {
         setTimeout(() => {
           dispatch({ type: ACTION_TYPES.NEW_ROUND });
+          setTime(initialTime);
           if (inputRef.current) {
             inputRef.current.focus();
           }
@@ -34,9 +41,9 @@ const useGame = () => {
   };
 
   const tick = () => {
-    if (typeof state.time === 'string') return;
-    if (state.time > 0) dispatch({ type: ACTION_TYPES.TIME_TICK });
-    else if (state.time === 0 || Number.isNaN(state.time)) {
+    if (time > 0) {
+      setTime(time - 1);
+    } else {
       dispatch({ type: ACTION_TYPES.WRONG_ANSWER });
       setTimeout(() => {
         navigate(ROUTES.END);
@@ -49,7 +56,7 @@ const useGame = () => {
     return () => clearInterval(timer);
   });
 
-  return { state, handleChange };
+  return { state, handleChange, progress, time };
 };
 
 export default useGame;
