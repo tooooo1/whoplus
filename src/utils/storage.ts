@@ -1,4 +1,4 @@
-const storage = window.sessionStorage;
+const storage = sessionStorage;
 
 export const setItem = <T>(key: string, value: T) => {
   try {

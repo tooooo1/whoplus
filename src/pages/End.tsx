@@ -10,8 +10,8 @@ const End = () => {
   const power = getItem(STORAGE_KEY.POWER, '1');
 
   const reset = () => {
-    window.sessionStorage.clear();
-    window.location.replace(ROUTES.HOME);
+    sessionStorage.clear();
+    location.replace(ROUTES.HOME);
   };
 
   return (
