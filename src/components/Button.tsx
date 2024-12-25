@@ -1,25 +1,32 @@
 import { css } from '@emotion/react';
 import type { ButtonHTMLAttributes } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'secondary';
   children: React.ReactNode;
+  asChild?: boolean;
 }
 
 export const Button = ({
   children,
   color = 'primary',
   type = 'button',
+  asChild,
   ...props
-}: ButtonProps) => (
-  <button css={style(color)} color={color} type={type} {...props}>
-    {children}
-  </button>
-);
+}: ButtonProps) => {
+  const Comp = asChild ? Slot : 'button';
+
+  return (
+    <Comp css={style(color)} color={color} type={type} {...props}>
+      {children}
+    </Comp>
+  );
+};
 
 const style = (color: string) => css`
   border: none;
-  padding: 12px 24px;
+  padding: 16px 24px;
   color: #f9f9f9;
   background: var(--${color});
   font-size: 20px;

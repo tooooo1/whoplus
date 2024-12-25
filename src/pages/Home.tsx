@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 import { Button } from '../components';
 import { ROUTES } from '../constants';
 
 const Home = () => {
-  const navigate = useNavigate();
-
   return (
     <section>
       <h1 css={styles.title}>누가더쎔?</h1>
-      <Button onClick={() => navigate(ROUTES.READY)}>게임시작</Button>
+      <Button asChild>
+        <NavLink to={ROUTES.READY}>게임시작</NavLink>
+      </Button>
     </section>
   );
 };

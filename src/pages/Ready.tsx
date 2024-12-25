@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { Button } from '../components';
 import { MAX_ROUND, ROUTES, STORAGE_KEY } from '../constants';

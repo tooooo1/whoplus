@@ -4,9 +4,9 @@ import { useRef } from 'react';
 import { LinearProgress } from '../components';
 import { useGame } from '../hooks';
 
-const Play = () => {
+const Play = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { state, handleChange, progress } = useGame();
+  const { state, handleChange, progress } = useGame({ mode });
 
   const indicator = (() => {
     if (state.status === 'correct') return '🟢';

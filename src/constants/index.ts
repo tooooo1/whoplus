@@ -1,15 +1,15 @@
 export const STORAGE_KEY = {
-  POWER: 'tooooo1_power',
-  ROUND: 'tooooo1_round',
-  NAME: 'tooooo1_name',
-  MODE: 'tooooo1_mode',
+  POWER: 'power',
+  ROUND: 'round',
+  NAME: 'name',
 };
 
 export const ROUTES = {
   HOME: '/',
   READY: '/ready',
   MODE: '/mode',
-  PLAY: '/play',
+  PLAY_DEMENTIA: '/play/dementia',
+  PLAY_BRAIN: '/play/brain',
   END: '/end',
 } as const;
 

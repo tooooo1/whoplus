@@ -1,5 +1,5 @@
 import { INITIAL_TIMES, STORAGE_KEY } from '../constants';
-import { getItem, setItem } from '../utils';
+import { setItem } from '../utils';
 
 export interface GameState {
   power: number;
@@ -85,11 +85,6 @@ export default gameReducer;
 const getRandomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-export const getInitialTime = () => {
-  const mode = getItem(STORAGE_KEY.MODE, 'Brain');
-  return mode !== 'Brain' ? INITIAL_TIMES.DEMENTIA : INITIAL_TIMES.BRAIN;
-};
-
 const calculateDifficulty = (round: number) =>
   10 ** Math.floor((round - 1) / 10 + 1);
 
@@ -113,5 +108,5 @@ export const initialState: GameState = {
   first: initialNumbers.first,
   second: initialNumbers.second,
   value: '',
-  time: getInitialTime(),
+  time: INITIAL_TIMES.DEMENTIA, // mode에 따라 override 해야하는 값
 };

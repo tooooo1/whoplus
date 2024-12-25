@@ -1,21 +1,10 @@
 import { css } from '@emotion/react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 import { Button } from '../components';
-import { INITIAL_TIMES, ROUTES, STORAGE_KEY } from '../constants';
-import { setItem } from '../utils';
+import { INITIAL_TIMES, ROUTES } from '../constants';
 
 const Mode = () => {
-  const navigate = useNavigate();
-
-  const modeChoice = (mode: 'Dementia' | 'Brain') => {
-    setItem(STORAGE_KEY.MODE, mode);
-
-    setTimeout(() => {
-      navigate(ROUTES.PLAY);
-    }, 100);
-  };
-
   return (
     <section>
       <picture>
@@ -36,9 +25,11 @@ const Mode = () => {
       <p css={styles.example}>치매 예방 : {INITIAL_TIMES.DEMENTIA}초</p>
       <p css={styles.example}>두뇌 회전 : {INITIAL_TIMES.BRAIN}초</p>
       <div css={styles.buttonWrapper}>
-        <Button onClick={() => modeChoice('Dementia')}>치매 예방</Button>
-        <Button color="secondary" onClick={() => modeChoice('Brain')}>
-          두뇌 회전
+        <Button asChild>
+          <NavLink to={ROUTES.PLAY_DEMENTIA}>치매 예방</NavLink>
+        </Button>
+        <Button color="secondary" asChild>
+          <NavLink to={ROUTES.PLAY_BRAIN}>두뇌 회전</NavLink>
         </Button>
       </div>
     </section>
