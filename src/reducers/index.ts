@@ -1,5 +1,5 @@
 export {
-  type GameState,
   default as gameReducer,
+  type GameState,
   initialState,
 } from './gameReducer';

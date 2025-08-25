@@ -1,6 +1,6 @@
 const storage = sessionStorage;
 
-export const setItem = <T>(key: string, value: T): void => {
+export const setItem = (key: string, value: unknown): void => {
   try {
     storage.setItem(key, JSON.stringify(value));
   } catch (error) {
@@ -8,12 +8,15 @@ export const setItem = <T>(key: string, value: T): void => {
   }
 };
 
-export const getItem = <T>(key: string, defaultValue: T): T => {
+export const getItem = <T = unknown>(key: string): T | null => {
   try {
     const item = storage.getItem(key);
-    return item ? JSON.parse(item) : defaultValue;
+    if (item !== null) {
+      return JSON.parse(item) as T;
+    }
+    return null;
   } catch (error) {
     console.error(`Failed to get item ${key}:`, error);
-    return defaultValue;
+    return null;
   }
 };

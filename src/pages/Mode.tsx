@@ -4,8 +4,7 @@ import { NavLink } from 'react-router';
 import { Button } from '../components';
 import { GAME_CONFIG, ROUTES } from '../constants';
 
-const Mode = () => {
-  return (
+const Mode = () => (
     <section>
       <picture>
         <source srcSet="images/options_resize.webp" type="image/webp" />
@@ -38,7 +37,6 @@ const Mode = () => {
       </div>
     </section>
   );
-};
 
 export default Mode;
 

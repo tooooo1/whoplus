@@ -4,8 +4,7 @@ import { NavLink } from 'react-router';
 import { Button } from '../components';
 import { ROUTES } from '../constants';
 
-const Home = () => {
-  return (
+const Home = () => (
     <section>
       <h1 css={styles.title}>누가더쎔?</h1>
       <Button asChild>
@@ -13,7 +12,6 @@ const Home = () => {
       </Button>
     </section>
   );
-};
 
 export default Home;
 

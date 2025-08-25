@@ -1,23 +1,30 @@
 import { css } from '@emotion/react';
 import type { FallbackProps } from 'react-error-boundary';
+import { useNavigate } from 'react-router';
 
 import { ROUTES } from '../constants';
 import { Button } from './Button';
 
-export const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => (
-  <div css={styles.container}>
-    <h2 css={styles.title}>문제가 발생했습니다</h2>
-    <div css={styles.buttonGroup}>
-      <Button onClick={resetErrorBoundary}>다시 시도</Button>
-      <Button
-        color="secondary"
-        onClick={() => (window.location.href = ROUTES.HOME)}
-      >
-        홈으로
-      </Button>
+export const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
+  const navigate = useNavigate();
+
+  return (
+    <div css={styles.container}>
+      <h2 css={styles.title}>문제가 발생했습니다</h2>
+      <div css={styles.buttonGroup}>
+        <Button onClick={resetErrorBoundary}>다시 시도</Button>
+        <Button
+          color="secondary"
+          onClick={() => {
+            navigate(ROUTES.HOME);
+          }}
+        >
+          홈으로
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const styles = {
   container: css`

@@ -37,7 +37,9 @@ const useGame = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
         dispatch({ type: 'TICK' });
       }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
-      return () => clearInterval(timer);
+      return () => {
+        clearInterval(timer);
+      };
     }
   }, [state.status]);
 
@@ -70,7 +72,9 @@ const useGame = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
         navigate(ROUTES.END);
       }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
-      return () => clearTimeout(endGameTimeout);
+      return () => {
+        clearTimeout(endGameTimeout);
+      };
     }
   }, [state.status, state.round, navigate, initialTime]);
 

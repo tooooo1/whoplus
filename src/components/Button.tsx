@@ -12,7 +12,7 @@ export const Button = ({
   children,
   color = 'primary',
   type = 'button',
-  asChild,
+  asChild = false,
   ...props
 }: ButtonProps) => {
   const Comp = asChild ? Slot : 'button';

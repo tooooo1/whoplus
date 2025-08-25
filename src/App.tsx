@@ -1,3 +1,4 @@
+import { checkWebPSupport, load } from '@fepack/image';
 import { ErrorBoundary } from 'react-error-boundary';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
 
@@ -5,7 +6,6 @@ import { ErrorFallback, Logo } from './components';
 import { ROUTES } from './constants';
 import { End, Home, Mode, Play, Ready } from './pages';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { load, checkWebPSupport } from '@fepack/image';
 
 const router = createBrowserRouter([
   { path: ROUTES.HOME, element: <Home /> },
@@ -36,7 +36,9 @@ checkWebPSupportAndLoad();
 const App = () => (
   <ErrorBoundary
     FallbackComponent={ErrorFallback}
-    onReset={() => (window.location.href = ROUTES.HOME)}
+    onReset={() => {
+      sessionStorage.clear();
+    }}
   >
     <GlobalStyle />
     <Logo />

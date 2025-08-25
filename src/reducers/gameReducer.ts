@@ -32,7 +32,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         ...state,
         value: action.payload,
       };
-    case 'CORRECT_ANSWER':
+    case 'CORRECT_ANSWER': {
       const newPower = calculateScore(
         state.power,
         state.first,
@@ -49,6 +49,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         status: GAME_STATUS.CORRECT,
         active: true,
       };
+    }
     case 'WRONG_ANSWER':
       setItem(STORAGE_KEY.ROUND, state.round);
       setItem(STORAGE_KEY.POWER, state.power);
@@ -57,7 +58,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         ...state,
         status: GAME_STATUS.WRONG,
       };
-    case 'NEW_ROUND':
+    case 'NEW_ROUND': {
       const nextRound = state.round + 1;
       const newNumbers = generateNumbers(nextRound);
       return {
@@ -69,6 +70,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         status: GAME_STATUS.DEFAULT,
         time: action.payload.initialTime,
       };
+    }
     case 'SCORE_ACTIVE_FALSE':
       return {
         ...state,

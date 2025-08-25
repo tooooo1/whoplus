@@ -5,15 +5,13 @@ interface LinearProgressProps {
   barColor: 'primary' | 'secondary';
 }
 
-export const LinearProgress = ({ value, barColor }: LinearProgressProps) => {
-  return (
+export const LinearProgress = ({ value, barColor }: LinearProgressProps) => (
     <div css={styles.progressContainer} role="progressbar">
       <div css={styles.progressTrack}>
         <div css={styles.progressBar(value, barColor)}></div>
       </div>
     </div>
   );
-};
 
 const styles = {
   progressContainer: css`

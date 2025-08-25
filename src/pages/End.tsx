@@ -1,17 +1,19 @@
 import { css } from '@emotion/react';
+import { useNavigate } from 'react-router';
 
 import { Button } from '../components';
 import { GAME_CONFIG, ROUTES, STORAGE_KEY } from '../constants';
 import { getItem } from '../utils';
 
 const End = () => {
-  const round = getItem(STORAGE_KEY.ROUND, 1);
-  const name = getItem(STORAGE_KEY.NAME, '');
-  const power = getItem(STORAGE_KEY.POWER, 0);
+  const navigate = useNavigate();
+  const round = getItem<number>(STORAGE_KEY.ROUND) ?? 1;
+  const name = getItem<string>(STORAGE_KEY.NAME) ?? '';
+  const power = getItem<number>(STORAGE_KEY.POWER) ?? 0;
 
   const reset = () => {
     sessionStorage.clear();
-    window.location.href = ROUTES.HOME;
+    navigate(ROUTES.HOME);
   };
 
   return (
