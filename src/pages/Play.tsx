@@ -1,22 +1,24 @@
 import { css } from '@emotion/react';
-import { useRef } from 'react';
 
 import { LinearProgress } from '../components';
+import {
+  GAME_COLORS,
+  GAME_INDICATORS,
+  GAME_STATUS,
+  type GameMode,
+} from '../constants';
 import { useGame } from '../hooks';
 
-const Play = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+const Play = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
   const { state, handleChange, progress } = useGame({ mode });
 
   const indicator = (() => {
-    if (state.status === 'correct') return '🟢';
-    if (state.status === 'wrong') return '🔴';
+    if (state.status === GAME_STATUS.CORRECT) return GAME_INDICATORS.CORRECT;
+    if (state.status === GAME_STATUS.WRONG) return GAME_INDICATORS.WRONG;
     return state.time;
   })();
 
-  const barColor = (() => {
-    return state.status === 'wrong' ? 'primary' : 'secondary';
-  })();
+  const barColor = state.status === GAME_STATUS.WRONG ? 'primary' : 'secondary';
 
   return (
     <section>
@@ -24,18 +26,13 @@ const Play = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
         ROUND <span css={styles.stage(state.active)}>{state.round}</span>
       </div>
       <p css={styles.timeUp}>{indicator}</p>
-      <LinearProgress
-        aria-label="remaining time"
-        value={progress}
-        barColor={barColor}
-      />
+      <LinearProgress value={progress} barColor={barColor} />
       <div css={styles.subMissionQuestion}>
         {state.first} + {state.second}
       </div>
       <input
         css={styles.subMissionInput(state.status)}
         aria-label="answer input"
-        ref={inputRef}
         value={state.value}
         onChange={handleChange}
         inputMode="numeric"
@@ -97,25 +94,15 @@ const styles = {
     font-size: 48px;
     font-weight: 700;
   `,
-  subMissionInput: (status: 'default' | 'correct' | 'wrong') => {
-    const colorMap = {
-      default: '#000000',
-      correct: '#1bb749',
-      wrong: '#ff2e35',
-    };
-
-    const backgroundMap = {
-      default: '#f4f4f4',
-      correct: '#c0f2cd',
-      wrong: '#ffd2d7',
-    };
+  subMissionInput: (status: (typeof GAME_STATUS)[keyof typeof GAME_STATUS]) => {
+    const statusKey = status.toUpperCase() as keyof typeof GAME_COLORS.STATUS;
 
     return css`
       width: 80%;
       border-radius: 30px;
-      background: ${backgroundMap[status]};
-      color: ${colorMap[status]};
-      border: 2px solid ${colorMap[status]};
+      background: ${GAME_COLORS.BACKGROUND[statusKey]};
+      color: ${GAME_COLORS.STATUS[statusKey]};
+      border: 2px solid ${GAME_COLORS.STATUS[statusKey]};
       text-align: center;
       font-size: 24px;
       padding: 10px;

@@ -1,3 +1,4 @@
 export { Button } from './Button';
-export { Logo } from './Logo';
+export { ErrorFallback } from './ErrorFallback';
 export { LinearProgress } from './LinearProgress';
+export { Logo } from './Logo';

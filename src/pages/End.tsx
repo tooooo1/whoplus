@@ -1,24 +1,25 @@
 import { css } from '@emotion/react';
 
 import { Button } from '../components';
-import { MAX_ROUND, ROUTES, STORAGE_KEY } from '../constants';
+import { GAME_CONFIG, ROUTES, STORAGE_KEY } from '../constants';
 import { getItem } from '../utils';
 
 const End = () => {
-  const round = getItem(STORAGE_KEY.ROUND, '1');
-  const name = getItem(STORAGE_KEY.NAME, '1');
-  const power = getItem(STORAGE_KEY.POWER, '1');
+  const round = getItem(STORAGE_KEY.ROUND, 1);
+  const name = getItem(STORAGE_KEY.NAME, '');
+  const power = getItem(STORAGE_KEY.POWER, 0);
 
   const reset = () => {
     sessionStorage.clear();
-    location.replace(ROUTES.HOME);
+    window.location.href = ROUTES.HOME;
   };
 
   return (
     <section>
       <h1 css={styles.gameTitle}>누가더쎔?</h1>
       <h2 css={styles.gameRound}>
-        ROUND <span css={styles.roundNumber}>{round}</span> / {MAX_ROUND}
+        ROUND <span css={styles.roundNumber}>{round}</span> /{' '}
+        {GAME_CONFIG.MAX_ROUND}
       </h2>
       <p css={styles.playerName}>닉네임 : {name}</p>
       <div css={styles.powerDisplay}>

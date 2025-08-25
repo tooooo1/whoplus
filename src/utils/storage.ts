@@ -1,22 +1,19 @@
 const storage = sessionStorage;
 
-export const setItem = <T>(key: string, value: T) => {
+export const setItem = <T>(key: string, value: T): void => {
   try {
     storage.setItem(key, JSON.stringify(value));
-  } catch (e) {
-    throw new Error('Unable to set item in sessionStorage');
+  } catch (error) {
+    console.error(`Failed to set item ${key}:`, error);
   }
 };
 
-export const getItem = (key: string, defaultValue: string): string => {
+export const getItem = <T>(key: string, defaultValue: T): T => {
   try {
-    const storeState = storage.getItem(key);
-
-    if (storeState) {
-      return JSON.parse(storeState);
-    }
-  } catch (e) {
-    throw new Error('Unable to get item from sessionStorage');
+    const item = storage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch (error) {
+    console.error(`Failed to get item ${key}:`, error);
+    return defaultValue;
   }
-  return defaultValue;
 };

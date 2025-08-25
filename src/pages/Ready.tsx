@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Button } from '../components';
-import { MAX_ROUND, ROUTES, STORAGE_KEY } from '../constants';
+import { GAME_CONFIG, ROUTES, STORAGE_KEY } from '../constants';
 import { setItem } from '../utils';
 
 const Ready = () => {
@@ -45,7 +45,8 @@ const Ready = () => {
       <p css={styles.gameInstruction}>1. 주어진 시간 안에 문제를 해결합니다.</p>
       <p css={styles.gameInstruction}>2. 10라운드마다 난이도가 상승합니다.</p>
       <p css={styles.gameInstruction} id="last-instruction">
-        3. 게임은 총<span css={styles.highlightedText}> {MAX_ROUND} ROUND</span>
+        3. 게임은 총
+        <span css={styles.highlightedText}> {GAME_CONFIG.MAX_ROUND} ROUND</span>
         입니다.
       </p>
       <p css={styles.note} id="last-note">

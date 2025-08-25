@@ -1,10 +1,15 @@
-import { INITIAL_TIMES, STORAGE_KEY } from '../constants';
-import { setItem } from '../utils';
+import {
+  GAME_CONFIG,
+  GAME_STATUS,
+  type GameStatus,
+  STORAGE_KEY,
+} from '../constants';
+import { calculateScore, generateNumbers, setItem } from '../utils';
 
 export interface GameState {
   power: number;
   round: number;
-  status: 'default' | 'correct' | 'wrong';
+  status: GameStatus;
   active: boolean;
   first: number;
   second: number;
@@ -20,10 +25,6 @@ type GameAction =
   | { type: 'SCORE_ACTIVE_FALSE' }
   | { type: 'TICK' };
 
-/**
- * gameReducer는 게임 상태 전환을 관리하는 순수 함수입니다.
- * 현재 상태와 액션을 받아 새로운 상태를 반환합니다.
- */
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
     case 'UPDATE_VALUE':
@@ -32,9 +33,12 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
         value: action.payload,
       };
     case 'CORRECT_ANSWER':
-      const difficulty = calculateDifficulty(state.round);
-      const newPower =
-        state.power + Math.floor(state.first + state.second / difficulty);
+      const newPower = calculateScore(
+        state.power,
+        state.first,
+        state.second,
+        state.round,
+      );
 
       setItem(STORAGE_KEY.ROUND, state.round);
       setItem(STORAGE_KEY.POWER, newPower);
@@ -42,7 +46,7 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
       return {
         ...state,
         power: newPower,
-        status: 'correct',
+        status: GAME_STATUS.CORRECT,
         active: true,
       };
     case 'WRONG_ANSWER':
@@ -51,18 +55,18 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
 
       return {
         ...state,
-        status: 'wrong',
+        status: GAME_STATUS.WRONG,
       };
     case 'NEW_ROUND':
       const nextRound = state.round + 1;
-      const newNumbers = generateNewNumbers(nextRound);
+      const newNumbers = generateNumbers(nextRound);
       return {
         ...state,
         round: nextRound,
         first: newNumbers.first,
         second: newNumbers.second,
         value: '',
-        status: 'default',
+        status: GAME_STATUS.DEFAULT,
         time: action.payload.initialTime,
       };
     case 'SCORE_ACTIVE_FALSE':
@@ -82,31 +86,15 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
 
 export default gameReducer;
 
-const getRandomNumber = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
-const calculateDifficulty = (round: number) =>
-  10 ** Math.floor((round - 1) / 10 + 1);
-
-const generateNewNumbers = (round: number) => {
-  const difficulty = calculateDifficulty(round);
-  const min = difficulty / 10;
-  const max = difficulty;
-  return {
-    first: getRandomNumber(min, max),
-    second: getRandomNumber(min, max),
-  };
-};
-
-const initialNumbers = generateNewNumbers(1);
+const initialNumbers = generateNumbers(1);
 
 export const initialState: GameState = {
   power: 0,
   round: 1,
-  status: 'default',
+  status: GAME_STATUS.DEFAULT,
   active: false,
   first: initialNumbers.first,
   second: initialNumbers.second,
   value: '',
-  time: INITIAL_TIMES.DEMENTIA, // mode에 따라 override 해야하는 값
+  time: GAME_CONFIG.INITIAL_TIMES.DEMENTIA,
 };

@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
-import type { ButtonHTMLAttributes } from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'secondary';
-  children: React.ReactNode;
+  children: ReactNode;
   asChild?: boolean;
 }
 

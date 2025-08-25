@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { NavLink } from 'react-router';
 
 import { Button } from '../components';
-import { INITIAL_TIMES, ROUTES } from '../constants';
+import { GAME_CONFIG, ROUTES } from '../constants';
 
 const Mode = () => {
   return (
@@ -22,8 +22,12 @@ const Mode = () => {
       <p css={styles.description} id="last-instruction">
         난이도는 동일합니다.
       </p>
-      <p css={styles.example}>치매 예방 : {INITIAL_TIMES.DEMENTIA}초</p>
-      <p css={styles.example}>두뇌 회전 : {INITIAL_TIMES.BRAIN}초</p>
+      <p css={styles.example}>
+        치매 예방 : {GAME_CONFIG.INITIAL_TIMES.DEMENTIA}초
+      </p>
+      <p css={styles.example}>
+        두뇌 회전 : {GAME_CONFIG.INITIAL_TIMES.BRAIN}초
+      </p>
       <div css={styles.buttonWrapper}>
         <Button asChild>
           <NavLink to={ROUTES.PLAY_DEMENTIA}>치매 예방</NavLink>

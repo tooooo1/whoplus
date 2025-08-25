@@ -1,18 +1,15 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router';
 
-import { INITIAL_TIMES, MAX_ROUND, ROUTES } from '../constants';
+import { GAME_CONFIG, type GameMode, ROUTES } from '../constants';
 import gameReducer, { initialState } from '../reducers/gameReducer';
 
-/**
- * useGame 훅은 게임의 로직과 사이드 이펙트를 관리합니다.
- * gameReducer를 통해 상태 관리를 수행하고, 타이머 및 네비게이션과 같은 사이드 이펙트를 처리합니다.
- */
-const useGame = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
+const useGame = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
   const navigate = useNavigate();
-  const inputRef = useRef<HTMLInputElement>(null);
   const initialTime =
-    mode === 'Dementia' ? INITIAL_TIMES.DEMENTIA : INITIAL_TIMES.BRAIN;
+    mode === 'Dementia'
+      ? GAME_CONFIG.INITIAL_TIMES.DEMENTIA
+      : GAME_CONFIG.INITIAL_TIMES.BRAIN;
 
   const [state, dispatch] = useReducer(gameReducer, {
     ...initialState,
@@ -25,9 +22,12 @@ const useGame = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
     const inputValue = e.target.value;
     dispatch({ type: 'UPDATE_VALUE', payload: inputValue });
 
-    const inputNumber = Number(inputValue);
-    if (!isNaN(inputNumber) && inputNumber === state.first + state.second) {
-      dispatch({ type: 'CORRECT_ANSWER' });
+    const trimmed = inputValue.trim();
+    if (trimmed !== '') {
+      const num = Number(trimmed);
+      if (!isNaN(num) && num === state.first + state.second) {
+        dispatch({ type: 'CORRECT_ANSWER' });
+      }
     }
   };
 
@@ -35,7 +35,7 @@ const useGame = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
     if (state.status !== 'correct') {
       const timer = setInterval(() => {
         dispatch({ type: 'TICK' });
-      }, NEXT_TIMEOUT);
+      }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
       return () => clearInterval(timer);
     }
@@ -51,16 +51,15 @@ const useGame = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
     if (state.status === 'correct') {
       const scoreTimeout = setTimeout(() => {
         dispatch({ type: 'SCORE_ACTIVE_FALSE' });
-      }, SCORE_ACTIVE_FALSE_TIMEOUT);
+      }, GAME_CONFIG.TIMEOUTS.SCORE_ANIMATION);
 
       const nextRoundTimeout = setTimeout(() => {
-        if (state.round >= MAX_ROUND) {
+        if (state.round >= GAME_CONFIG.MAX_ROUND) {
           navigate(ROUTES.END);
         } else {
           dispatch({ type: 'NEW_ROUND', payload: { initialTime } });
-          inputRef.current?.focus();
         }
-      }, NEXT_TIMEOUT);
+      }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
       return () => {
         clearTimeout(scoreTimeout);
@@ -69,7 +68,7 @@ const useGame = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
     } else if (state.status === 'wrong') {
       const endGameTimeout = setTimeout(() => {
         navigate(ROUTES.END);
-      }, NEXT_TIMEOUT);
+      }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
       return () => clearTimeout(endGameTimeout);
     }
@@ -79,6 +78,3 @@ const useGame = ({ mode = 'Dementia' }: { mode?: 'Dementia' | 'Brain' }) => {
 };
 
 export default useGame;
-
-const NEXT_TIMEOUT = 1_000;
-const SCORE_ACTIVE_FALSE_TIMEOUT = 100;
