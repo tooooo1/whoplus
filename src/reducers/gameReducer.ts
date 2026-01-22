@@ -10,7 +10,7 @@ export interface GameState {
   power: number;
   round: number;
   status: GameStatus;
-  active: boolean;
+  isScoreAnimating: boolean;
   first: number;
   second: number;
   value: string;
@@ -18,12 +18,12 @@ export interface GameState {
 }
 
 type GameAction =
-  | { type: 'UPDATE_VALUE'; payload: string }
-  | { type: 'CORRECT_ANSWER' }
-  | { type: 'WRONG_ANSWER' }
-  | { type: 'NEW_ROUND'; payload: { initialTime: number } }
-  | { type: 'SCORE_ACTIVE_FALSE' }
-  | { type: 'TICK' };
+  | { type: 'UPDATE_ANSWER'; payload: string }
+  | { type: 'MARK_CORRECT' }
+  | { type: 'MARK_WRONG' }
+  | { type: 'START_NEW_ROUND'; payload: { initialTime: number } }
+  | { type: 'HIDE_SCORE_ANIMATION' }
+  | { type: 'DECREMENT_TIME' };
 
 const initialNumbers = generateNumbers(1);
 
@@ -31,69 +31,71 @@ export const initialState: GameState = {
   power: 0,
   round: 1,
   status: GAME_STATUS.DEFAULT,
-  active: false,
+  isScoreAnimating: false,
   first: initialNumbers.first,
   second: initialNumbers.second,
   value: '',
   time: GAME_CONFIG.INITIAL_TIMES.DEMENTIA,
 };
 
+const saveProgress = (round: number, power: number): void => {
+  setItem(STORAGE_KEY.ROUND, round);
+  setItem(STORAGE_KEY.POWER, power);
+};
+
+const createNextRoundState = (
+  state: GameState,
+  initialTime: number,
+): GameState => {
+  const nextRound = state.round + 1;
+  const { first, second } = generateNumbers(nextRound);
+
+  return {
+    ...state,
+    round: nextRound,
+    first,
+    second,
+    value: '',
+    status: GAME_STATUS.DEFAULT,
+    time: initialTime,
+  };
+};
+
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
-    case 'UPDATE_VALUE':
-      return {
-        ...state,
-        value: action.payload,
-      };
-    case 'CORRECT_ANSWER': {
+    case 'UPDATE_ANSWER':
+      return { ...state, value: action.payload };
+
+    case 'MARK_CORRECT': {
       const newPower = calculateScore(
         state.power,
         state.first,
         state.second,
         state.round,
       );
-
-      setItem(STORAGE_KEY.ROUND, state.round);
-      setItem(STORAGE_KEY.POWER, newPower);
+      saveProgress(state.round, newPower);
 
       return {
         ...state,
         power: newPower,
         status: GAME_STATUS.CORRECT,
-        active: true,
+        isScoreAnimating: true,
       };
     }
-    case 'WRONG_ANSWER':
-      setItem(STORAGE_KEY.ROUND, state.round);
-      setItem(STORAGE_KEY.POWER, state.power);
 
-      return {
-        ...state,
-        status: GAME_STATUS.WRONG,
-      };
-    case 'NEW_ROUND': {
-      const nextRound = state.round + 1;
-      const newNumbers = generateNumbers(nextRound);
-      return {
-        ...state,
-        round: nextRound,
-        first: newNumbers.first,
-        second: newNumbers.second,
-        value: '',
-        status: GAME_STATUS.DEFAULT,
-        time: action.payload.initialTime,
-      };
-    }
-    case 'SCORE_ACTIVE_FALSE':
-      return {
-        ...state,
-        active: false,
-      };
-    case 'TICK':
-      return {
-        ...state,
-        time: state.time - 1,
-      };
+    case 'MARK_WRONG':
+      saveProgress(state.round, state.power);
+      return { ...state, status: GAME_STATUS.WRONG };
+
+    case 'START_NEW_ROUND':
+      return createNextRoundState(state, action.payload.initialTime);
+
+    case 'HIDE_SCORE_ANIMATION':
+      return { ...state, isScoreAnimating: false };
+
+    case 'DECREMENT_TIME':
+      return { ...state, time: state.time - 1 };
+
     default:
       return state;
   }

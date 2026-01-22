@@ -1,84 +1,99 @@
 import { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router';
 
-import { GAME_CONFIG, type GameMode, ROUTES } from '../constants';
+import { GAME_CONFIG, GAME_STATUS, type GameMode, ROUTES } from '../constants';
 import gameReducer, { initialState } from '../reducers/gameReducer';
+
+const getInitialTimeForMode = (mode: GameMode): number =>
+  mode === 'Dementia'
+    ? GAME_CONFIG.INITIAL_TIMES.DEMENTIA
+    : GAME_CONFIG.INITIAL_TIMES.BRAIN;
+
+const isCorrectAnswer = (input: string, first: number, second: number): boolean => {
+  const trimmed = input.trim();
+  if (trimmed === '') return false;
+
+  const answer = Number(trimmed);
+  return !isNaN(answer) && answer === first + second;
+};
+
+const calculateTimeProgress = (elapsed: number, total: number): number =>
+  ((total - elapsed) / total) * 100;
 
 const useGame = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
   const navigate = useNavigate();
-  const initialTime =
-    mode === 'Dementia'
-      ? GAME_CONFIG.INITIAL_TIMES.DEMENTIA
-      : GAME_CONFIG.INITIAL_TIMES.BRAIN;
+  const initialTime = getInitialTimeForMode(mode);
 
   const [state, dispatch] = useReducer(gameReducer, {
     ...initialState,
     time: initialTime,
   });
 
-  const progress = ((initialTime - state.time) / initialTime) * 100;
+  const timeProgress = calculateTimeProgress(state.time, initialTime);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAnswerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    dispatch({ type: 'UPDATE_VALUE', payload: inputValue });
+    dispatch({ type: 'UPDATE_ANSWER', payload: inputValue });
 
-    const trimmed = inputValue.trim();
-    if (trimmed !== '') {
-      const num = Number(trimmed);
-      if (!isNaN(num) && num === state.first + state.second) {
-        dispatch({ type: 'CORRECT_ANSWER' });
-      }
+    if (isCorrectAnswer(inputValue, state.first, state.second)) {
+      dispatch({ type: 'MARK_CORRECT' });
     }
   };
 
   useEffect(() => {
-    if (state.status !== 'correct') {
-      const timer = setInterval(() => {
-        dispatch({ type: 'TICK' });
-      }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
+    const isPlaying = state.status !== GAME_STATUS.CORRECT;
+    if (!isPlaying) return;
 
-      return () => {
-        clearInterval(timer);
-      };
-    }
+    const timer = setInterval(() => {
+      dispatch({ type: 'DECREMENT_TIME' });
+    }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, [state.status]);
 
   useEffect(() => {
-    if (state.time <= 0) {
-      dispatch({ type: 'WRONG_ANSWER' });
+    const hasTimeExpired = state.time <= 0;
+    if (hasTimeExpired) {
+      dispatch({ type: 'MARK_WRONG' });
     }
   }, [state.time]);
 
   useEffect(() => {
-    if (state.status === 'correct') {
-      const scoreTimeout = setTimeout(() => {
-        dispatch({ type: 'SCORE_ACTIVE_FALSE' });
+    const isGameOver = state.round >= GAME_CONFIG.MAX_ROUND;
+
+    if (state.status === GAME_STATUS.CORRECT) {
+      const hideAnimationTimer = setTimeout(() => {
+        dispatch({ type: 'HIDE_SCORE_ANIMATION' });
       }, GAME_CONFIG.TIMEOUTS.SCORE_ANIMATION);
 
-      const nextRoundTimeout = setTimeout(() => {
-        if (state.round >= GAME_CONFIG.MAX_ROUND) {
+      const nextRoundTimer = setTimeout(() => {
+        if (isGameOver) {
           navigate(ROUTES.END);
         } else {
-          dispatch({ type: 'NEW_ROUND', payload: { initialTime } });
+          dispatch({ type: 'START_NEW_ROUND', payload: { initialTime } });
         }
       }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
       return () => {
-        clearTimeout(scoreTimeout);
-        clearTimeout(nextRoundTimeout);
+        clearTimeout(hideAnimationTimer);
+        clearTimeout(nextRoundTimer);
       };
-    } else if (state.status === 'wrong') {
-      const endGameTimeout = setTimeout(() => {
+    }
+
+    if (state.status === GAME_STATUS.WRONG) {
+      const endGameTimer = setTimeout(() => {
         navigate(ROUTES.END);
       }, GAME_CONFIG.TIMEOUTS.NEXT_ROUND);
 
       return () => {
-        clearTimeout(endGameTimeout);
+        clearTimeout(endGameTimer);
       };
     }
   }, [state.status, state.round, navigate, initialTime]);
 
-  return { state, handleChange, progress };
+  return { state, handleAnswerInput, timeProgress };
 };
 
 export default useGame;

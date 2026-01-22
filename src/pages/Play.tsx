@@ -10,36 +10,51 @@ import {
 import { useGame } from '../hooks';
 import { bounce, shake } from '../styles/animations';
 
+const getStatusIndicator = (
+  status: (typeof GAME_STATUS)[keyof typeof GAME_STATUS],
+  remainingTime: number,
+): string | number => {
+  if (status === GAME_STATUS.CORRECT) return GAME_INDICATORS.CORRECT;
+  if (status === GAME_STATUS.WRONG) return GAME_INDICATORS.WRONG;
+  return remainingTime;
+};
+
+const getProgressBarColor = (
+  status: (typeof GAME_STATUS)[keyof typeof GAME_STATUS],
+): 'primary' | 'secondary' =>
+  status === GAME_STATUS.WRONG ? 'primary' : 'secondary';
+
 const Play = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
-  const { state, handleChange, progress } = useGame({ mode });
+  const { state, handleAnswerInput, timeProgress } = useGame({ mode });
 
-  const indicator = (() => {
-    if (state.status === GAME_STATUS.CORRECT) return GAME_INDICATORS.CORRECT;
-    if (state.status === GAME_STATUS.WRONG) return GAME_INDICATORS.WRONG;
-    return state.time;
-  })();
-
-  const barColor = state.status === GAME_STATUS.WRONG ? 'primary' : 'secondary';
+  const statusIndicator = getStatusIndicator(state.status, state.time);
+  const progressBarColor = getProgressBarColor(state.status);
 
   return (
     <section>
-      <div css={styles.round}>
-        ROUND <span css={styles.stage(state.active)}>{state.round}</span>
+      <div css={styles.roundDisplay}>
+        ROUND{' '}
+        <span css={styles.roundNumber} data-animating={state.isScoreAnimating}>
+          {state.round}
+        </span>
       </div>
-      <p css={styles.timeUp}>{indicator}</p>
-      <LinearProgress value={progress} barColor={barColor} />
-      <div css={styles.subMissionQuestion}>
+      <p css={styles.statusIndicator}>{statusIndicator}</p>
+      <LinearProgress value={timeProgress} barColor={progressBarColor} />
+      <div css={styles.mathProblem}>
         {state.first} + {state.second}
       </div>
       <input
-        css={styles.subMissionInput(state.status)}
+        css={styles.answerInput}
+        data-status={state.status}
         aria-label="answer input"
         value={state.value}
-        onChange={handleChange}
+        onChange={handleAnswerInput}
         inputMode="numeric"
         pattern="[0-9]*"
       />
-      <div css={styles.score(state.active)}>{state.power.toLocaleString()}</div>
+      <div css={styles.powerScore} data-animating={state.isScoreAnimating}>
+        {state.power.toLocaleString()}
+      </div>
     </section>
   );
 };
@@ -49,40 +64,55 @@ export default Play;
 export const PlayBrain = () => <Play mode="Brain" />;
 
 const styles = {
-  score: (active: boolean) => css`
+  powerScore: css`
     font-size: 12px;
     font-family: 'RixYeoljeongdo';
-    animation: ${active ? `${shake} 0.3s infinite` : 'none'};
+
+    &[data-animating='true'] {
+      animation: ${shake} 0.3s infinite;
+    }
   `,
-  round: css`
+  roundDisplay: css`
     font-size: 36px;
     margin-bottom: 16px;
   `,
-  subMissionQuestion: css`
+  roundNumber: css`
+    font-weight: bold;
+
+    &[data-animating='true'] {
+      animation: ${bounce} 0.3s infinite ease;
+    }
+  `,
+  mathProblem: css`
     font-size: 48px;
     font-weight: 700;
   `,
-  subMissionInput: (status: (typeof GAME_STATUS)[keyof typeof GAME_STATUS]) => {
-    const statusKey = status.toUpperCase() as keyof typeof GAME_COLORS.STATUS;
+  answerInput: css`
+    width: 80%;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    margin: 16px 0;
+    font-weight: 700;
 
-    return css`
-      width: 80%;
-      border-radius: 30px;
-      background: ${GAME_COLORS.BACKGROUND[statusKey]};
-      color: ${GAME_COLORS.STATUS[statusKey]};
-      border: 2px solid ${GAME_COLORS.STATUS[statusKey]};
-      text-align: center;
-      font-size: 24px;
-      padding: 10px;
-      margin: 16px 0;
-      font-weight: 700;
-    `;
-  },
-  stage: (active: boolean) => css`
-    animation: ${active ? `${bounce} 0.3s infinite ease` : 'none'};
-    font-weight: bold;
+    background: ${GAME_COLORS.BACKGROUND.DEFAULT};
+    color: ${GAME_COLORS.STATUS.DEFAULT};
+    border: 2px solid ${GAME_COLORS.STATUS.DEFAULT};
+
+    &[data-status='correct'] {
+      background: ${GAME_COLORS.BACKGROUND.CORRECT};
+      color: ${GAME_COLORS.STATUS.CORRECT};
+      border-color: ${GAME_COLORS.STATUS.CORRECT};
+    }
+
+    &[data-status='wrong'] {
+      background: ${GAME_COLORS.BACKGROUND.WRONG};
+      color: ${GAME_COLORS.STATUS.WRONG};
+      border-color: ${GAME_COLORS.STATUS.WRONG};
+    }
   `,
-  timeUp: css`
+  statusIndicator: css`
     padding-bottom: 4px;
     height: 25px;
     font-weight: bold;

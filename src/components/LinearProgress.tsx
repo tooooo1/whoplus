@@ -6,19 +6,23 @@ interface LinearProgressProps {
 }
 
 export const LinearProgress = ({ value, barColor }: LinearProgressProps) => (
-    <div
-      css={styles.progressContainer}
-      role="progressbar"
-      aria-valuenow={Math.round(value)}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-label="게임 진행률"
-    >
-      <div css={styles.progressTrack}>
-        <div css={styles.progressBar(value, barColor)}></div>
-      </div>
+  <div
+    css={styles.progressContainer}
+    role="progressbar"
+    aria-valuenow={Math.round(value)}
+    aria-valuemin={0}
+    aria-valuemax={100}
+    aria-label="게임 진행률"
+  >
+    <div css={styles.progressTrack}>
+      <div
+        css={styles.progressBar}
+        data-color={barColor}
+        style={{ width: `${String(value)}%` }}
+      />
     </div>
-  );
+  </div>
+);
 
 const styles = {
   progressContainer: css`
@@ -33,11 +37,14 @@ const styles = {
     border-radius: 10px;
     overflow: hidden;
   `,
-  progressBar: (value: number, color: string) => css`
-    width: ${value}%;
+  progressBar: css`
     height: 100%;
-    background-color: var(--${color});
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
+    background-color: var(--secondary);
+
+    &[data-color='primary'] {
+      background-color: var(--primary);
+    }
   `,
 };
