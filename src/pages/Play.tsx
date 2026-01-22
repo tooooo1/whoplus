@@ -46,6 +46,8 @@ const Play = ({ mode = 'Dementia' }: { mode?: GameMode }) => {
 
 export default Play;
 
+export const PlayBrain = () => <Play mode="Brain" />;
+
 const styles = {
   score: (active: boolean) => css`
     font-size: 12px;
