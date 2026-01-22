@@ -1,11 +1,17 @@
 import { checkWebPSupport, load } from '@fepack/image';
+import { lazy, Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
 
 import { ErrorFallback, Logo } from './components';
 import { ROUTES } from './constants';
-import { End, Home, Mode, Play, Ready } from './pages';
 import { GlobalStyle } from './styles/GlobalStyle';
+
+const Home = lazy(() => import('./pages/Home'));
+const Ready = lazy(() => import('./pages/Ready'));
+const Mode = lazy(() => import('./pages/Mode'));
+const Play = lazy(() => import('./pages/Play'));
+const End = lazy(() => import('./pages/End'));
 
 const router = createBrowserRouter([
   { path: ROUTES.HOME, element: <Home /> },
@@ -17,33 +23,34 @@ const router = createBrowserRouter([
   { path: '*', element: <Navigate replace to={ROUTES.HOME} /> },
 ]);
 
-const checkWebPSupportAndLoad = async () => {
+const preloadImages = async () => {
   const isSupportWebP = await checkWebPSupport();
+  const ext = isSupportWebP ? 'webp' : 'png';
 
-  if (isSupportWebP) {
-    load('images/information_resize.webp');
-    load('images/options_resize.webp');
-    load('images/boxing-gloves_resize.webp');
-  } else {
-    load('images/information_resize.png');
-    load('images/options_resize.png');
-    load('images/boxing-gloves_resize.png');
-  }
+  load(`images/information_resize.${ext}`);
+  load(`images/options_resize.${ext}`);
+  load(`images/boxing-gloves_resize.${ext}`);
 };
 
-checkWebPSupportAndLoad();
+const App = () => {
+  useEffect(() => {
+    preloadImages();
+  }, []);
 
-const App = () => (
-  <ErrorBoundary
-    FallbackComponent={ErrorFallback}
-    onReset={() => {
-      sessionStorage.clear();
-    }}
-  >
-    <GlobalStyle />
-    <Logo />
-    <RouterProvider router={router} />
-  </ErrorBoundary>
-);
+  return (
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={() => {
+        sessionStorage.clear();
+      }}
+    >
+      <GlobalStyle />
+      <Logo />
+      <Suspense>
+        <RouterProvider router={router} />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
 
 export default App;

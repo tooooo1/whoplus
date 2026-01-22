@@ -6,7 +6,14 @@ interface LinearProgressProps {
 }
 
 export const LinearProgress = ({ value, barColor }: LinearProgressProps) => (
-    <div css={styles.progressContainer} role="progressbar">
+    <div
+      css={styles.progressContainer}
+      role="progressbar"
+      aria-valuenow={Math.round(value)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="게임 진행률"
+    >
       <div css={styles.progressTrack}>
         <div css={styles.progressBar(value, barColor)}></div>
       </div>

@@ -25,6 +25,19 @@ type GameAction =
   | { type: 'SCORE_ACTIVE_FALSE' }
   | { type: 'TICK' };
 
+const initialNumbers = generateNumbers(1);
+
+export const initialState: GameState = {
+  power: 0,
+  round: 1,
+  status: GAME_STATUS.DEFAULT,
+  active: false,
+  first: initialNumbers.first,
+  second: initialNumbers.second,
+  value: '',
+  time: GAME_CONFIG.INITIAL_TIMES.DEMENTIA,
+};
+
 const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
     case 'UPDATE_VALUE':
@@ -87,16 +100,3 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
 };
 
 export default gameReducer;
-
-const initialNumbers = generateNumbers(1);
-
-export const initialState: GameState = {
-  power: 0,
-  round: 1,
-  status: GAME_STATUS.DEFAULT,
-  active: false,
-  first: initialNumbers.first,
-  second: initialNumbers.second,
-  value: '',
-  time: GAME_CONFIG.INITIAL_TIMES.DEMENTIA,
-};
